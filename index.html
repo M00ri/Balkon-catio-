@@ -147,6 +147,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <button id="v-seite" aria-pressed="false">Schnitt</button>
         <button id="v-oben" aria-pressed="false">Oben</button>
         <button id="v-detail" aria-pressed="false">Detail</button>
+        <button id="v-ecke" aria-pressed="false">Ecke</button>
       </div>
       <div class="seg" role="group" aria-label="Scan">
         <button id="s-voll" aria-pressed="true">Scan</button>
@@ -168,7 +169,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V5 · auf Mauerhöhe<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V6 · Ecke an der Mauer<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -344,6 +345,7 @@ const views = {
   seite: { pos: [5.6, 1.7, 1.1], tgt: [0.1, 1.7, 1.1] },
   oben: { pos: [0.15, 7, 1.1], tgt: [0.15, 0, 1.1] },
   detail: { pos: [0.55, 3.0, -1.0], tgt: [-0.74, 2.55, 0.6] },
+  ecke: { pos: [-0.75, 2.6, 0.15], tgt: [0.8, 1.45, 2.55] },
 };
 let camAnim = null;
 function setView(name, instant) {
@@ -538,6 +540,7 @@ function go(n, { animate = true } = {}) {
   $("detail").hidden = current !== 8;
   $("d-platte").textContent = `Stegplatte ${Math.round(model.param.plattenStaerke * 1000)} mm, ${model.param.neigung}° Gefälle`;
   if (animate && current === 8) setView("detail");
+  if (animate && current === 3) setView("ecke");
   renderNewParts(current);
   updateLabels();
 }

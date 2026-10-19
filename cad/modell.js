@@ -27,7 +27,7 @@ export const BESTAND = {
   balken: { b: 0.055, h: 0.07 },
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
   zBalkenLinks: -0.345,   // Innenkante linker Balken
-  zBalkenWand: 2.615,     // Innenkante Balken auf dem Brüstungsstück vor der Mauer
+  zBalkenWand: 2.515,     // Innenkante Balken auf dem Brüstungsstück vor der Mauer (Geländer liegt innen, Balken ca. 10 cm von der Mauer weg)
 };
 
 // ---------------------------------------------------------------------------
@@ -60,7 +60,7 @@ const UEBERLAPPUNG = 0.10;          // Querstoß der Platten
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus dem LiDAR-Scan. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer befestigt. Rechts die Betonmauer mit flacher Krone auf 2,66 m. Sie endet etwa 26 cm vor der Gartenbrüstung." },
   { n: 2, titel: "Pfosten auf den Balken", text: "Fünf Pfosten 70×55 stehen auf deinen Balken: drei auf dem linken Balken (an der Hauswand, in der Mitte, an der Ecke) und zwei weitere auf dem Gartenbalken. Jeder Pfosten bekommt zwei Winkel, die in den Balken geschraubt werden. Nichts steht auf dem Boden." },
-  { n: 3, titel: "Mauerlatte und Wandständer", text: "Auf die Krone der Betonmauer kommt eine Mauerlatte, vollflächig mit MS-Polymer verklebt. Darauf stehen kurze Stiele mit einem Wandrähm, damit die hohe Seite des Dachs über der Mauer liegt. Den Spalt am Mauerende schließt ein Wandständer: Er steht auf dem Balken vor der Mauer, wird an die Mauer geklebt und mit der Mauerlatte verschraubt. Ein Riegel verbindet ihn mit dem Eckpfosten." },
+  { n: 3, titel: "Mauerlatte und Wandständer", text: "Auf die Krone der Betonmauer kommt eine Mauerlatte, vollflächig mit MS-Polymer verklebt. Darauf stehen kurze Stiele mit einem Wandrähm, damit die hohe Seite des Dachs über der Mauer liegt. Den Spalt am Mauerende schließt ein Wandständer. Weil dein Eckbalken dort rund 10 cm vor der Mauer liegt, steht der Ständer hinter dem Balken auf der Brüstung, direkt am Mauerende. Er wird seitlich an deinen Balken geschraubt, die letzten 3 cm zur Mauer füllt geklebtes Kompriband. Oben verbindet ein Lochband ihn mit der Mauerlatte, ein Riegel hinter dem Eckpfosten verbindet ihn mit dem Eckpfosten." },
   { n: 4, titel: "Traufriegel und Gartenrähm", text: "Links liegt der Traufriegel auf den drei Pfosten, das ist die tiefe Seite des Dachs. Über die Gartenpfosten läuft der Rähm mit dem Dachgefälle. Er besteht aus zwei Stücken, die sich über dem Mittelpfosten treffen, weil 3 m nicht ganz reichen." },
   { n: 5, titel: "Doppelsparren", text: "Die Sparren an der Hauswand und in der Mitte überspannen gut 3 m ohne Stütze. Jeder besteht deshalb aus zwei 70×55 übereinander, verleimt und alle 20 cm verschraubt. Der Doppelsparren an der Hauswand wird zusätzlich mit Raupen aus elastischem MS-Polymer an die Wand geklebt. Das hält ihn ruhig, getragen wird er trotzdem von Pfosten und Mauer. Die Stöße liegen versetzt, je einer nah an jedem Auflager. Unter dem Plattenstoß liegt ein Querriegel." },
   { n: 6, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen das Gerüst an der linken Seite, an der Gartenseite und unter den Doppelsparren aus. Damit hält es auch Kratzbaum und Liegebretter." },
@@ -165,8 +165,13 @@ export function baueModell(param = {}) {
     auflager = "futter";
     for (const x of stielX().slice(0, -1)) box(3, "Futterklotz auf der Mauerlatte", "holz", x - H.a / 2, x + H.a / 2, mlOK, auflOK, mlZ0, mlZ1, { ...holz, laenge: H.b });
   } else if (luecke < -0.02) auflager = "zuTief";
-  box(3, "Wandständer (an die Mauer geklebt)", "holz", B.xWandEnde - H.b, B.xWandEnde, hB, mlOK, zw0, zw1, { ...holz, laenge: mlOK - hB });
-  box(3, "Lückenriegel Wandständer–Eckpfosten", "holz", B.xWandEnde, xg0, mlOK - H.b, mlOK, zw0, zw1, { ...holz, laenge: xg0 - B.xWandEnde });
+  // Wandständer: hinter dem Eckbalken auf der Brüstung, 70 mm in Richtung Mauer, Rest zur Mauer mit Kompriband
+  const wz0 = zw1, wz1 = Math.min(B.zWand - 0.01, zw1 + H.b);
+  box(3, "Wandständer am Mauerende (an den Eckbalken geschraubt)", "holz", B.xWandEnde - H.a, B.xWandEnde, B.hBruestung, mlOK, wz0, wz1, { ...holz, laenge: mlOK - B.hBruestung });
+  box(3, "Wandständer – Schrauben in den Eckbalken", "stahl", B.xWandEnde - H.a + 0.015, B.xWandEnde - 0.015, B.hBruestung + 0.02, hB - 0.02, zw0 + 0.01, wz0 + 0.02);
+  if (B.zWand - wz1 > 0.002) box(3, "Kompriband Wandständer–Mauer (geklebt)", "dicht", B.xWandEnde - H.a, B.xWandEnde, B.hBruestung, mlOK, wz1, B.zWand);
+  box(3, "Lochband Wandständer–Mauerlatte", "stahl", B.xWandEnde - H.a, B.xWandEnde, mlOK - 0.002, mlOK + 0.002, wz0, mlZ1 - 0.01);
+  box(3, "Lückenriegel hinter dem Eckpfosten", "holz", B.xWandEnde, xg1, mlOK - H.b, mlOK, wz0, wz0 + H.a, { ...holz, laenge: xg1 - B.xWandEnde });
 
   // --- 4 Traufriegel + Gartenrähm ---------------------------------------------------------------
   box(4, "Traufriegel links", "holz", B.xFassade, xg0, trUK, trOK, zl0, zl1, { ...holz, laenge: xg0 - B.xFassade });
@@ -235,7 +240,8 @@ export function baueModell(param = {}) {
   const xn = xg0 - 0.003, zn = zl1 + 0.003;
   poly(9, "Netz Gartenseite", "netz", [[xn, hB, zn], [xn, hB, zw0], [xn, yU(zw0), zw0], [xn, yU(zn), zn]]);
   poly(9, "Netz links bis in die Nische", "netz", [[B.xGlas + 0.1, hB - 0.05, zn], [xn, hB - 0.05, zn], [xn, yU(zn), zn], [B.xFassade, yU(zn), zn], [B.xFassade, B.hSturzUK, zn], [B.xGlas + 0.1, B.hSturzUK, zn]]);
-  poly(9, "Netz Spalt Wandständer–Eckpfosten", "netz", [[B.xWandEnde, hB, zw0 - 0.003], [xg0, hB, zw0 - 0.003], [xg0, yU(zw0), zw0 - 0.003], [B.xWandEnde, yU(zw0), zw0 - 0.003]]);
+  const zs = zw1 + 0.002;
+  poly(9, "Netz Spalt Wandständer–Eckpfosten", "netz", [[B.xWandEnde, hB - 0.04, zs], [xg0, hB - 0.04, zs], [xg0, yU(zs), zs], [B.xWandEnde, yU(zs), zs]]);
   poly(9, "Netzstreifen über der Mauerkrone", "netz", [[B.xFassade, mlOK, mlZ0 + 0.003], [B.xWandEnde, mlOK, mlZ0 + 0.003], [B.xWandEnde, yU(mlZ0), mlZ0 + 0.003], [B.xFassade, yU(mlZ0), mlZ0 + 0.003]]);
 
   // --- Kennwerte & Prüfungen -------------------------------------------------------------------------
@@ -277,7 +283,7 @@ export function baueModell(param = {}) {
   }[auflager]);
   hinweise.push({ stufe: "info", text: `Der Doppelsparren an der Hauswand wird zusätzlich mit elastischem MS-Polymer an die Wand geklebt, nicht mit hartem Montagekleber. Holz arbeitet, eine starre Klebung reißt. Die Klebung hält ihn ruhig, tragen tun Pfosten und Mauer.` });
   hinweise.push({ stufe: "info", text: `Bitte prüfen: Ist über der Hauswand bis ${cm(yTop(zP1) + 0.1)} cm Höhe frei (kein Fenster, keine Fensterbank, kein Balkon darüber)?` });
-  hinweise.push({ stufe: "ok", text: `Spalt zwischen Mauerende und Eckpfosten: ${cm(xg0 - B.xWandEnde)} cm. Er wird mit Wandständer, Riegel und Netz geschlossen.` });
+  hinweise.push({ stufe: "ok", text: `Ecke an der Mauer: ${cm(xg0 - B.xWandEnde)} cm Spalt zwischen Mauerende und Eckpfosten, dazu ${cm(B.zWand - zw1)} cm vom Eckbalken bis zur Mauer. Wandständer hinter dem Balken, Riegel und Netz schließen beides.` });
   hinweise.push({ stufe: "info", text: `Die Mauerlatte hält über den Kleber auf der Mauerkrone und die Verschraubung mit dem Wandständer. Vollflächig kleben, 24 h aushärten lassen, erst dann die Sparren auflegen.` });
 
   const masse = [
