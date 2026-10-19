@@ -93,6 +93,9 @@ ol.steps .done { color: var(--ink); }
 ol.steps .current { color: var(--chalk); font-weight: 600; }
 
 .regler { display: flex; flex-direction: column; gap: 14px; }
+.regler label.check { display: block; font-weight: 500; }
+.regler label.check input { margin: 0 6px 0 0; vertical-align: -2px; accent-color: var(--ink); }
+.regler label.check .hint { display: block; margin-top: 2px; }
 .regler label { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: baseline; font-weight: 500; }
 .regler output { font: 500 14px var(--font-data); font-variant-numeric: tabular-nums; }
 .regler input[type=range] { grid-column: 1 / -1; width: 100%; accent-color: var(--chalk); }
@@ -169,7 +172,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V19 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V20 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -252,6 +255,10 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <p class="hint" style="margin:0;font-size:12px;color:var(--ink-soft)">Deine Platten: 3 × 2,00 × 1,05 m, mit den Stegen zum Garten. Sie decken die ganze Breite ohne Zuschnitt ab.</p>
         <label>Plattenstärke <output id="o-staerke"></output>
           <div class="seg" role="group" aria-label="Plattenstärke" id="g-staerke"></div></label>
+        <label class="check"><input type="checkbox" id="c-mitte"> Ohne Mittelpfosten vorne
+          <span class="hint">Die Gartenseite bleibt ohne Pfosten frei. Dafür wird die Traufpfette doppelt (55×140) wie hinten, vorne geht 7 cm Kopffreiheit verloren.</span></label>
+        <label class="check"><input type="checkbox" id="c-eckriegel"> Ecke mit Eckriegel (neu)
+          <span class="hint">Ein Riegel genau auf der Netzlinie hält den Wandpfosten oben und gibt dem Netz über Eck eine obere Leiste. Ohne Häkchen: die alte Lösung mit Kopfholz an der Mauer.</span></label>
         <div><button class="btn" id="reset">Vorschlag wiederherstellen</button></div>
       </div>
       <div class="panel">
@@ -359,7 +366,7 @@ const views = {
   seite: { pos: [0.2, 1.9, -5.0], tgt: [0.2, 1.9, 1.1] },
   oben: { pos: [0.15, 7, 1.1], tgt: [0.15, 0, 1.1] },
   detail: { pos: [0.7, 3.3, -0.4], tgt: [-0.76, 2.85, 1.1] },
-  ecke: { pos: [0.05, 2.3, 1.2], tgt: [0.9, 1.3, 2.55] },
+  ecke: { pos: [0.1, 2.15, 1.55], tgt: [0.85, 2.35, 2.55] },
 };
 let camAnim = null;
 function setView(name, instant) {
@@ -633,7 +640,16 @@ function choice(id, key, values, fmtOut) {
   sync();
   return sync;
 }
+function check(id, key, invert = false) {
+  const el = $("c-" + id);
+  const sync = () => { el.checked = invert ? !param[key] : Boolean(param[key]); };
+  el.onchange = () => { param[key] = invert ? !el.checked : el.checked; rebuild(); };
+  sync();
+  return sync;
+}
 const syncs = [
+  check("mitte", "ohneMittelpfosten"),
+  check("eckriegel", "eckriegel"),
   slider("neigung", "neigung", GRENZEN.neigung, 1, (v) => `${v}°`),
   slider("vorne", "hoeheVorne", GRENZEN.hoeheVorne, 100, (v) => `${de(v)} m`),
   choice("staerke", "plattenStaerke", GRENZEN.plattenStaerke, (v) => `${Math.round(v * 1000)} mm`),

@@ -1,9 +1,9 @@
 // Schreibt docs/stueckliste.md aus dem Modell (mit Standardwerten oder eigenen Werten).
-// Aufruf: node cad/stueckliste.mjs [neigung=8] [hoeheVorne=2.71] [plattenStaerke=0.016]
+// Aufruf: node cad/stueckliste.mjs [neigung=8] [hoeheVorne=2.71] [plattenStaerke=0.016] [ohneMittelpfosten=true] [eckriegel=false]
 import { writeFileSync, mkdirSync } from "node:fs";
 import { baueModell, cm, HOLZ, LAGER } from "./modell.js";
 
-const param = Object.fromEntries(process.argv.slice(2).map((a) => a.split("=")).map(([k, v]) => [k, isNaN(+v) ? v : +v]));
+const param = Object.fromEntries(process.argv.slice(2).map((a) => a.split("=")).map(([k, v]) => [k, v === "true" ? true : v === "false" ? false : isNaN(+v) ? v : +v]));
 const m = baueModell(param);
 const k = m.kennwerte;
 const z = [];
