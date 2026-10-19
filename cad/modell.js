@@ -27,6 +27,7 @@ export const BESTAND = {
   hGelaender: 0.80,       // innenliegendes Metallgeländer, Oberkante
   // deine Balken 70×55 auf der Brüstung, mit U-Bügeln am Geländer befestigt
   balken: { b: 0.055, h: 0.07 },
+  eckEinzug: 0.055,       // die vorderen Eckpfosten stehen 5,5 cm von der Balkenecke nach innen (U-Bügel ans Geländer)
   aussparungEcke: 0.055,  // vordere Eckpfosten sitzen in einer Aussparung im Balken, 5,5 cm tiefer (Winkel auf beiden Seiten)
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
   zBalkenLinks: -0.22,    // Innenkante linker Balken (so passt: Außenkante links bis Mauer-Innenseite 2,945 m)
@@ -61,14 +62,14 @@ export const LAGER = 3.0;
 
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus Scan und Fotos. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer. Rechts die Betonmauer mit Krone auf 2,56 m. Sie endet etwa 40 cm vor der Balkonkante. Das Dach fällt nach vorne zum Garten. Jeder Handgriff ist so geplant, dass du ihn von innen machst." },
-  { n: 2, titel: "Pfosten auf den Balken", text: "Vier Pfosten 70×55: links an der Hauswand einer, der bis auf den Boden geht (oben 261,9 cm, so hoch wie dein Balken auf der Mauerkrone, direkt an deinem Balken: dort zwei Schrauben 6×120 seitlich durch den Pfosten in den Balken, das Geländer geht dort nicht durch), auf dem linken Balken einer an der Ecke, auf dem Gartenbalken einer in der Mitte und einer an der Ecke zur Mauer, genau dort, wo dein Geländer um die Ecke geht. Links braucht es keinen Mittelpfosten, weil das Dach nach vorne fällt und dort kaum Last ankommt. Die Pfosten auf den Balken bekommen unten zwei Winkel auf gegenüberliegenden Seiten, in Pfosten und Balken geschraubt, und einen U-Bügel um das Geländerrohr. So sitzt alles bombenfest." },
+  { n: 2, titel: "Pfosten auf den Balken", text: "Vier Pfosten 70×55: links an der Hauswand einer, der bis auf den Boden geht (oben 261,9 cm, so hoch wie dein Balken auf der Mauerkrone, direkt an deinem Balken: dort zwei Schrauben 6×120 seitlich durch den Pfosten in den Balken, das Geländer geht dort nicht durch), auf dem linken Balken einer an der Ecke, auf dem Gartenbalken einer in der Mitte und einer an der Ecke zur Mauer, genau dort, wo dein Geländer um die Ecke geht. Die beiden vorderen Eckpfosten stehen 5,5 cm von der Balkenecke nach innen, damit die U-Bügel ans Geländer passen. Der linke steht so genau in einer Linie mit dem Pfosten an der Hauswand. Links braucht es keinen Mittelpfosten, weil das Dach nach vorne fällt und dort kaum Last ankommt. Die Pfosten auf den Balken bekommen unten zwei Winkel auf gegenüberliegenden Seiten, in Pfosten und Balken geschraubt, und einen U-Bügel um das Geländerrohr. So sitzt alles bombenfest." },
   { n: 3, titel: "Mauerkrone und Ecke an der Mauer", text: "Rechts stehen die Platten ein Stück über deine Betonmauer, damit der Regen außen auf die Mauer abläuft. Das Dach liegt aber nicht auf der Mauer: Auch der rechte Dachbalken wird nur von den beiden Querbalken getragen. Auf der Krone liegt dein Balken flach (5,5 cm hoch), oben auf 261,9 cm. Auf ihm liegt rechts die Wandpfette, links liegt sie auf deinem Pfosten an der Hauswand, beide auf 261,9 cm. Mit der Wasserwaage prüfen. In der Ecke ist zwischen deinem Eckbalken und der Mauer ein Betonstreifen von 19 cm Breite und 51 cm Tiefe, die Mauer endet etwa 40 cm vor der Balkonkante. Bündig mit dem Mauerende wird ein Wandpfosten 70×55 auf einer Unterlegplatte flach mit MS-Polymer an die Innenseite der Mauer geklebt. Er klebt auf ganzer Länge an der Betonwand und reicht oben bis zur Oberkante deines Balkens auf der Mauer (261,9 cm). Dort wird er mit einem Lochblech über beide Oberseiten an diesem Balken festgeschraubt. Unten kommt zwischen das Ende deines Eckbalkens und den Wandpfosten eine kurze Schwelle: ein 70×55 flach auf den Betonstreifen, auf einer Unterlegplatte punktuell geklebt, beide Enden schräg nach Anriss, vorne mit einem Winkel an den Eckbalken und hinten an den Wandpfosten geschraubt. Daran wird später das Netz über Eck unten befestigt." },
   { n: 4, titel: "Pfetten und Auflager auf der Mauer", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander: zwei Raupen Fix ALL dazwischen und sofort alle 20 cm mit 6×120 verschrauben, versetzt. 24 Stunden aushärten lassen. Sie liegt links auf dem Pfosten und rechts direkt auf der Mauerkrone. Beide Lagen liegen an der glatten Betonfläche der Hauswand und werden dort zusätzlich punktuell angeklebt. An der Hauswand wird also nichts über der glatten Betonfläche befestigt, außer später dem schmalen Dichtprofil über der Platte. Vorne die Traufpfette auf den Gartenpfosten, rechts bis zum späteren rechten Sparren. Einen Stirnriegel links braucht es nicht: Dort liegt der linke Sparren des linken Elements genau über deinem Balken. In der Ecke an der Mauer kommt der Eckriegel dazu: ein 70×55, das genau auf der Netzlinie vom Ende der Traufpfette schräg zum Wandpfosten läuft. Vorne mit einem Winkel an die Traufpfette, hinten stumpf vorne an den Wandpfosten gestoßen und mit einem Winkel seitlich daran geschraubt. Der Wandpfosten selbst ist oben am Balken auf der Mauer festgeschraubt, das Netz über Eck bekommt am Eckriegel oben eine Leiste." },
   { n: 5, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen vorne und an der Hauswand aus. Die zwei Kopfbänder links kommen nach dem Einbau der Elemente an den linken Sparren. Ab hier steht das Gerüst stabil, auch für Kratzbaum und Liegebretter später." },
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
   { n: 7, titel: "Dachelemente auf Böcken bauen", text: "Jede deiner drei Platten wird auf zwei Böcken zu einem Element: zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf. Unter das hintere Ende jedes Sparrens kommt ein 7 cm hoher Klotz (Reststück 70×55, ca. 9 cm lang), mit zwei Schrauben von der Seite angeschraubt. Mit diesem Klotz liegt das Element später auf der Wandpfette. So bekommt das Dach seine 7° Gefälle, ohne dass an der Hauswand ein dritter Balken nötig ist. Kanten fertig machen: oben an der Wand Alu-Klebeband, vorne Antistaubband, Tropfprofil und Rinnenhalter, außen die Randprofile. An die Kante zum Nachbarelement kommt ein H-Verbindungsprofil." },
   { n: 8, titel: "Elemente einbauen, Rinne einhängen", text: "Ein Element wiegt etwa 12 kg. Längs gedreht flach durch die Öffnung heben, oben um 90° drehen und ablegen: zuerst links, dann die Mitte, die seitlich ins H-Profil geschoben wird. Das rechte kommt zuletzt leicht gekippt durch die Restöffnung. Jedes Element 5 cm vor der Wand absetzen, unter die Dichtlippe schieben, von unten verschrauben. Dann die zwei Kopfbänder links an den linken Sparren, von innen die Rinne in die Halter hängen und die Füllhölzer über der Traufpfette setzen." },
-  { n: 9, titel: "Katzennetz von innen", text: "Das Netz kommt nicht innen vor die Hölzer, sondern Feld für Feld zwischen sie, wie eine Fensterscheibe. Pro Feld ein Netzstück mit 5 cm Rand zuschneiden. Den Rand auf die Seitenflächen der Pfosten, die Unterseite des Querbalkens und die Oberseite deines Balkens tackern, möglichst weit außen, dann eine Leiste 20×20 außen bündig drüberschrauben. Das Netz sitzt so nur 2 cm hinter der Außenkante, und alle Innenseiten bleiben frei für spätere Wandelemente. Links genauso zwischen Balken, linkem Dachbalken und Eckpfosten bis in die Fensternische, in der Ecke über Eck vom Eckpfosten zum Wandpfosten, oben am Eckriegel, rechts ein Streifen von der Mauerkrone bis zum rechten Dachbalken. Nie an die Platten. Alles ist von innen erreichbar." },
+  { n: 9, titel: "Katzennetz von innen", text: "Das Netz kommt nicht innen vor die Hölzer, sondern Feld für Feld zwischen sie, wie eine Fensterscheibe. Pro Feld ein Netzstück mit 5 cm Rand zuschneiden. Den Rand auf die Seitenflächen der Pfosten, die Unterseite des Querbalkens und die Oberseite deines Balkens tackern, möglichst weit außen, dann eine Leiste 20×20 außen bündig drüberschrauben. Das Netz sitzt so nur 2 cm hinter der Außenkante, und alle Innenseiten bleiben frei für spätere Wandelemente. Links genauso zwischen Balken, linkem Dachbalken und Eckpfosten bis in die Fensternische, in der Ecke über Eck vom Eckpfosten zum Wandpfosten, oben am Eckriegel, rechts ein Streifen von der Mauerkrone bis zum rechten Dachbalken. An den beiden vorderen Ecken läuft das Netz außen am Eckpfosten vorbei bis an die Balkenecke, dort die zwei Netzstücke mit Kabelbindern oder Netzklammern verbinden und oben und unten klemmen. Nie an die Platten. Alles ist von innen erreichbar." },
 ];
 
 // Texte, die sich mit den Varianten unter „Planen“ ändern
@@ -138,8 +139,8 @@ export function baueModell(param = {}) {
   const holz = { profil: HOLZ };
 
   // --- 1 Bestand -------------------------------------------------------------------
-  box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, zl0, zw1);
-  box(1, "Bestandsbalken links", "bestand", B.xGlas + 0.1, xg0, B.hBruestung, hB, zl0, zl1);
+  box(1, "Bestandsbalken Garten (stößt links an den linken Balken)", "bestand", xg0, xg1, B.hBruestung, hB, zl1, zw1);
+  box(1, "Bestandsbalken links (geht bis vorne an die Ecke)", "bestand", B.xGlas + 0.1, xg1, B.hBruestung, hB, zl0, zl1);
   const xEcke = B.xBrAussen - B.tiefeEcke;
   box(1, "Bestandsbalken vor der Mauer", "bestand", xEcke, xg0, B.hBruestung, hB, zw0, zw1);
   const gx = xg0 - 0.012, gz = zl1 + 0.012, gw = zw0 - 0.012;
@@ -191,10 +192,11 @@ export function baueModell(param = {}) {
   const zh0 = zl1 + 0.001, zh1 = zh0 + H.b;                                 // direkt innen am Balken, dort ist kein Geländer
   pfosten("Pfosten links an der Hauswand (bis zum Boden)", xF0, xF0 + H.b, zh0, zh1, wpUK, [], null, hBalken, "steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer");
   for (const y of [B.hBruestung + 0.02, hBalken - 0.02]) box(2, "Schraube 6×120 durch den Pfosten in den Balken", "stahl", xF0 + H.b / 2 - 0.003, xF0 + H.b / 2 + 0.003, y - 0.003, y + 0.003, zl1 - 0.06, zh1);
-  pfosten("Eckpfosten links/Garten", xg0, xg1, zl0, zl0 + H.b, tpUK, ["+z", "-x"], "garten", B.aussparungEcke);
+  const zEL = [zl0 + B.eckEinzug, zl0 + B.eckEinzug + H.b];                 // Eckpfosten links/Garten, in einer Linie mit dem Pfosten an der Hauswand
+  pfosten("Eckpfosten links/Garten", xg0, xg1, zEL[0], zEL[1], tpUK, ["+z", "-z"], "garten", B.aussparungEcke);
   if (!p.ohneMittelpfosten) pfosten("Pfosten Garten Mitte", xg0, xg1, zMitte - H.b / 2, zMitte + H.b / 2, tpUK, ["+z", "-z"], "garten");
-  const zEck = [zw1 - H.b, zw1];                                              // Eckpfosten Garten/Mauer, am Geländereck
-  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zEck[0], zEck[1], tpUK, ["-z", "-x"], "garten", B.aussparungEcke);
+  const zEck = [zw1 - B.eckEinzug - H.b, zw1 - B.eckEinzug];                // Eckpfosten Garten/Mauer, 5,5 cm vom Balkenende nach innen
+  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zEck[0], zEck[1], tpUK, ["-z", "+z"], "garten", B.aussparungEcke);
   const wz1 = B.zWand - 0.002, wz0 = wz1 - H.b;                              // Wandpfosten an der Mauer
 
   // --- 3 Auflager auf der Mauerkrone + Ecke ----------------------------------------------------------
@@ -288,7 +290,7 @@ export function baueModell(param = {}) {
     schnittStab(step, name, "holz", A, Bp, H.a, H.a, eA, eB, { ...holz, ...wk(45, "beide Enden, Schnitte parallel") });
     winkelLabels.push({ t: "45°", p: [(A[0] + Bp[0]) / 2 - 0.04, (A[1] + Bp[1]) / 2, (A[2] + Bp[2]) / 2], ab: step, bis: step });
   };
-  const kbVorne = [[zl0 + H.b, 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
+  const kbVorne = [[zEL[1], 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
   for (const [z, s, nm] of kbVorne.filter((k) => !p.ohneMittelpfosten || !k[2].startsWith("Mitte")))
     kb(`Kopfband vorne ${nm}`, [xG - KL, tpUK - kd, z], [xG - KL, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));   // 2 cm nach innen, das Netz läuft außen vorbei
   kb("Kopfband Hauswand", [xF, wpUK - kd, zh1], [xF, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
@@ -342,7 +344,7 @@ export function baueModell(param = {}) {
   // Die Innenseiten von Pfosten und Balken bleiben frei für spätere Wandelemente.
   const leiste = (name, x0, x1, y0, y1, z0, z1) => box(9, name, "holz", x0, x1, y0, y1, z0, z1, { laenge: Math.max(x1 - x0, y1 - y0, z1 - z0) });
   const xN = xg1 - KL;                                                        // Netzebene Gartenseite
-  const felder = p.ohneMittelpfosten ? [[zl0 + H.b, zEck[0]]] : [[zl0 + H.b, zMitte - H.b / 2], [zMitte + H.b / 2, zEck[0]]];
+  const felder = p.ohneMittelpfosten ? [[zEL[1], zEck[0]]] : [[zEL[1], zMitte - H.b / 2], [zMitte + H.b / 2, zEck[0]]];
   felder.forEach(([za, zb], i) => {
     const nm = felder.length > 1 ? ` Feld ${i + 1}` : "";
     poly(9, `Netz Gartenseite${nm} (zwischen den Pfosten)`, "netz", [[xN - 0.001, hB, za], [xN - 0.001, hB, zb], [xN - 0.001, tpUK, zb], [xN - 0.001, tpUK, za]]);
@@ -356,10 +358,15 @@ export function baueModell(param = {}) {
   poly(9, "Netz über Eck (Eckpfosten bis Wandpfosten)", "netz", [[eckA[0] - 0.003, swOK, eckA[1]], [eckB[0] - 0.003, swOK, eckB[1]], [eckB[0] - 0.003, netzOben[1], eckB[1]], [eckA[0] - 0.003, netzOben[0], eckA[1]]]);
   // links: zwischen Balken, linkem Sparren und Eckpfosten, hinten bis in die Fensternische
   const zN = zl0 + KL;
-  poly(9, "Netz links (zwischen Balken und linkem Sparren) bis in die Nische", "netz", [[B.xGlas + 0.1, hB, zN + 0.001], [xg0, hB, zN + 0.001], [xg0, spU(xg0), zN + 0.001], [xF1, spU(xF1), zN + 0.001], [B.xFassade, B.hSturzUK, zN + 0.001], [B.xGlas + 0.1, B.hSturzUK, zN + 0.001]]);
-  leiste("Klemmleiste links unten (auf dem Balken)", B.xGlas + 0.1, xg0, hB, hB + KL, zl0, zN);
-  leiste("Klemmleiste links vorne (am Eckpfosten)", xg0 - KL, xg0, hB + KL, spU(xg0) - KL, zl0, zN);
-  stab(9, "Klemmleiste links oben (unter dem linken Sparren)", "holz", [xF1, spU(xF1) - KL / 2, zl0 + KL / 2], [xg0 - KL, spU(xg0 - KL) - KL / 2, zl0 + KL / 2], KL, KL);
+  poly(9, "Netz links (zwischen Balken und linkem Sparren) bis in die Nische", "netz", [[B.xGlas + 0.1, hB, zN + 0.001], [xN, hB, zN + 0.001], [xN, spU(xN), zN + 0.001], [xF1, spU(xF1), zN + 0.001], [B.xFassade, B.hSturzUK, zN + 0.001], [B.xGlas + 0.1, B.hSturzUK, zN + 0.001]]);
+  leiste("Klemmleiste links unten (auf dem Balken)", B.xGlas + 0.1, xN, hB, hB + KL, zl0, zN);
+  stab(9, "Klemmleiste links oben (unter dem linken Sparren)", "holz", [xF1, spU(xF1) - KL / 2, zl0 + KL / 2], [xN, spU(xN) - KL / 2, zl0 + KL / 2], KL, KL);
+  // Ecken: die Eckpfosten stehen 5,5 cm innen, das Netz läuft außen bis an die Balkenecke und wird dort mit dem Nachbarstück verbunden
+  for (const [nm, za, zb] of [["links", zN, zEL[0]], ["an der Mauer", zEck[1], zw1]]) {
+    poly(9, `Netz Eckstreifen ${nm} (außen am Eckpfosten vorbei bis zur Balkenecke)`, "netz", [[xN - 0.001, hB, za], [xN - 0.001, hB, zb], [xN - 0.001, tpUK, zb], [xN - 0.001, tpUK, za]]);
+    leiste(`Klemmleiste Eckstreifen ${nm} unten`, xN, xg1, hB, hB + KL, za, zb);
+    leiste(`Klemmleiste Eckstreifen ${nm} oben`, xN, xg1, tpUK - KL, tpUK, za, zb);
+  }
   // Streifen über der Mauerkrone: von der Krone bis zur Unterkante des rechten Sparrens (unten Klemmleiste an die Mauer geklebt)
   const zs = B.zWand - 0.003;
   poly(9, "Netzstreifen über der Mauerkrone (bis zum rechten Sparren)", "netz", [[xF1, kUK, zs], [B.xWandEnde, kUK, zs], [B.xWandEnde, spU(B.xWandEnde), zs], [xF1, spU(xF1), zs]]);
@@ -407,12 +414,12 @@ export function baueModell(param = {}) {
     : `Oben verbindet ihn das Kopfholz mit der Traufpfette. Achtung: Das Kopfholz liegt an der Mauer, nicht auf der Netzlinie. Die Oberkante des Netzes über Eck (${cm(eckL)} cm) hat so keine Leiste, darüber bleibt ein Spalt bis zum Dach.`)}` });
   {
     // Durchbiegung Traufpfette grob: 1,0 kN/m² (Schnee + Dach) auf die halbe Dachtiefe, E = 11 000 N/mm²
-    const q = 1.0 * (xG - xF) / 2, L = p.ohneMittelpfosten ? (zEck[0] + zEck[1]) / 2 - (zl0 + H.b / 2) : Math.max(zMitte - zl0, zEck[1] - zMitte);
+    const q = 1.0 * (xG - xF) / 2, L = p.ohneMittelpfosten ? (zEck[0] + zEck[1]) / 2 - (zEL[0] + zEL[1]) / 2 : Math.max(zMitte - (zEL[0] + zEL[1]) / 2, (zEck[0] + zEck[1]) / 2 - zMitte);
     const I = (H.a * Math.pow(tpLagen * H.b, 3)) / 12, f = (5 * q * 1000 * Math.pow(L, 4)) / (384 * 11e9 * I);
     const sigma = ((q * L * L) / 8) / ((H.a * Math.pow(tpLagen * H.b, 2)) / 6) / 1000;   // N/mm²
     hinweise.push({ stufe: f > L / 200 ? "warn" : "ok", text: p.ohneMittelpfosten
       ? `Ohne Mittelpfosten spannt die doppelte Traufpfette (55×140, verklebt und verschraubt) ${cm(L)} cm frei. Grob gerechnet biegt sie sich unter Schnee ${(f * 1000).toFixed(0)} mm durch (${sigma.toFixed(0)} N/mm²). Dafür ist vorne die Kopffreiheit ${cm(H.b)} cm niedriger und es braucht mehr Holz.`
-      : `Mit dem Mittelpfosten spannt die einfache Traufpfette nur ${cm(L)} cm. Grob gerechnet biegt sie sich unter Schnee ${(f * 1000).toFixed(0)} mm durch (${sigma.toFixed(0)} N/mm²). Der Stoß sitzt über dem Mittelpfosten.` });
+      : `Mit dem Mittelpfosten spannt die einfache Traufpfette nur ${cm(L)} cm. Grob gerechnet biegt sie sich unter Schnee ${(f * 1000).toFixed(0)} mm durch (${sigma.toFixed(0)} N/mm²). Der Querbalken ist ein Stück ohne Stoß.` });
   }
   hinweise.push(p.hoeheVorne < B.hMauerkrone
     ? { stufe: "info", text: `Vorne liegt die Dachunterkante ${cm(B.hMauerkrone - p.hoeheVorne)} cm unter der Mauerkrone.` }

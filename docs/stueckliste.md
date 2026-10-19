@@ -29,7 +29,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Wandpfette 261,9–275,9 cm: Beide Lagen liegen komplett an der glatten Betonfläche (bis 278 cm) und können dort geklebt werden. Die Dachbalken liegen mit ihren 7 cm hohen Klötzen darauf. Rechts liegt sie auf deinem flachen Balken auf der Mauerkrone (oben 261,9 cm), links auf dem Pfosten.
 - ✔ Das Netz sitzt Feld für Feld zwischen den Hölzern, 2 cm hinter der Außenkante, nie an den Platten. Die Innenseiten von Pfosten und Balken bleiben frei für Wandelemente. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Leiste 20×20 außen bündig drüber.
 - ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen, die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten). Oben liegt der Eckriegel genau auf der Netzlinie: vorne mit einem Winkel an der Traufpfette, hinten mit einem Winkel seitlich am Wandpfosten, direkt unter dem rechten Sparren. Das Netz über Eck (27,2 cm breit) hat so an allen vier Seiten Holz bzw. Beton. Ein Füllholz auf dem Eckriegel schließt bis unter die Platte.
-- ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 137,8 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (5 N/mm²). Der Stoß sitzt über dem Mittelpfosten.
+- ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 128,7 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (4 N/mm²). Der Querbalken ist ein Stück ohne Stoß.
 - ✔ Vorne liegt die Dachunterkante 12,6 cm über der Mauerkrone, hinten an der Hauswand 33,7 cm darüber.
 
 ## Noch bestellen
@@ -48,8 +48,8 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr | 3 | je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
-| Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 31 m | von innen über den Netzrand schrauben |
-| Edelstahlschrauben 4×40 für die Klemmleisten | 112 | alle 25 cm |
+| Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 40 m | von innen über den Netzrand schrauben |
+| Edelstahlschrauben 4×40 für die Klemmleisten | 142 | alle 25 cm |
 
 ## Hast du schon (nur prüfen)
 
