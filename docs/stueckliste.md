@@ -41,7 +41,8 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | H-Verbindungsprofil zum Einschieben, für 16 mm | 2 × 200 cm | verbindet die Elemente ohne Schrauben von oben |
 | Wandanschlussprofil Alu mit Dichtlippe | 315 cm | waagerecht an die Hauswand |
 | Kompriband 15/3–7 mm | 335 cm | hinter dem Wandprofil |
-| MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest | 5 Kartuschen | Mauerlatte, Wandpfosten, Wandpfette an der Hauswand, Wandprofil, Fuge |
+| MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest | 5 Kartuschen | Unterlegplatten, Wandpfosten, Wandpfette an der Hauswand, Wandprofil, Fuge |
+| Kunststoff-Unterlegplatten (Terrassenpads) 10 mm | 1 Pack (mind. 6) | unter die Mauerlatte, Wasser läuft darunter ab |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
 | Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 27 m | von innen über den Netzrand schrauben |
@@ -67,7 +68,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 1 | 300 Wandpfette unten (an die Wand geklebt), lang | 0 |
 | 2 | 300 Wandpfette oben, lang | 0 |
 | 3 | 206,9 Pfosten links an der Hauswand · 90,7 Füllholz über der Traufpfette | 1,4 |
-| 4 | 197 Element links: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 7 Auflagerklotz für die Wandpfette (2,4 cm) | 1,1 |
+| 4 | 197 Element links: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 7 Auflagerklotz für die Wandpfette (1,4 cm) | 1,1 |
 | 5 | 197 Element links: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
 | 6 | 197 Element Mitte: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) | 16,7 |
 | 7 | 197 Element Mitte: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) | 16,7 |
@@ -79,4 +80,4 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 13 | 189,9 Wandpfosten an die Mauer geklebt | 109,6 |
 | 14 | 166,6 Stirnriegel links (schräg) (beide Enden 8° schräg) | 132,9 |
 | 15 | 162,8 Traufpfette Teil 2 (bis zur Mauer, liegt hinten auf dem Kopfholz) | 136,7 |
-| 16 | 153 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) · 146 Mauerlatte (auf die Mauerkrone geklebt) | 0 |
+| 16 | 153 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) · 146 Mauerlatte (auf Abstandshaltern, nicht flach geklebt) | 0 |

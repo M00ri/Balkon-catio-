@@ -56,7 +56,7 @@ export const LAGER = 3.0;
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus Scan und Fotos. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer. Rechts die Betonmauer mit Krone auf 2,66 m. Sie endet etwa 40 cm vor der Balkonkante. Das Dach fällt nach vorne zum Garten. Jeder Handgriff ist so geplant, dass du ihn von innen machst." },
   { n: 2, titel: "Pfosten auf den Balken", text: "Vier Pfosten 70×55 auf deinen Balken: auf dem linken Balken einer an der Hauswand und einer an der Ecke, auf dem Gartenbalken einer in der Mitte und einer an der Ecke zur Mauer. Links braucht es keinen Mittelpfosten, weil das Dach nach vorne fällt und dort kaum Last ankommt. Je zwei Winkel pro Pfosten, von innen in den Balken geschraubt. Nichts steht auf dem Boden." },
-  { n: 3, titel: "Mauerlatte und Ecke an der Mauer", text: "Mauerlatte mit MS-Polymer auf die Mauerkrone kleben. Sie trägt das rechte Ende der Wandpfette und hält unten den Netzstreifen über der Mauer. In der Ecke ist zwischen deinem Eckbalken und der Mauer ein Betonstreifen von 19 cm Breite und 51 cm Tiefe. Die Betonmauer endet etwa 40 cm vor der Balkonkante. Genau dort, bündig mit dem Mauerende, wird ein Wandpfosten 70×55 flach mit MS-Polymer an die Innenseite der Mauer geklebt. Oben hält ihn ein Kopfholz, das bis unter das Ende der Traufpfette reicht. Der Pfosten klebt auf ganzer Länge an der Betonwand, mehr Befestigung braucht er nicht. Ein Füllholz auf dem Kopfholz schließt die Seite bis unters Dach. Zwischen Eckpfosten und Wandpfosten kommt später das Netz über Eck." },
+  { n: 3, titel: "Mauerlatte und Ecke an der Mauer", text: "Die Mauerlatte liegt nicht flach auf der Mauerkrone, sondern auf 1 cm hohen Kunststoff-Unterlegplatten alle 40–50 cm, damit darunter Wasser ablaufen und Luft durchziehen kann. Nur die Unterlegplatten werden punktuell mit MS-Polymer geklebt. Die Latte trägt das rechte Ende der Wandpfette und hält unten den Netzstreifen über der Mauer. In der Ecke ist zwischen deinem Eckbalken und der Mauer ein Betonstreifen von 19 cm Breite und 51 cm Tiefe. Die Betonmauer endet etwa 40 cm vor der Balkonkante. Genau dort, bündig mit dem Mauerende, wird ein Wandpfosten 70×55 flach mit MS-Polymer an die Innenseite der Mauer geklebt. Oben hält ihn ein Kopfholz, das bis unter das Ende der Traufpfette reicht. Der Pfosten klebt auf ganzer Länge an der Betonwand, mehr Befestigung braucht er nicht. Ein Füllholz auf dem Kopfholz schließt die Seite bis unters Dach. Zwischen Eckpfosten und Wandpfosten kommt später das Netz über Eck." },
   { n: 4, titel: "Pfetten und Stirnriegel", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander, verleimt und alle 20 cm verschraubt, weil sie 3 m ohne Stütze überspannt. Sie liegt links auf dem Pfosten und rechts auf der Mauerlatte und wird zusätzlich elastisch an die Hauswand geklebt. Vorne die Traufpfette auf den Gartenpfosten. Links ein schräger Stirnriegel von Pfosten zu Pfosten (1,65 m frei), an dem später das Netz endet. Er trägt fast nichts, deshalb reicht er ohne Mittelstütze." },
   { n: 5, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen links, vorne und an der Hauswand aus. Ab hier steht das Gerüst stabil, auch für Kratzbaum und Liegebretter später." },
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
@@ -127,8 +127,14 @@ export function baueModell(param = {}) {
   pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zw1 - H.b, zw1, tpUK);
 
   // --- 3 Mauerlatte + Ecke -------------------------------------------------------------------
-  const mlZ0 = B.zWand, mlZ1 = B.zWand + H.b, mlOK = B.hMauerkrone + H.a;
-  box(3, "Mauerlatte (auf die Mauerkrone geklebt)", "holz", xF0, B.xWandEnde, B.hMauerkrone, mlOK, mlZ0, mlZ1, { ...holz, laenge: B.xWandEnde - xF0 });
+  const PAD = 0.01;                                                         // Abstandshalter unter der Mauerlatte
+  const mlZ0 = B.zWand, mlZ1 = B.zWand + H.b, mlUK = B.hMauerkrone + PAD, mlOK = mlUK + H.a;
+  box(3, "Mauerlatte (auf Abstandshaltern, nicht flach geklebt)", "holz", xF0, B.xWandEnde, mlUK, mlOK, mlZ0, mlZ1, { ...holz, laenge: B.xWandEnde - xF0 });
+  const nPads = Math.max(2, Math.ceil((B.xWandEnde - xF0) / 0.45) + 1);
+  for (let i = 0; i < nPads; i++) {
+    const x = xF0 + 0.04 + (i * (B.xWandEnde - xF0 - 0.08)) / (nPads - 1);
+    box(3, "Unterlegplatte 1 cm (punktuell geklebt)", "stahl", x - 0.04, x + 0.04, B.hMauerkrone, mlUK, mlZ0 + 0.005, mlZ1 - 0.005);
+  }
   const futter = wpUK - mlOK;
   if (futter > 0.005) box(3, `Auflagerklotz für die Wandpfette (${cm(futter)} cm)`, "holz", xF0, xF0 + H.b, mlOK, wpUK, mlZ0 + 0.005, mlZ1 - 0.005, { ...holz, laenge: H.b });
   // Wandpfosten: direkt an die Mauer geklebt, etwas weiter hinten als der Eckpfosten; Netz über Eck dazwischen
@@ -294,7 +300,8 @@ export function einkauf(parts, k, p) {
     { status: "bestellen", teil: `H-Verbindungsprofil zum Einschieben, für ${mm} mm`, menge: `${PLATTE.anzahl - 1} × ${cm(PLATTE.laenge)} cm`, hinweis: "verbindet die Elemente ohne Schrauben von oben" },
     { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `${cm(L)} cm`, hinweis: "waagerecht an die Hauswand" },
     { status: "bestellen", teil: "Kompriband 15/3–7 mm", menge: `${cm(L + 0.2)} cm`, hinweis: "hinter dem Wandprofil" },
-    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "5 Kartuschen", hinweis: "Mauerlatte, Wandpfosten, Wandpfette an der Hauswand, Wandprofil, Fuge" },
+    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "5 Kartuschen", hinweis: "Unterlegplatten, Wandpfosten, Wandpfette an der Hauswand, Wandprofil, Fuge" },
+    { status: "bestellen", teil: "Kunststoff-Unterlegplatten (Terrassenpads) 10 mm", menge: "1 Pack (mind. 6)", hinweis: "unter die Mauerlatte, Wasser läuft darunter ab" },
     { status: "bestellen", teil: "Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen", menge: `1 × ${cm(L + 0.05)} cm`, hinweis: "Ablauf rechts an der Betonmauer, Fallrohr später" },
     { status: "bestellen", teil: "Rinnenhalter zum Anschrauben an den Sparren", menge: `${2 * PLATTE.anzahl}`, hinweis: "auf den Böcken vormontieren" },
     { status: "bestellen", teil: "Holzleisten 20×40 als Klemmleisten fürs Netz", menge: `ca. ${Math.ceil(rand * 1.1)} m`, hinweis: "von innen über den Netzrand schrauben" },
