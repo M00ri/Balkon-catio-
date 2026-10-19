@@ -61,7 +61,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
 | Sparrenpfettenanker | 12 | je Sparren einer an jeder Pfette, von unten |
-| Holzschrauben 6×120 + Holzleim D3 | ca. 60 | Wandpfette alle 20 cm, Kopfbänder |
+| Holzschrauben 6×120 | ca. 60 | Wandpfette alle 20 cm (dazu dein Fix ALL statt Holzleim), Kopfbänder |
 | Katzenschutznetz + Tacker | ca. 12 m² | inkl. 15 % Überlappung |
 | 2 Arbeitsböcke, 2 Leitern, eine zweite Person | – | Elemente bauen und einheben |
 
