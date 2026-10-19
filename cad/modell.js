@@ -17,7 +17,7 @@ export const BESTAND = {
   hSturzUK: 2.40,         // Unterkante Sturz = Oberkante Nische
   hSturzOK: 2.78,         // Oberkante der glatten Betonfläche an der Hauswand, darüber Ziegel (stehen minimal vor), gemessen
   xBrAussen: 1.10,        // Außenkante Gartenbrüstung
-  zLinksAussen: -0.47,    // Außenkante linke Brüstung
+  zLinksAussen: -0.345,   // Außenkante linke Brüstung (an deine 3,00-m-Querbalken angepasst, Scan war 12 cm breiter)
   zWand: 2.67,            // Innenseite Betonmauer rechts
   xWandEnde: 0.70,        // Betonmauer endet ca. 40 cm vor der Balkonkante (Foto + Scan)
   hMauerkrone: 2.617,     // Oberkante Betonmauer (flach, nutzbar), gemessen 2,615–2,617
@@ -28,7 +28,8 @@ export const BESTAND = {
   balken: { b: 0.055, h: 0.07 },
   aussparungEcke: 0.055,  // vordere Eckpfosten sitzen in einer Aussparung im Balken, 5,5 cm tiefer (Winkel auf beiden Seiten)
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
-  zBalkenLinks: -0.345,   // Innenkante linker Balken
+  zBalkenLinks: -0.22,    // Innenkante linker Balken (so passt: Außenkante links bis Mauer-Innenseite 2,945 m)
+  querbalken: 3.00,       // alle Querbalken genau 3 m: von der linken Außenkante bis 5,5 cm auf die Mauer (gemessen)
   zBalkenWand: 2.425,     // Innenkante Eckbalken vor der Mauer (19 cm Beton bis zur Mauer, gemessen)
   tiefeEcke: 0.51,        // Brüstungsstück vor der Mauer: 51 cm tief (von der Außenkante nach innen)
 };
@@ -104,7 +105,8 @@ export function baueModell(param = {}) {
   const hB = B.hBruestung + B.balken.h, hBalken = hB;
 
   // Dachfläche: drei Platten nebeneinander, so gelegt, dass der rechte Sparren auf der Mauerkrone liegt
-  const zP1 = B.zWand + 0.005 + H.a + 0.003, zP0 = zP1 - PL.anzahl * PL.breite;
+  const zPf0 = zl0, zPf1 = zl0 + B.querbalken;                              // Querbalken: genau 3 m, rechts 5,5 cm auf der Mauer
+  const zP0 = (zPf0 + zPf1) / 2 - (PL.anzahl * PL.breite) / 2, zP1 = zP0 + PL.anzahl * PL.breite;   // Platten stehen beidseitig gleich über
   const xP0 = B.xFassade + 0.01, xP1 = xP0 + PL.laenge * cos;
   const ueberstand = xP1 - B.xBrAussen;
   const yU = (x) => p.hoeheVorne + tan * (xG - x);              // Unterkante Platte = Oberkante Sparren
@@ -137,7 +139,6 @@ export function baueModell(param = {}) {
   const WP_LAGEN = 2, wpOK = yU(xF) - d70 - SK, wpUK = wpOK - WP_LAGEN * H.b;   // zwei Lagen, beide an der glatten Betonfläche
   const tpLagen = p.ohneMittelpfosten ? 2 : 1;                             // ohne Mittelpfosten: doppelt wie hinten
   const tpOK = yU(xG) - d70, tpUK = tpOK - tpLagen * H.b;                  // Traufpfette 55×70 bzw. 55×140
-  const zPf0 = zP0 - 0.005, zPf1 = zP1 + 0.005;                              // Pfetten von Sparren zu Sparren
   const zMitte = (zl1 + zw0) / 2;
 
   // --- 2 Pfosten auf den Balken ------------------------------------------------------------
@@ -184,7 +185,7 @@ export function baueModell(param = {}) {
 
   // --- 3 Auflager auf der Mauerkrone + Ecke ----------------------------------------------------------
   const PAD = 0.01;                                                         // Unterlegplatten: Wasser läuft darunter ab
-  const kUK = B.hMauerkrone + PAD, kz0 = B.zWand + 0.005, kz1 = kz0 + H.a;   // genau unter dem rechten Sparren
+  const kUK = B.hMauerkrone + PAD, kz0 = B.zWand + 0.003, kz1 = zPf1;        // Auflage der Wandpfette auf der Mauer
   const pad = (step, x0, x1) => box(step, "Unterlegplatte 1 cm (punktuell geklebt)", "stahl", x0, x1, B.hMauerkrone, kUK, kz0 + 0.003, kz1 - 0.003);
   pad(3, xF0 + 0.005, xF1 - 0.005);
   if (wpUK - kUK > 0.01) {                                                   // nur nötig, wenn die Wandpfette höher liegt als die Krone
@@ -208,7 +209,7 @@ export function baueModell(param = {}) {
     wpfOK = spU(xw1) - H.b;
     netzOben = [spU(eckA[0]) - H.b, wpfOK];
     // darüber bis unter die Platte: Füllholz bis an den rechten Sparren
-    const zSp = zP1 - H.a - 0.003;                                            // Innenkante rechter Sparren
+    const zSp = zPf1 - H.a - 0.003;                                           // Innenkante rechter Sparren
     const tF = Math.min(1, Math.max(0, (zSp - H.a / 2 - rA[1]) / (rB[1] - rA[1])));
     const fB = [rA[0] + (rB[0] - rA[0]) * tF, rA[1] + (rB[1] - rA[1]) * tF];
     const fy = (x) => spU(x) + H.b / 2;
@@ -238,12 +239,13 @@ export function baueModell(param = {}) {
   if (p.ohneMittelpfosten) {                                                  // doppelt, Stöße versetzt an den Eckpfosten
     pfette("Traufpfette unten", xg0, xg1, tpUK, tpUK + H.b, false);
     pfette("Traufpfette oben", xg0, xg1, tpUK + H.b, tpOK, true);
-  } else {
-    const tpS = zMitte;                                                       // Traufpfette: Stoß über dem Mittelpfosten
-    box(4, "Traufpfette Teil 1", "holz", xg0, xg1, tpUK, tpOK, zPf0, tpS, { ...holz, laenge: tpS - zPf0, schnitt: "Stoß über dem Mittelpfosten" });
-    box(4, `Traufpfette Teil 2 (bis zum rechten Sparren, ${p.ecke === "riegel" ? "kragt über den Eckpfosten aus" : "liegt hinten auf dem Kopfholz"})`, "holz", xg0, xg1, tpUK, tpOK, tpS, zPf1, { ...holz, laenge: zPf1 - tpS });
-  }
-  const zr = zP0 + 0.003 + H.a / 2;                                          // linker Sparren des linken Elements
+  } else pfette(`Traufpfette (${p.ecke === "riegel" ? "kragt rechts über den Eckpfosten aus" : "liegt rechts auf dem Kopfholz"})`, xg0, xg1, tpUK, tpOK, false);
+  // Sparren je Element: außen sitzen sie innerhalb der 3-m-Querbalken, die Platte steht seitlich über
+  const sparrenZ = (i) => {
+    const z0 = zP0 + i * PL.breite, z1 = z0 + PL.breite, r = H.a / 2 + 0.003;
+    return [i === 0 ? zPf0 + r : z0 + r, i === PL.anzahl - 1 ? zPf1 - r : z1 - r];
+  };
+  const zr = sparrenZ(0)[0];                                                 // linker Sparren des linken Elements
 
   // --- 5 Kopfbänder ------------------------------------------------------------------------------
   const kd = 0.30;
@@ -269,7 +271,8 @@ export function baueModell(param = {}) {
     const minY = cS(xSp1) - d70 / 2;
     const e = { vor: { step: 7, dy: 0.85 - minY }, element: name };
     elemente.push(name);
-    for (const [zc, seite] of [[z0 + H.a / 2 + 0.003, "links"], [z1 - H.a / 2 - 0.003, "rechts"]])
+    const [zsl, zsr] = sparrenZ(i);
+    for (const [zc, seite] of [[zsl, "links"], [zsr, "rechts"]])
     { box(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", xF0 + 0.01, xF1 + 0.035, wpOK, wpOK + SK, zc - H.a / 2, zc + H.a / 2, { ...holz, laenge: xF1 + 0.025 - xF0, schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
       stab(8, `${name}: Sparren ${seite}`, "holz", [xSp0, cS(xSp0), zc], [xSp1, cS(xSp1), zc], H.a, H.b, { ...holz, schnitt: `vorne lotrecht ${p.neigung}°, Kerbe ${p.neigung}° über der Traufpfette`, ...e });
     }
@@ -289,8 +292,8 @@ export function baueModell(param = {}) {
   box(8, "Ablaufstutzen an der Betonmauer (Fallrohr später)", "rinne", xP1 + 0.03, xP1 + 0.09, yR - 0.12, yR - 0.035, zP1 - 0.15, zP1 - 0.09);
   // Füllhölzer zwischen den Sparren über der Traufpfette
   for (let i = 0; i < PL.anzahl; i++) {
-    const z0 = zP0 + i * PL.breite + H.a + 0.003, z1 = zP0 + (i + 1) * PL.breite - H.a - 0.003;
-    const za = Math.max(z0, zl0), zb = Math.min(z1, zPf1);
+    const [zsl, zsr] = sparrenZ(i);
+    const za = zsl + H.a / 2, zb = zsr - H.a / 2;
     if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za });
   }
 
@@ -318,7 +321,7 @@ export function baueModell(param = {}) {
   hinweise.push(p.neigung < 7
     ? { stufe: "warn", text: `Unter 7° bleibt auf Stegplatten leicht Wasser und Laub liegen. Die meisten Hersteller verlangen mindestens 5°.` }
     : { stufe: "ok", text: `${p.neigung}° Neigung nach vorne: ${cm(yTop(xP0) - yTop(xP1))} cm Höhenunterschied auf 2 m Platte.` });
-  hinweise.push({ stufe: "ok", text: `Deine 3 Platten ${PL.label} decken ${cm(zP1 - zP0)} cm Breite ab, ohne Querstoß und ohne Zuschnitt. Rechts liegt der äußere Sparren auf der Mauerkrone, die Platte steht ${cm(zP1 - B.zWand)} cm über die Mauer. Links liegt der Sparren über deinem Balken, die Plattenkante endet ${cm(zP0 - B.zLinksAussen)} cm vor der Außenkante der Brüstung.` });
+  hinweise.push({ stufe: "ok", text: `Alle Querbalken sind genau ${cm(B.querbalken)} cm lang, ohne Stoß, und liegen rechts ${cm(zPf1 - B.zWand)} cm auf der Mauer. Deine 3 Platten ${PL.label} decken ${cm(zP1 - zP0)} cm ab, ohne Zuschnitt: Sie stehen links und rechts je ${cm(zPf0 - zP0)} cm über die äußeren Dachbalken (mit Randprofil kein Problem). Rechts reicht die Platte ${cm(zP1 - B.zWand)} cm auf die Mauer, links ${Math.abs(zP0 - B.zLinksAussen) < 0.01 ? "bis zur Außenkante der Brüstung" : `${cm(Math.abs(zP0 - B.zLinksAussen))} cm ${zP0 < B.zLinksAussen ? "über" : "vor"} die Außenkante der Brüstung`}.` });
   hinweise.push({ stufe: "ok", text: `Rechts stehen die Platten ${cm(zP1 - B.zWand)} cm über die Betonmauer, das Regenwasser läuft außen auf die Mauer. Der rechte Dachbalken liegt nicht auf der Mauer, er wird wie alle anderen von den beiden Querbalken getragen. Zwischen Mauerkrone und Dachbalken bleibt eine Lücke von ${cm(spU(B.xWandEnde) - B.hMauerkrone)} cm (vorne) bis ${cm(spU(xF1) - B.hMauerkrone)} cm (hinten). Die schließt das Netz, gegen Schlagregen von der Seite zusätzlich ein Brett innen an den Dachbalken schrauben. Nur die Wandpfette liegt hinten auf der Krone (Unterlegplatte).` });
   hinweise.push(ueberstand < 0.05
     ? { stufe: "warn", text: `Vorne stehen die Platten nur ${cm(ueberstand)} cm über die Brüstung. Die Rinne braucht etwas Platz, weniger Neigung wählen.` }
