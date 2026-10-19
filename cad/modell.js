@@ -141,7 +141,8 @@ export function baueModell(param = {}) {
   const wz1 = B.zWand - 0.002, wz0 = wz1 - H.b;
   const xw1 = B.xWandEnde, xw0 = xw1 - H.a;                                  // bündig mit dem Mauerende
   const khUK = tpUK - H.b;                                                   // Kopfholz: verbindet Wandpfosten oben mit der Traufpfette
-  box(3, "Wandpfosten an die Mauer geklebt", "holz", xw0, xw1, B.hBruestung, khUK, wz0, wz1, { ...holz, laenge: khUK - B.hBruestung });
+  box(3, "Wandpfosten an die Mauer geklebt", "holz", xw0, xw1, B.hBruestung + 0.01, khUK, wz0, wz1, { ...holz, laenge: khUK - B.hBruestung - 0.01 });
+  box(3, "Unterlegplatte 1 cm unter dem Wandpfosten", "stahl", xw0, xw1, B.hBruestung, B.hBruestung + 0.01, wz0 + 0.005, wz1 - 0.005);
   box(3, "Kopfholz auf dem Wandpfosten (unter dem Ende der Traufpfette)", "holz", xw0, xg1, khUK, tpUK, wz0, wz1, { ...holz, laenge: xg1 - xw0 });
   // Neben der Mauer ist es offen: Füllholz auf dem Kopfholz bis unter den rechten Sparren
   const spUKmin = Math.min(yU(xw0), yU(xg0)) - H.b / Math.cos(a);
@@ -301,7 +302,7 @@ export function einkauf(parts, k, p) {
     { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `${cm(L)} cm`, hinweis: "waagerecht an die Hauswand" },
     { status: "bestellen", teil: "Kompriband 15/3–7 mm", menge: `${cm(L + 0.2)} cm`, hinweis: "hinter dem Wandprofil" },
     { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "5 Kartuschen", hinweis: "Unterlegplatten, Wandpfosten, Wandpfette an der Hauswand, Wandprofil, Fuge" },
-    { status: "bestellen", teil: "Kunststoff-Unterlegplatten (Terrassenpads) 10 mm", menge: "1 Pack (mind. 6)", hinweis: "unter die Mauerlatte, Wasser läuft darunter ab" },
+    { status: "bestellen", teil: "Kunststoff-Unterlegplatten (Terrassenpads) 10 mm", menge: "1 Pack (mind. 6)", hinweis: "unter Mauerlatte und Wandpfosten, Wasser läuft darunter ab" },
     { status: "bestellen", teil: "Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen", menge: `1 × ${cm(L + 0.05)} cm`, hinweis: "Ablauf rechts an der Betonmauer, Fallrohr später" },
     { status: "bestellen", teil: "Rinnenhalter zum Anschrauben an den Sparren", menge: `${2 * PLATTE.anzahl}`, hinweis: "auf den Böcken vormontieren" },
     { status: "bestellen", teil: "Holzleisten 20×40 als Klemmleisten fürs Netz", menge: `ca. ${Math.ceil(rand * 1.1)} m`, hinweis: "von innen über den Netzrand schrauben" },
