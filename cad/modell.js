@@ -139,7 +139,14 @@ export function baueModell(param = {}) {
   const holz = { profil: HOLZ };
 
   // --- 1 Bestand -------------------------------------------------------------------
-  box(1, "Bestandsbalken Garten (stößt links an den linken Balken)", "bestand", xg0, xg1, B.hBruestung, hB, zl1, zw1);
+  // Gartenbalken mit zwei Aussparungen (5,5 cm tief) für die vorderen Eckpfosten, die 5,5 cm von den Ecken nach innen stehen
+  {
+    const a1 = [zl0 + B.eckEinzug, zl0 + B.eckEinzug + H.b];                               // = Pfosten links
+    const a2 = [zw1 - B.eckEinzug - H.b, zw1 - B.eckEinzug];                                // = Pfosten an der Mauer
+    const hA = hB - B.aussparungEcke;
+    for (const [z0, z1] of [[zl1, a1[0]], [a1[1], a2[0]], [a2[1], zw1]].filter(([z0, z1]) => z1 - z0 > 0.002)) box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, z0, z1);
+    for (const [z0, z1] of [a1, a2]) box(1, "Bestandsbalken Garten: Aussparung 5,5 cm tief für den Eckpfosten", "bestand", xg0, xg1, B.hBruestung, hA, z0, z1);
+  }
   box(1, "Bestandsbalken links (geht bis vorne an die Ecke)", "bestand", B.xGlas + 0.1, xg1, B.hBruestung, hB, zl0, zl1);
   const xEcke = B.xBrAussen - B.tiefeEcke;
   box(1, "Bestandsbalken vor der Mauer", "bestand", xEcke, xg0, B.hBruestung, hB, zw0, zw1);
