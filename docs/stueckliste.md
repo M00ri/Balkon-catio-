@@ -26,7 +26,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Die Rinne fällt 3 mm pro Meter zur Betonmauer. Dort sitzt der Ablaufstutzen, das Fallrohr kann später an der Mauerecke runter.
 - ✔ Kopffreiheit: 270,9 cm unter der Wandpfette, 256,9 cm unter der Traufpfette vorne.
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
-- ✔ Wandpfette 270,9–284,9 cm: Die untere Lage liegt komplett auf der glatten Betonfläche (bis 278 cm) und kann dort geklebt werden. Die obere Lage sitzt vor dem Ziegel, mit etwas Luft.
+- ✔ Wandpfette 270,9–284,9 cm: Die untere Lage liegt komplett auf der glatten Betonfläche (bis 278 cm) und kann dort geklebt werden. Die obere Lage liegt nur auf der unteren und berührt die Wand nicht (1,5 cm Luft zum Ziegel).
 - ℹ️ Die Wandpfette ist 316 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
 - ✔ Das Netz endet überall an Holz, nie an den Platten. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Klemmleiste drüber.
 - ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen, die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten). Oben liegt der Eckriegel genau auf der Netzlinie: vorne mit einem Winkel an der Traufpfette, hinten auf dem Wandpfosten verschraubt, direkt unter dem rechten Sparren. Das Netz über Eck (27,2 cm breit) hat so an allen vier Seiten Holz bzw. Beton. Ein Füllholz auf dem Eckriegel schließt bis unter die Platte.
@@ -70,12 +70,12 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Stange | Zuschnitt (cm) | Rest (cm) |
 |---|---|---|
 | 1 | 300 Wandpfette unten (an die Wand geklebt), lang | 0 |
-| 2 | 300 Wandpfette oben, lang | 0 |
+| 2 | 300 Wandpfette oben (berührt die Wand nicht, 1,5 cm Luft zum Ziegel), lang | 0 |
 | 3 | 203,9 Pfosten links an der Hauswand · 93,4 Füllholz über der Traufpfette | 1,7 |
 | 4 | 199,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette · 3,9 Auflagerklotz für die Wandpfette (3,9 cm) | 1,9 |
 | 5 | 197 Element links: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 6,4 Auflagerklotz unter den rechten Sparren geschoben (6,4 cm) (oben 7° schräg, Höhe am Sparren abnehmen) | 1,7 |
 | 6 | 197 Element links: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) · 16 Wandpfette unten (an die Wand geklebt), Ergänzung | 0,2 |
-| 7 | 197 Element Mitte: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 16 Wandpfette oben, Ergänzung | 0,2 |
+| 7 | 197 Element Mitte: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 16 Wandpfette oben (berührt die Wand nicht, 1,5 cm Luft zum Ziegel), Ergänzung | 0,2 |
 | 8 | 197 Element Mitte: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband links Hauswand (an den linken Sparren) (beide Enden 45°) · 42,4 Kopfband links Ecke (an den linken Sparren) (beide Enden 45°) · 12,6 Auflagerklotz unter den rechten Sparren geschoben (12,6 cm) (oben 7° schräg, Höhe am Sparren abnehmen) | 3,6 |
 | 9 | 197 Element rechts: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) | 2,5 |
 | 10 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) | 102,5 |
