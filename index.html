@@ -112,6 +112,23 @@ ul.checks li:last-child { border-bottom: 0; }
 dl.masse { display: grid; grid-template-columns: 1fr auto; margin: 0; }
 dl.masse dt, dl.masse dd { padding: 5px 0; border-bottom: 1px solid var(--rule); margin: 0; font-size: 14px; }
 dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; padding-left: 10px; }
+.detail { border: 1px solid var(--rule); border-radius: 4px; padding: 8px; background: var(--paper); }
+.detail svg { width: 100%; height: auto; display: block; }
+.detail .wall { fill: var(--sheet); stroke: var(--ink); stroke-width: 1; }
+.detail .brick { stroke: var(--rule); stroke-width: 1; }
+.detail .wood { fill: var(--wood); stroke: var(--ink); stroke-width: 0.8; }
+.detail .plate { fill: var(--chalk); fill-opacity: 0.25; stroke: var(--chalk); stroke-width: 1; }
+.detail .alu { fill: none; stroke: var(--ink-soft); stroke-width: 2.4; stroke-linejoin: round; }
+.detail .seal { fill: var(--ink); }
+.detail .water { stroke: var(--chalk); stroke-width: 1.4; fill: none; marker-end: url(#pfeil); }
+.detail .lead { stroke: var(--ink-soft); stroke-width: 0.7; fill: none; }
+.detail text { font: 500 9.5px var(--font-data); fill: var(--ink); }
+.detail text.dim { fill: var(--ink-soft); }
+.bars { display: flex; flex-direction: column; gap: 6px; }
+.bar { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: center; }
+.bar .n { font: 500 11px var(--font-data); color: var(--ink-soft); }
+.bar .track { display: flex; height: 26px; border: 1px solid var(--ink); border-radius: 2px; overflow: hidden; background: repeating-linear-gradient(135deg, var(--paper) 0 4px, var(--rule) 4px 5px); }
+.bar .cut { background: var(--wood); border-right: 1px solid var(--ink); font: 500 10px var(--font-data); color: #1d2428; display: flex; align-items: center; padding: 0 4px; overflow: hidden; white-space: nowrap; min-width: 0; }
 .block ul.fragen { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
 
 @media (max-width: 820px) {
@@ -129,6 +146,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <button id="v-innen" aria-pressed="false">Innen</button>
         <button id="v-seite" aria-pressed="false">Schnitt</button>
         <button id="v-oben" aria-pressed="false">Oben</button>
+        <button id="v-detail" aria-pressed="false">Detail</button>
       </div>
       <div class="seg" role="group" aria-label="Scan">
         <button id="s-voll" aria-pressed="true">Scan</button>
@@ -150,7 +168,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V2 · Polycarbonat-Dach<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V3 · Holz 70×55<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -166,6 +184,35 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <h2 id="steptitle">Bestand</h2>
         <p id="steptext"></p>
       </div>
+      <figure class="detail" id="detail" hidden>
+        <svg viewBox="0 0 360 236" role="img" aria-label="Schnitt durch den Wandanschluss">
+          <defs><marker id="pfeil" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--chalk)"/></marker></defs>
+          <rect class="wall" x="10" y="4" width="60" height="62"/>
+          <path class="brick" d="M10,20 H70 M10,36 H70 M10,52 H70 M40,4 V20 M25,20 V36 M55,20 V36 M40,36 V52 M25,52 V66 M55,52 V66"/>
+          <rect class="wall" x="10" y="66" width="60" height="118"/>
+          <text x="16" y="178" class="dim">Betonsturz</text>
+          <text x="16" y="14" class="dim">Ziegel</text>
+          <text x="16" y="196" class="dim">Nische ↓</text>
+          <polygon class="wood" points="72,151 100,155 100,222 72,222"/>
+          <line x1="72" y1="186" x2="100" y2="186" stroke="var(--ink)" stroke-width="0.8"/>
+          <polygon class="wood" points="78,119 350,157 350,187 78,149"/>
+          <polygon class="plate" points="80,109 350,147 350,155 80,117"/>
+          <path d="M80,107 V119" stroke="var(--ink-soft)" stroke-width="3"/>
+          <path class="alu" d="M71.5,64 V100 M71.5,86 L116,110"/>
+          <path class="seal" d="M112,108 l8,2 l-1,3 l-8,-2 z"/>
+          <path class="seal" d="M70,58 h6 l-6,8 z"/>
+          <line x1="70.6" y1="64" x2="70.6" y2="100" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="2 1.5"/>
+          <path class="water" d="M150,113 L300,134"/>
+          <path class="lead" d="M74,62 L150,22"/><text x="153" y="25">MS-Polymer-Fuge oben</text>
+          <path class="lead" d="M73,80 L150,40"/><text x="153" y="43">Wandprofil auf Beton geklebt</text>
+          <path class="lead" d="M117,110 L150,58"/><text x="153" y="61">Dichtlippe drückt auf Platte</text>
+          <path class="lead" d="M80,104 L150,76"/><text x="153" y="79">Alu-Klebeband, 1 cm Luft zur Wand</text>
+          <text x="210" y="126" id="d-platte">Stegplatte, 8° Gefälle</text>
+          <text x="210" y="176">Sparren 70×55 hochkant</text>
+          <path class="lead" d="M100,206 L130,206"/><text x="133" y="209">Wandpfette 2 × 70×55, verleimt</text>
+          <text x="133" y="221" class="dim">steht auf Pfosten, nicht an der Wand</text>
+        </svg>
+      </figure>
       <div class="controls">
         <button class="btn" id="prev" aria-label="Vorheriger Schritt">Zurück</button>
         <button class="btn primary" id="play">Aufbau abspielen</button>
@@ -179,7 +226,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
     </section>
 
     <section id="p-plan" class="block" hidden>
-      <p>Hier spielst du das Dach durch. Das Modell, die Prüfungen und die Stückliste rechnen sofort neu.</p>
+      <p>Hier spielst du das Dach mit deinen Platten und deinem 70×55-Holz durch. Das Modell, die Prüfungen und die Zuschnittliste rechnen sofort neu.</p>
       <div class="regler">
         <label for="r-neigung">Dachneigung <output id="o-neigung"></output>
           <input type="range" id="r-neigung">
@@ -187,10 +234,9 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <label for="r-hoehe">Dachhöhe an der Fassade <output id="o-hoehe"></output>
           <input type="range" id="r-hoehe">
           <span class="hint">Oberkante Platte. Das Anschlussprofil wird darüber auf den Betonsturz geklebt (Sturz reicht bis 2,57 m).</span></label>
-        <label for="r-ueber">Überstand über die Brüstung <output id="o-ueber"></output>
-          <input type="range" id="r-ueber"></label>
-        <label>Plattenbreite <output id="o-breite"></output>
-          <div class="seg" role="group" aria-label="Plattenbreite" id="g-breite"></div></label>
+        <label>Deine Platten <output id="o-platte"></output>
+          <div class="seg" role="group" aria-label="Plattengröße" id="g-platte"></div>
+          <span class="hint">Die 2 m liegen immer in Gefällerichtung. Daraus ergibt sich der Überstand über die Brüstung.</span></label>
         <label>Plattenstärke <output id="o-staerke"></output>
           <div class="seg" role="group" aria-label="Plattenstärke" id="g-staerke"></div></label>
         <div><button class="btn" id="reset">Vorschlag wiederherstellen</button></div>
@@ -207,10 +253,10 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
     </section>
 
     <section id="p-mat" class="block" hidden>
-      <h3>Einkaufsliste</h3>
       <div style="overflow-x:auto"><table id="einkauf"><thead><tr><th>Teil</th><th style="text-align:right">Menge</th></tr></thead><tbody></tbody></table></div>
-      <h3>Zuschnitt Holz</h3>
-      <div style="overflow-x:auto"><table id="zuschnitt"><thead><tr><th>Bauteil</th><th>Profil</th><th style="text-align:right">Länge</th></tr></thead><tbody></tbody></table></div>
+      <h3>Sägeplan: 70×55 aus 3-m-Stangen</h3>
+      <div class="bars" id="bars"></div>
+      <div style="overflow-x:auto"><table id="zuschnitt"><thead><tr><th>Bauteil</th><th>Schnitt</th><th style="text-align:right">Länge</th></tr></thead><tbody></tbody></table></div>
       <p class="note">Die Längen kommen aus dem Scan (Genauigkeit etwa ±2 cm). Vor dem Sägen am Balkon nachmessen.</p>
     </section>
 
@@ -222,17 +268,17 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <dt>Glasfront zurückgesetzt um</dt><dd>ca. 30 cm</dd>
         <dt>Betonsturz Unterkante / Oberkante</dt><dd>240 / 257 cm</dd>
         <dt>Brüstungsmauer Höhe / Dicke</dt><dd>59 / 17–20 cm</dd>
-        <dt>Bestandsbalken Oberkante</dt><dd>68 cm</dd>
+        <dt>Bestandsbalken (mit U-Bügeln) Oberkante</dt><dd>68 cm</dd>
         <dt>Seitenwand reicht Richtung Garten bis</dt><dd>133 cm ab Fassade</dd>
         <dt>Balkon über dem Garten</dt><dd>ca. 290 cm</dd>
       </dl>
       <h3>Noch offen</h3>
       <ul class="fragen">
-        <li><strong>Bestandsbalken:</strong> Wie dick sind sie genau (im Scan ca. 11×9 cm)? Laufen sie auch auf der Stirnbrüstung durch?</li>
+        <li><strong>Platten nachmessen:</strong> 2×1 m oder 2×2 m, und wie dick? Im Reiter „Planen“ umschaltbar.</li>
+        <li><strong>Bestandsbalken:</strong> Im Scan ca. 11 cm breit. Liegt auch auf der Stirnbrüstung ein Balken bis zur Fassade? Dort wird der Pfosten an der Stirnseite angeschraubt.</li>
+        <li><strong>Metallgeländer:</strong> Wie hoch ist es über dem Balken? Die Platte steht 10 cm über die Brüstung hinaus und muss über das Geländer passen.</li>
         <li><strong>Ende der Seitenwand:</strong> Ist zwischen Seitenwand und Gartenbrüstung unten offen oder gemauert? Im Plan läuft das Netz dort vom Boden hoch.</li>
-        <li><strong>Hinter der Stirnbrüstung</strong> liegt eine Fläche auf gleicher Höhe. Ist das ein Nachbarbalkon?</li>
-        <li><strong>Kleben auf den Fliesen:</strong> Ist das für die zwei Pfostenfüße an der Fassade okay?</li>
-        <li><strong>Regenrinne</strong> an der Traufe gewünscht, oder darf das Wasser in den Garten tropfen?</li>
+        <li><strong>Betonmauer hinter der Stirnseite:</strong> Ein Balken oben drauf kann später als Strebe gegen Wind dienen. Für den Plan ist er nicht nötig.</li>
       </ul>
     </section>
   </aside>
@@ -249,7 +295,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
-import { baueModell, DEFAULTS, GRENZEN, cm } from "./cad/modell.js";
+import { baueModell, DEFAULTS, GRENZEN, PLATTEN, LAGER, cm } from "./cad/modell.js";
 
 const $ = (id) => document.getElementById(id);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -298,6 +344,7 @@ const views = {
   innen: { pos: [-0.6, 1.55, -0.1], tgt: [0.7, 1.3, 2.5] },
   seite: { pos: [0.1, 1.4, -5.2], tgt: [0.1, 1.4, 1.1] },
   oben: { pos: [0.15, 7, 1.1], tgt: [0.15, 0, 1.1] },
+  detail: { pos: [0.35, 2.95, -1.25], tgt: [-0.72, 2.42, 0.25] },
 };
 let camAnim = null;
 function setView(name, instant) {
@@ -488,6 +535,9 @@ function go(n, { animate = true } = {}) {
     if (animate && st === current && current > 1 && !reduceMotion) { m.userData.anim = { t0: now + k * 70, dur: 800 }; k++; }
     else { m.userData.anim = null; resetPose(m); }
   }
+  $("detail").hidden = current !== 8;
+  $("d-platte").textContent = `Stegplatte, ${model.param.neigung}° Gefälle`;
+  if (animate && current === 8) setView("detail");
   renderNewParts(current);
   updateLabels();
 }
@@ -500,7 +550,7 @@ function renderNewParts(n) {
   const ps = model.parts.filter((p) => p.step === n);
   const rows = ps.map((p) => {
     const wert = p.art === "netz" ? "" : p.laenge ? cm(p.laenge) + " cm" : "";
-    return `<tr><td>${p.name}${p.profil ? ` <small>${p.profil}</small>` : ""}</td><td class="num">${wert}</td></tr>`;
+    return `<tr><td>${p.name}${p.schnitt ? `<br><small>${p.schnitt}</small>` : ""}</td><td class="num">${wert}</td></tr>`;
   }).join("");
   $("newparts").innerHTML = ps.length ? `<table><tbody>${rows}</tbody></table>` : `<p class="empty">Nichts Neues.</p>`;
 }
@@ -521,6 +571,7 @@ for (const k of Object.keys(tabs)) {
   $("t-" + k).onclick = () => {
     for (const [k2, p2] of Object.entries(tabs)) { $("t-" + k2).setAttribute("aria-selected", String(k2 === k)); $(p2).hidden = k2 !== k; }
     if (k === "plan" && current < 7) { stopPlay(); go(model.schritte.length, { animate: false }); }
+    if (k === "plan") setView("seite");
   };
 }
 
@@ -530,7 +581,7 @@ function slider(id, key, [min, max, step], scale, fmtOut) {
   const el = $("r-" + id);
   el.min = min * scale; el.max = max * scale; el.step = step * scale; el.value = param[key] * scale;
   const out = () => { $("o-" + id).textContent = fmtOut(param[key]); };
-  el.oninput = () => { param[key] = +el.value / scale; out(); rebuild(); };
+  el.oninput = () => { param[key] = Math.round(+el.value) / scale; out(); rebuild(); };
   out();
   return () => { el.value = param[key] * scale; out(); };
 }
@@ -538,18 +589,18 @@ function choice(id, key, values, fmtOut) {
   const g = $("g-" + id);
   const sync = () => {
     $("o-" + id).textContent = fmtOut(param[key]);
-    for (const b of g.children) b.setAttribute("aria-pressed", String(+b.dataset.v === param[key]));
+    for (const b of g.children) b.setAttribute("aria-pressed", String(b.dataset.v === String(param[key])));
   };
   g.innerHTML = values.map((v) => `<button data-v="${v}" aria-pressed="false">${fmtOut(v)}</button>`).join("");
-  for (const b of g.children) b.onclick = () => { param[key] = +b.dataset.v; sync(); rebuild(); };
+  const parse = typeof values[0] === "number" ? Number : String;
+  for (const b of g.children) b.onclick = () => { param[key] = parse(b.dataset.v); sync(); rebuild(); };
   sync();
   return sync;
 }
 const syncs = [
   slider("neigung", "neigung", GRENZEN.neigung, 1, (v) => `${v}°`),
   slider("hoehe", "hoeheFassade", GRENZEN.hoeheFassade, 100, (v) => `${de(v)} m`),
-  slider("ueber", "ueberstand", GRENZEN.ueberstand, 100, (v) => `${Math.round(v * 100)} cm`),
-  choice("breite", "plattenBreite", GRENZEN.plattenBreite, (v) => `${Math.round(v * 1000)} mm`),
+  choice("platte", "platte", Object.keys(PLATTEN), (v) => PLATTEN[v].label),
   choice("staerke", "plattenStaerke", GRENZEN.plattenStaerke, (v) => `${Math.round(v * 1000)} mm`),
 ];
 $("reset").onclick = () => { Object.assign(param, DEFAULTS); syncs.forEach((f) => f()); rebuild(); };
@@ -557,11 +608,11 @@ $("reset").onclick = () => { Object.assign(param, DEFAULTS); syncs.forEach((f) =
 function renderPlan() {
   const k = model.kennwerte;
   const items = [
-    [`${de(k.lichteGarten)} m`, "Kopffreiheit an der Brüstung"],
-    [`${de(k.lichteFassade)} m`, "Kopffreiheit an der Fassade"],
+    [`${de(k.kopfFassade)} m`, "Kopffreiheit an der Fassade"],
+    [`${de(k.kopfGarten)} m`, "Kopffreiheit an der Brüstung"],
     [`${de(k.hoeheTraufe)} m`, "Traufkante (tiefster Punkt)"],
-    [`${de(k.gefaelleCmProM, 0)} cm/m`, "Gefälle"],
-    [`${k.plattenAnzahl} × ${cm(k.plattenLaenge)} cm`, "Stegplatten"],
+    [`${Math.round(k.ueberstand * 100)} cm`, "Überstand über die Brüstung"],
+    [`${k.plattenAnzahl} Stück`, `Platten ${model.platte.label}`],
     [`${k.sparrenAnzahl} Stück`, `Sparren, max. ${cm(k.sparrenAbstand)} cm Abstand`],
   ];
   $("kenn").innerHTML = items.map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
@@ -570,13 +621,14 @@ function renderPlan() {
 }
 
 function renderMaterial() {
-  let gruppe = "";
-  $("einkauf").tBodies[0].innerHTML = model.einkauf.zeilen.slice().sort((a, b) => a.gruppe.localeCompare(b.gruppe)).map((e) => {
-    const head = e.gruppe !== gruppe ? `<tr class="grp"><td colspan="2">${(gruppe = e.gruppe)}</td></tr>` : "";
-    return `${head}<tr><td>${e.teil}${e.hinweis ? `<br><small>${e.hinweis}</small>` : ""}</td><td class="num">${e.menge}</td></tr>`;
-  }).join("");
+  const titel = { bestellen: "Noch bestellen", vorhanden: "Hast du schon – nur prüfen" };
+  $("einkauf").tBodies[0].innerHTML = ["bestellen", "vorhanden"].map((st) =>
+    `<tr class="grp"><td colspan="2">${titel[st]}</td></tr>` + model.einkauf.zeilen.filter((e) => e.status === st).map((e) =>
+      `<tr><td>${e.teil}${e.hinweis ? `<br><small>${e.hinweis}</small>` : ""}</td><td class="num">${e.menge}</td></tr>`).join("")).join("");
+  $("bars").innerHTML = model.einkauf.stangen.map((s, i) => `<div class="bar"><span class="n">${i + 1}</span><div class="track">${
+    s.teile.map((q) => `<div class="cut" style="width:${(q.laenge / LAGER) * 100}%" title="${q.name} ${cm(q.laenge)} cm">${cm(q.laenge)}</div>`).join("")}</div></div>`).join("");
   $("zuschnitt").tBodies[0].innerHTML = model.parts.filter((p) => p.profil)
-    .map((p) => `<tr><td>${p.name}</td><td>${p.profil.replace(/^(Kantholz|KVH) /, "")}</td><td class="num">${cm(p.laenge)} cm</td></tr>`).join("");
+    .map((p) => `<tr><td>${p.name}</td><td><small>${p.schnitt ?? "rechtwinklig"}</small></td><td class="num">${cm(p.laenge)} cm</td></tr>`).join("");
 }
 
 // ---------- Render-Schleife ----------

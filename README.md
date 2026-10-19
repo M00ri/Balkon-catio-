@@ -5,7 +5,7 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 | Datei | Inhalt |
 |---|---|
 | `index.html` | 3D-Viewer: Scan + Gehege, Schritt-für-Schritt-Aufbau, Material, Maße |
-| `cad/modell.js` | Parametrisches Modell (Bestand, Planungswerte, Bauteile, Prüfungen, Einkauf) |
+| `cad/modell.js` | Parametrisches Modell: Bestand, Planungswerte, Bauteile aus 70×55, Prüfungen, Bestell- und Sägeliste |
 | `cad/stueckliste.mjs` | Erzeugt `docs/stueckliste.md` aus dem Modell |
 | `docs/stueckliste.md` | Vom Modell erzeugt: Einkaufs- und Zuschnittliste |
 | `scan/balkon_scan.usdz` | Original-Scan (3d Scanner App, iPhone LiDAR) |
@@ -14,7 +14,7 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 ## Modell ändern
 
 ```bash
-node cad/stueckliste.mjs neigung=10 ueberstand=0.1   # Stückliste mit eigenen Werten
+node cad/stueckliste.mjs neigung=10 platte=2x2   # Stückliste mit eigenen Werten
 python3 -m http.server                               # Viewer unter http://localhost:8000
 ```
 

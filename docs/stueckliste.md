@@ -8,85 +8,61 @@ Die Maße stammen aus dem LiDAR-Scan (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Wert | |
 |---|---|
 | Dachneigung | 8° (14 cm/m) |
+| Platten | 3 × 2,0 × 1,0 m, 16 mm |
 | Oberkante Dach an der Fassade | 250 cm |
-| Oberkante Dach an der Traufe | 221,5 cm |
-| Kopffreiheit unter der Traufpfette | 203,3 cm |
-| Stegplatten | 3 Stück, 205 cm lang |
-| Sparren | 4 Stück, max. Abstand 105 cm |
+| Oberkante Dach an der Traufe | 222,2 cm |
+| Überstand über die Brüstung | 10,1 cm |
+| Kopffreiheit Wandpfette / Traufpfette | 226,9 / 209,5 cm |
+| Sparren | 4 Stück, max. Abstand 100 cm |
 
 ## Prüfungen
 
-- ✔ 8° Neigung, 14 cm Gefälle pro Meter: Wasser läuft gut zum Garten ab.
-- ✔ Unter der Traufpfette bleiben 203 cm Kopffreiheit.
-- ✔ Sparrenabstand 105 cm passt zu 16 mm Platten (Richtwert bis 105 cm).
-- ℹ️ Platten 205 cm lang: aus 250-cm-Platten zuschneiden (45 cm Verschnitt). Mit 10 cm Überstand passt die 200-cm-Platte ohne Zuschnitt.
+- ✔ 8° Neigung: 28 cm Höhenunterschied auf 2 m Platte, das Wasser läuft zum Garten.
+- ✔ Die Platte steht 10 cm über die Außenkante der Brüstung, das Wasser tropft frei ab.
+- ✔ 4 Sparren, max. 100 cm Abstand. Für 16 mm Platten sind bis ca. 105 cm üblich.
+- ✔ 3 von deinen 3 Platten reichen für 3,00 m Dachlänge.
+- ✔ Kopffreiheit: 226,9 cm unter der Wandpfette, 209,5 cm unter der Traufpfette.
+- ✔ Das Wandanschlussprofil sitzt komplett auf dem glatten Betonsturz (Oberkante 256 von max. 257 cm).
 
-## Einkaufsliste
+## Noch bestellen
 
-| Gruppe | Teil | Menge | Hinweis |
-|---|---|---|---|
-| Holz | Kantholz 70×70 | 5 × 250 cm |  |
-| Holz | KVH 60×120 | 2 × 400 cm | Konstruktionsvollholz, trocken und maßhaltig |
-| Holz | Kantholz 45×95 | 4 × 250 cm |  |
-| Holz | Kantholz 45×70 | 1 × 250 cm |  |
-| Holz | Kantholz 45×45 | 3 × 200 cm |  |
-| Dach | Polycarbonat-Stegplatte 16 mm, 105 cm breit | 3 × 250 cm | auf 205 cm kürzen, Stege in Gefällerichtung |
-| Dach | Alu-Randprofil | 2 × 205 cm | Stirnseite und Seitenwand |
-| Dach | Alu-Verbindungsprofil | 2 × 205 cm | auf jedem Plattenstoß |
-| Dach | Abschlussprofil mit Tropfkante | 1 × 314 cm | untere Plattenkante |
-| Dach | Antistaubband (unten) und Alu-Klebeband (oben) | je 314 cm | verschließt die Stegkammern |
-| Dach | Wandanschlussprofil zum Kleben | 1 × 314 cm | auf den Betonsturz |
-| Dach | Kompriband / Dichtband selbstklebend | 225 cm | Fuge zur Seitenwand |
-| Dach | Profilschrauben mit Dichtscheibe | 24 | alle ca. 50 cm je Sparren |
-| Netz | Katzenschutznetz transparent, drahtverstärkt | ca. 11 m² | 9,0 m² netto + 15 % Überlappung |
-| Verbinder | Schlossschraube M10×200 + U-Scheibe + Mutter | 3 | Gartenpfosten an Bestandsbalken |
-| Verbinder | Winkelverbinder 90×90 verstärkt | 13 | Pfosten oben/Bestandsbalken, Stirnriegel |
-| Verbinder | Pfostenträger mit Bodenplatte 71 mm | 5 | auf die Fliesen kleben |
-| Verbinder | Sparrenpfettenanker | 16 | je Sparren 2 oben, 2 unten |
-| Verbinder | Tellerkopfschrauben 6×120 | 1 Pack (50) | Kopfbänder, Pfetten |
-| Verbinder | Kammnägel / Schrauben 4×40 für Winkel | 1 Pack (250) |  |
-| Kleben | MS-Polymer-Montagekleber (außen, UV-fest) | 3 Kartuschen | Pfostenfüße, Wandanschluss |
-| Netz | Tackerklammern 10 mm + UV-feste Kabelbinder | je 1 Pack |  |
-| Holz | Holzlasur außen | 1 l | vor dem Aufbau streichen |
+| Teil | Menge | Hinweis |
+|---|---|---|
+| Spenglerschrauben 6,5 × 61 mm mit EPDM-Dichtscheibe | 34 | Länge = Platte 16 mm + Profil + 30–35 mm im Holz |
+| Abstandshalter (Distanzhülsen) für die Plattenschrauben | 34 | passend zu 16 mm, verhindern das Eindrücken der Platte |
+| Alu-Klebeband, geschlossen (oben) | 1 Rolle (min. 320 cm) | obere Plattenkante an der Wand |
+| Antistaubband, gelocht (unten) | 1 Rolle (min. 320 cm) | untere Plattenkante, lässt Kondenswasser raus |
+| Wandanschlussprofil Alu mit Dichtlippe | 1 × 300 cm | falls nicht vorhanden |
+| MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest | 2 Kartuschen | Wandprofil kleben + Fuge oben, Pfostenfuß |
+| Kompriband 15/3–7 mm, selbstklebend | 1 Rolle (220 cm) | Fuge zur Seitenwand |
 
-## Zuschnitt Holz
+## Hast du schon (nur prüfen)
 
-### Kantholz 70×70: 5 × 250 cm
+| Teil | Menge | Hinweis |
+|---|---|---|
+| Kantholz 70×55, 3,00 m | 12 Stangen | Verschnitt gesamt 430,4 cm |
+| Polycarbonat-Stegplatten 2,0 × 1,0 m | 3 von 3 | Stege in Gefällerichtung |
+| Randprofile / Verbindungsprofile | 2 + 2 × 200 cm | Rand: Stirnseite und Seitenwand |
+| Tropf- bzw. Abschlussprofil | 1 × 300 cm | untere Plattenkante |
+| Winkelverbinder | ca. 24 | Pfostenfüße, Pfettenauflager, Stirnriegel |
+| Sparrenpfettenanker | 16 | je Sparren 2 an jeder Pfette |
+| Holzschrauben 6×100 / 6×140 | ca. 60 | Wandpfette verschrauben (alle 20 cm), Kopfbänder |
+| Holzleim D3 / PU-Leim | 1 Flasche | Wandpfette verleimen |
+| Katzenschutznetz + Tacker | ca. 11 m² | inkl. 15 % Überlappung |
+
+## Zuschnitt Kantholz 70×55 aus 300-cm-Stangen
 
 | Stange | Zuschnitt (cm) | Rest (cm) |
 |---|---|---|
-| 1 | 225,6 Pfosten Fassade/Stirn | 23,9 |
-| 2 | 225,6 Pfosten Fassade/Seitenwand | 23,9 |
-| 3 | 202,5 Pfosten Garten/Stirn | 47 |
-| 4 | 202,5 Pfosten Garten Mitte | 47 |
-| 5 | 202,5 Pfosten Garten/Seitenwand | 47 |
-
-### KVH 60×120: 2 × 400 cm
-
-| Stange | Zuschnitt (cm) | Rest (cm) |
-|---|---|---|
-| 1 | 314 Wandpfette | 85,5 |
-| 2 | 314 Traufpfette | 85,5 |
-
-### Kantholz 45×95: 4 × 250 cm
-
-| Stange | Zuschnitt (cm) | Rest (cm) |
-|---|---|---|
-| 1 | 205 Sparren 1 | 44,5 |
-| 2 | 205 Sparren 2 | 44,5 |
-| 3 | 205 Sparren 3 | 44,5 |
-| 4 | 205 Sparren 4 | 44,5 |
-
-### Kantholz 45×70: 1 × 250 cm
-
-| Stange | Zuschnitt (cm) | Rest (cm) |
-|---|---|---|
-| 1 | 159,6 Stirnriegel | 89,9 |
-
-### Kantholz 45×45: 3 × 200 cm
-
-| Stange | Zuschnitt (cm) | Rest (cm) |
-|---|---|---|
-| 1 | 42,4 Kopfband Garten 2 · 42,4 Kopfband Garten 3 · 42,4 Kopfband Stirn Garten · 42,4 Kopfband Seitenwand Garten | 28,3 |
-| 2 | 42,4 Kopfband Garten 1 · 42,4 Kopfband Fassade 1 · 42,4 Kopfband Garten 4 · 42,4 Kopfband Fassade 2 | 28,3 |
-| 3 | 42,4 Kopfband Stirn Fassade · 42,4 Kopfband Seitenwand Fassade | 114,1 |
+| 1 | 300 Wandpfette unten | 0 |
+| 2 | 300 Wandpfette oben | 0 |
+| 3 | 300 Traufpfette | 0 |
+| 4 | 226,9 Pfosten Fassade/Stirn · 42,4 Kopfband Garten 2 (beide Enden 45°) | 29,6 |
+| 5 | 226,1 Pfosten Fassade/Seitenwand · 42,4 Kopfband Garten 3 (beide Enden 45°) | 30,4 |
+| 6 | 197 Sparren 1 (beide Enden lotrecht 8°, Kerben 8° über den Pfetten) · 42,4 Kopfband Garten 1 (beide Enden 45°) · 42,4 Kopfband Fassade 1 (beide Enden 45°) | 16,7 |
+| 7 | 197 Sparren 2 (Plattenstoß) (beide Enden lotrecht 8°, Kerben 8° über den Pfetten) · 42,4 Kopfband Stirn Garten (beide Enden 45°) · 42,4 Kopfband Seitenwand Garten (beide Enden 45°) | 16,7 |
+| 8 | 197 Sparren 3 (Plattenstoß) (beide Enden lotrecht 8°, Kerben 8° über den Pfetten) · 42,4 Kopfband Garten 4 (beide Enden 45°) · 42,4 Kopfband Fassade 2 (beide Enden 45°) | 16,7 |
+| 9 | 197 Sparren 4 (beide Enden lotrecht 8°, Kerben 8° über den Pfetten) · 42,4 Kopfband Stirn Fassade (beide Enden 45°) · 42,4 Kopfband Seitenwand Fassade (beide Enden 45°) | 16,7 |
+| 10 | 169,9 Stirnriegel (beide Enden 8° schräg) | 129,6 |
+| 11 | 141,5 Pfosten Garten/Stirn · 141,5 Pfosten Garten Mitte | 16 |
+| 12 | 141,5 Pfosten Garten/Seitenwand | 158 |
