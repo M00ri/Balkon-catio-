@@ -51,7 +51,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 18 Stangen | Verschnitt 1.014,6 cm |
+| Kantholz 70×55, 3,00 m | 17 Stangen | Verschnitt 1.009,4 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder | ca. 30 | Pfosten auf Balken, Pfetten, Stirnriegel |
@@ -66,19 +66,18 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 |---|---|---|
 | 1 | 300 Wandpfette unten (an die Wand geklebt), lang | 0 |
 | 2 | 300 Wandpfette oben, lang | 0 |
-| 3 | 208,4 Pfosten links Mitte · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) | 5,2 |
-| 4 | 206,9 Pfosten links an der Hauswand · 90,7 Füllholz über der Traufpfette | 1,4 |
-| 5 | 197 Element links: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 7 Auflagerklotz für die Wandpfette (2,4 cm) | 1,1 |
-| 6 | 197 Element links: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
-| 7 | 197 Element Mitte: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 15,5 Kopfholz auf dem Wandpfosten (trägt das Ende der Traufpfette) | 0,7 |
-| 8 | 197 Element Mitte: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Hauswand (beide Enden 45°) · 42,4 Kopfband links Mitte 1 (beide Enden 45°) · 13,9 Schrägriegel unten (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
-| 9 | 197 Element rechts: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Mitte 2 (beide Enden 45°) · 42,4 Kopfband links Ecke (beide Enden 45°) · 13,9 Schrägriegel oben (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
-| 10 | 197 Element rechts: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 22 Wandpfette unten (an die Wand geklebt), Ergänzung · 22 Wandpfette oben, Ergänzung | 14,6 |
-| 11 | 189,9 Eckpfosten links/Garten | 109,6 |
-| 12 | 189,9 Pfosten Garten Mitte | 109,6 |
-| 13 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
-| 14 | 189,9 Wandpfosten an der Mauer (geklebt) | 109,6 |
-| 15 | 176 Mauerlatte (auf die Mauerkrone geklebt) | 123,5 |
-| 16 | 166,6 Stirnriegel links (schräg) (beide Enden 8° schräg) | 132,9 |
-| 17 | 162,2 Traufpfette Teil 2 (bis auf den Wandpfosten) | 137,3 |
-| 18 | 153 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) | 146,5 |
+| 3 | 206,9 Pfosten links an der Hauswand · 90,7 Füllholz über der Traufpfette | 1,4 |
+| 4 | 197 Element links: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 7 Auflagerklotz für die Wandpfette (2,4 cm) | 1,1 |
+| 5 | 197 Element links: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
+| 6 | 197 Element Mitte: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) · 15,5 Kopfholz auf dem Wandpfosten (trägt das Ende der Traufpfette) | 0,7 |
+| 7 | 197 Element Mitte: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 13,9 Schrägriegel unten (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
+| 8 | 197 Element rechts: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Hauswand (beide Enden 45°) · 42,4 Kopfband links Ecke (beide Enden 45°) · 13,9 Schrägriegel oben (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
+| 9 | 197 Element rechts: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 22 Wandpfette unten (an die Wand geklebt), Ergänzung · 22 Wandpfette oben, Ergänzung | 14,6 |
+| 10 | 189,9 Eckpfosten links/Garten | 109,6 |
+| 11 | 189,9 Pfosten Garten Mitte | 109,6 |
+| 12 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
+| 13 | 189,9 Wandpfosten an der Mauer (geklebt) | 109,6 |
+| 14 | 176 Mauerlatte (auf die Mauerkrone geklebt) | 123,5 |
+| 15 | 166,6 Stirnriegel links (schräg) (beide Enden 8° schräg) | 132,9 |
+| 16 | 162,2 Traufpfette Teil 2 (bis auf den Wandpfosten) | 137,3 |
+| 17 | 153 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) | 146,5 |

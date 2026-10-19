@@ -55,9 +55,9 @@ export const LAGER = 3.0;
 
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus Scan und Fotos. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer. Rechts die Betonmauer bis zur Gartenecke, Krone auf 2,66 m. Das Dach fällt nach vorne zum Garten. Jeder Handgriff ist so geplant, dass du ihn von innen machst." },
-  { n: 2, titel: "Pfosten auf den Balken", text: "Fünf Pfosten 70×55 auf deinen Balken: drei auf dem linken Balken (an der Hauswand, in der Mitte, an der Ecke), zwei auf dem Gartenbalken (Mitte und Ecke an der Mauer). Je zwei Winkel pro Pfosten, von innen in den Balken geschraubt. Nichts steht auf dem Boden." },
+  { n: 2, titel: "Pfosten auf den Balken", text: "Vier Pfosten 70×55 auf deinen Balken: auf dem linken Balken einer an der Hauswand und einer an der Ecke, auf dem Gartenbalken einer in der Mitte und einer an der Ecke zur Mauer. Links braucht es keinen Mittelpfosten, weil das Dach nach vorne fällt und dort kaum Last ankommt. Je zwei Winkel pro Pfosten, von innen in den Balken geschraubt. Nichts steht auf dem Boden." },
   { n: 3, titel: "Mauerlatte und Ecke an der Mauer", text: "Mauerlatte mit MS-Polymer auf die Mauerkrone kleben. Sie trägt das rechte Ende der Wandpfette und hält unten den Netzstreifen über der Mauer. In der Ecke ist zwischen deinem Eckbalken und der Mauer ein Betonstreifen von 19 cm Breite und 51 cm Tiefe. Der Wandpfosten steht dort etwa 10 cm weiter hinten als der Eckpfosten, direkt an der Mauer, mit MS-Polymer und Kompriband angeklebt. Zwei Schrägriegel unten und oben verbinden ihn mit dem Eckpfosten, dazwischen kommt später Netz. Oben trägt ein Kopfholz auf dem Wandpfosten das Ende der Traufpfette." },
-  { n: 4, titel: "Pfetten und Stirnriegel", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander, verleimt und alle 20 cm verschraubt, weil sie 3 m ohne Stütze überspannt. Sie liegt links auf dem Pfosten und rechts auf der Mauerlatte und wird zusätzlich elastisch an die Hauswand geklebt. Vorne die Traufpfette auf den Gartenpfosten. Links ein schräger Stirnriegel, an dem später das Netz endet." },
+  { n: 4, titel: "Pfetten und Stirnriegel", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander, verleimt und alle 20 cm verschraubt, weil sie 3 m ohne Stütze überspannt. Sie liegt links auf dem Pfosten und rechts auf der Mauerlatte und wird zusätzlich elastisch an die Hauswand geklebt. Vorne die Traufpfette auf den Gartenpfosten. Links ein schräger Stirnriegel von Pfosten zu Pfosten (1,65 m frei), an dem später das Netz endet. Er trägt fast nichts, deshalb reicht er ohne Mittelstütze." },
   { n: 5, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen links, vorne und an der Hauswand aus. Ab hier steht das Gerüst stabil, auch für Kratzbaum und Liegebretter später." },
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
   { n: 7, titel: "Dachelemente auf Böcken bauen", text: "Jede deiner drei Platten wird auf zwei Böcken zu einem Element: zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf. Kanten fertig machen: oben an der Wand Alu-Klebeband, vorne Antistaubband, Tropfprofil und Rinnenhalter, außen die Randprofile. An die Kante zum Nachbarelement kommt ein H-Verbindungsprofil." },
@@ -114,7 +114,6 @@ export function baueModell(param = {}) {
   const tpOK = yU(xG) - d70, tpUK = tpOK - H.b;                            // Traufpfette 55×70
   const zPf0 = zP0 - 0.005, zPf1 = B.zWand + 0.06;                          // Pfetten von links bis über die Mauerlatte
   const zMitte = (zl1 + zw0) / 2;
-  const xL2 = (xF + xG) / 2;
 
   // --- 2 Pfosten auf den Balken ------------------------------------------------------------
   const pfosten = (name, x0, x1, z0, z1, oben) => {
@@ -123,7 +122,6 @@ export function baueModell(param = {}) {
   };
   const srUK = (x) => yU(x) - H.b / cos;                                    // Unterkante Stirnriegel
   pfosten("Pfosten links an der Hauswand", xF0, xF0 + H.b, zl0, zl1, wpUK);
-  pfosten("Pfosten links Mitte", xL2 - H.b / 2, xL2 + H.b / 2, zl0, zl1, srUK(xL2 + H.b / 2));
   pfosten("Eckpfosten links/Garten", xg0, xg1, zl0, zl0 + H.b, tpUK);
   pfosten("Pfosten Garten Mitte", xg0, xg1, zMitte - H.b / 2, zMitte + H.b / 2, tpUK);
   pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zw1 - H.b, zw1, tpUK);
@@ -168,7 +166,7 @@ export function baueModell(param = {}) {
   for (const [z, s, nm] of [[zl0 + H.b, 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zw1 - H.b, -1, "Ecke Mauer"]])
     kb(`Kopfband vorne ${nm}`, [xG, tpUK - kd, z], [xG, tpUK, z + s * kd]);
   kb("Kopfband Hauswand", [xF, wpUK - kd, zl1], [xF, wpUK, zl1 + kd]);
-  for (const [x, s, nm] of [[xF0 + H.b, 1, "Hauswand"], [xL2 - H.b / 2, -1, "Mitte 1"], [xL2 + H.b / 2, 1, "Mitte 2"], [xg0, -1, "Ecke"]])
+  for (const [x, s, nm] of [[xF0 + H.b, 1, "Hauswand"], [xg0, -1, "Ecke"]])
     kb(`Kopfband links ${nm}`, [x, srUK(x + s * kd) - kd, zr], [x + s * kd, srUK(x + s * kd), zr]);
 
   // --- 6 Wandanschluss vorab (waagerecht) -----------------------------------------------------
