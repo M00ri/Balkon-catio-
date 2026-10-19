@@ -230,7 +230,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V46 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V47 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -524,6 +524,17 @@ function meshFor(p) {
     mesh = new THREE.Mesh(geo, mat);
     mesh.position.set(...p.c);
     if (p.art === "holz" || p.art === "bestand") mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo), edgeMat));
+  } else if (p.form === "prisma") {
+    // ebenes Vieleck, ausgezogen um p.ext (z. B. Sparren mit Kerbe über der Traufpfette)
+    const P = p.pts.map((v) => new THREE.Vector3(...v)), ext = new THREE.Vector3(...p.ext);
+    const n = ext.clone().normalize(), u = P[1].clone().sub(P[0]).normalize(), v = new THREE.Vector3().crossVectors(n, u);
+    const shape = new THREE.Shape(P.map((q) => new THREE.Vector2(q.clone().sub(P[0]).dot(u), q.clone().sub(P[0]).dot(v))));
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: ext.length(), bevelEnabled: false });
+    mat.side = THREE.DoubleSide;
+    mesh = new THREE.Mesh(geo, mat);
+    mesh.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(u, v, n));
+    mesh.position.copy(P[0]);
+    if (p.art === "holz") mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo, 20), edgeMat));
   } else if (p.ecken) {
     // Stab mit Schrägschnitten: 8 Ecken (4 am Anfang, 4 am Ende) aus dem Modell
     const E = p.ecken.map((v) => new THREE.Vector3(...v));

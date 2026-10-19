@@ -133,6 +133,8 @@ export function baueModell(param = {}) {
     const kanten = ea.map((v, i) => Math.hypot(...v3.sub(eb[i], v)));
     stab(step, name, art, A, Bp, b, h, { ecken: [...ea, ...eb], laenge: Math.max(...kanten), kurzeKante: Math.min(...kanten), ...extra });
   };
+  // Prisma: ebenes Vieleck (Seitenansicht) um den Vektor ext ausgezogen, z. B. ein Sparren mit Kerbe
+  const prisma = (step, name, art, pts, ext, extra = {}) => add({ step, name, art, form: "prisma", pts, ext, ...extra });
   const ebX = (x) => ({ n: [1, 0, 0], p: [x, 0, 0] }), ebY = (y) => ({ n: [0, 1, 0], p: [0, y, 0] }), ebZ = (z) => ({ n: [0, 0, 1], p: [0, 0, z] });
   const ebSparren = (x) => ({ n: [tan, 1, 0], p: [x, spU(x), 0] });              // Unterkante eines Sparrens (schräg)
   const holz = { profil: HOLZ };
@@ -158,7 +160,7 @@ export function baueModell(param = {}) {
   const SK = H.b;                                                          // Klotz unter jedem Sparrenende, auf den Böcken angeschraubt
   const WP_LAGEN = 2, wpOK = yU(xF) - d70 - SK, wpUK = wpOK - WP_LAGEN * H.b;   // zwei Lagen, beide an der glatten Betonfläche
   const tpLagen = p.ohneMittelpfosten ? 2 : 1;                             // ohne Mittelpfosten: doppelt wie hinten
-  const tpOK = yU(xG) - d70, tpUK = tpOK - tpLagen * H.b;                  // Traufpfette 55×70 bzw. 55×140
+  const tpOK = yU(xg1) - d70, tpUK = tpOK - tpLagen * H.b;                 // Traufpfette: der Sparren liegt an ihrer Vorderkante auf, dahinter ist er eingekerbt
   const zMitte = (zl1 + zw0) / 2;
 
   // --- 2 Pfosten auf den Balken ------------------------------------------------------------
@@ -320,7 +322,7 @@ export function baueModell(param = {}) {
     for (const [zc, seite] of [[zsl, "links"], [zsr, "rechts"]])
     { const xk = (xF0 + 0.01 + xF1 + 0.035) / 2;
       schnittStab(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", [xk, wpOK, zc], [xk, spU(xk), zc], H.a, xF1 + 0.025 - xF0, null, ebSparren(xk), { ...holz, laenge: xF1 + 0.025 - xF0, kurzeKante: undefined, ...wk(p.neigung, "oben schräg, liegt satt am Sparren an"), schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
-      schnittStab(8, `${name}: Sparren ${seite}`, "holz", [xSp0, cS(xSp0), zc], [xSp1, cS(xSp1), zc], H.a, H.b, ebX(xSp0), ebX(xSp1), { ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe vorne über der Traufpfette, ${Math.round(H.a * tan * 1000)} mm tief`, ...e });
+      prisma(8, `${name}: Sparren ${seite}`, "holz", [[xSp0, spU(xSp0), zc - H.a / 2], [xg0, spU(xg0), zc - H.a / 2], [xg0, tpOK, zc - H.a / 2], [xg1, tpOK, zc - H.a / 2], [xSp1, spU(xSp1), zc - H.a / 2], [xSp1, yU(xSp1), zc - H.a / 2], [xSp0, yU(xSp0), zc - H.a / 2]], [0, 0, H.a], { laenge: (xSp1 - xSp0) / cos, ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe über der Traufpfette: ${cm(xg1 - xg0)} cm breit, hinten ${Math.round((spU(xg0) - tpOK) * 1000)} mm tief, vorne 0`, ...e });
       if (i === 0 && seite === "links") winkelLabels.push({ t: `${p.neigung}°`, p: [xSp1 + 0.02, cS(xSp1) + 0.1, zc], ab: 7, bis: 8 });
     }
     const yc = (x) => yTop(x) - t / cos / 2;
