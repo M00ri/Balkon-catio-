@@ -52,7 +52,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 16 Stangen | Verschnitt 718,2 cm |
+| Kantholz 70×55, 3,00 m | 16 Stangen | Verschnitt 707 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder | ca. 30 | Pfosten auf Balken, Pfetten, Stirnriegel |
@@ -78,6 +78,6 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 11 | 189,9 Pfosten Garten Mitte | 109,6 |
 | 12 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
 | 13 | 188,9 Wandpfosten an die Mauer geklebt | 110,6 |
-| 14 | 166,6 Stirnriegel links (schräg) (beide Enden 8° schräg) | 132,9 |
+| 14 | 177,7 Stirnriegel links (liegt auf Wand- und Traufpfette) (beide Enden lotrecht 8°, Kerben 8° über den Pfetten) | 121,8 |
 | 15 | 162,8 Traufpfette Teil 2 (bis zur Mauer, liegt hinten auf dem Kopfholz) | 136,7 |
 | 16 | 153 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) · 146 Mauerlatte (auf Abstandshaltern, nicht flach geklebt) | 0 |
