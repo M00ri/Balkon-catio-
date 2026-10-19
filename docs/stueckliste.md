@@ -46,7 +46,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Kompriband 15/3–7 mm | 335 cm | hinter dem Wandprofil |
 | MS-/Hybrid-Polymer-Kleber, außen, UV-fest (z. B. dein Soudal Fix ALL X-Treme Power) | ca. 5 Kartuschen | nur punktuell oder in Raupen: Unterlegplatten, Wandpfosten, Wandpfette an der Hauswand, Wandprofil. Für die sichtbare Dichtfuge besser ein elastischer Dichtstoff |
 | Kunststoff-Unterlegplatten (Terrassenpads) 10 mm | 1 Pack (mind. 6) | unter den Klötzen auf der Mauer und dem Wandpfosten, Wasser läuft darunter ab |
-| U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr | 4 | je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen |
+| U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr | 3 | je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
 | Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 28 m | von innen über den Netzrand schrauben |
@@ -71,7 +71,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 |---|---|---|
 | 1 | 300 Wandpfette unten (an die Wand geklebt), lang | 0 |
 | 2 | 300 Wandpfette oben (an die Wand geklebt), lang | 0 |
-| 3 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden, oben bündig mit der Mauerkrone) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
+| 3 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben bündig mit der Mauerkrone) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
 | 4 | 198,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette | 7,3 |
 | 5 | 197 Element links: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 93,4 Füllholz über der Traufpfette · 8 Element links: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,1 |
 | 6 | 197 Element links: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 93,4 Füllholz über der Traufpfette · 8 Element Mitte: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,1 |
