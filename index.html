@@ -259,18 +259,39 @@ function setScan(mode) {
 }
 for (const k of ["voll", "halb", "aus"]) $("s-" + k).onclick = () => setScan(k);
 
-new GLTFLoader().load("scan/balkon_scan_ausgerichtet.glb", (gltf) => {
-  gltf.scene.traverse((o) => {
-    if (!o.isMesh) return;
-    const mat = new THREE.MeshBasicMaterial({ map: o.material.map, side: THREE.DoubleSide });
-    o.material = mat; o.renderOrder = 0; scanMats.push(mat);
-  });
-  scene.add(gltf.scene);
-  setScan(scanMode);
-  $("loading").hidden = true;
-}, (e) => {
-  if (e.total) $("loading").textContent = `Scan wird geladen … ${Math.round(e.loaded / e.total * 100)} %`;
-}, () => { $("loading").textContent = "Scan konnte nicht geladen werden. Das Modell funktioniert trotzdem."; });
+// Im Repo liegt der Scan als .glb, im veröffentlichten Artefakt unter .wasm-Endung, weil dort nur bestimmte Dateitypen erlaubt sind (gleicher Inhalt).
+async function fetchScan() {
+  for (const url of ["scan/balkon_scan_ausgerichtet.glb", "scan/balkon_scan_ausgerichtet.glb.bin.wasm"]) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const total = +res.headers.get("content-length") || 0;
+      const reader = res.body.getReader(), chunks = [];
+      let loaded = 0;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value); loaded += value.length;
+        if (total) $("loading").textContent = `Scan wird geladen … ${Math.round(loaded / total * 100)} %`;
+      }
+      return await new Blob(chunks).arrayBuffer();
+    } catch (e) { /* nächste Quelle probieren */ }
+  }
+  throw new Error("Scan nicht gefunden");
+}
+fetchScan()
+  .then((buf) => new GLTFLoader().parseAsync(buf, ""))
+  .then((gltf) => {
+    gltf.scene.traverse((o) => {
+      if (!o.isMesh) return;
+      const mat = new THREE.MeshBasicMaterial({ map: o.material.map, side: THREE.DoubleSide });
+      o.material = mat; o.renderOrder = 0; scanMats.push(mat);
+    });
+    scene.add(gltf.scene);
+    setScan(scanMode);
+    $("loading").hidden = true;
+  })
+  .catch(() => { $("loading").textContent = "Scan konnte nicht geladen werden. Das Modell funktioniert trotzdem."; });
 
 // ---------- Netz-Textur ----------
 function netTexture() {
