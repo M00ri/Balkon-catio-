@@ -27,7 +27,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
 - ℹ️ Die Wandpfette ist 322 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
 - ✔ Das Netz endet überall an Holz, nie an den Platten. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Klemmleiste drüber.
-- ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen. Die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten) und oben über Kopfholz und Winkel mit Traufpfette und Mauerlatte verbunden. Dazwischen spannt das Netz über Eck (27,2 cm breit), seitlich an beide Pfosten getackert, unten mit einer kurzen Klemmleiste auf den Beton geklebt.
+- ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen. Die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten) und oben über Kopfholz und Lochband mit Traufpfette und Mauerlatte verbunden. Dazwischen spannt das Netz über Eck (27,2 cm breit), seitlich an beide Pfosten getackert, unten mit einer kurzen Klemmleiste auf den Beton geklebt.
 - ✔ Vorne liegt die Dachunterkante 5 cm über der Mauerkrone, hinten an der Hauswand 29,2 cm darüber.
 
 ## Noch bestellen
@@ -46,6 +46,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
 | Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 27 m | von innen über den Netzrand schrauben |
 | Edelstahlschrauben 4×40 für die Klemmleisten | 97 | alle 25 cm |
+| Lochband verzinkt 20 mm | 1 m | Wandpfosten oben mit der Mauerlatte verbinden |
 
 ## Hast du schon (nur prüfen)
 
