@@ -28,7 +28,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
 - ✔ Wandpfette 262,9–276,9 cm: Beide Lagen liegen komplett an der glatten Betonfläche (bis 278 cm) und können dort geklebt werden. Die Dachbalken liegen mit ihren 7 cm hohen Klötzen darauf. Rechts liegt die Wandpfette direkt auf der Mauerkrone, 1,2 cm darüber (Unterlegplatte).
 - ℹ️ Die Wandpfette ist 300 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
-- ✔ Das Netz endet überall an Holz, nie an den Platten. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Klemmleiste drüber.
+- ✔ Das Netz sitzt Feld für Feld zwischen den Hölzern, 2 cm hinter der Außenkante, nie an den Platten. Die Innenseiten von Pfosten und Balken bleiben frei für Wandelemente. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Leiste 20×20 außen bündig drüber.
 - ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen, die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten). Oben liegt der Eckriegel genau auf der Netzlinie: vorne mit einem Winkel an der Traufpfette, hinten auf dem Wandpfosten verschraubt, direkt unter dem rechten Sparren. Das Netz über Eck (27,2 cm breit) hat so an allen vier Seiten Holz bzw. Beton. Ein Füllholz auf dem Eckriegel schließt bis unter die Platte.
 - ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 137,8 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (5 N/mm²). Der Stoß sitzt über dem Mittelpfosten.
 - ✔ Vorne liegt die Dachunterkante 8,3 cm über der Mauerkrone, hinten an der Hauswand 29,4 cm darüber.
@@ -49,8 +49,8 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr | 3 | je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
-| Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 28 m | von innen über den Netzrand schrauben |
-| Edelstahlschrauben 4×40 für die Klemmleisten | 100 | alle 25 cm |
+| Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 31 m | von innen über den Netzrand schrauben |
+| Edelstahlschrauben 4×40 für die Klemmleisten | 113 | alle 25 cm |
 
 ## Hast du schon (nur prüfen)
 
@@ -62,7 +62,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
 | Sparrenpfettenanker | 12 | je Sparren einer an jeder Pfette, von unten |
 | Holzschrauben 6×120 | ca. 60 | Wandpfette alle 20 cm (dazu dein Fix ALL statt Holzleim), Kopfbänder |
-| Katzenschutznetz + Tacker | ca. 12 m² | inkl. 15 % Überlappung |
+| Katzenschutznetz + Tacker | ca. 11 m² | inkl. 15 % Überlappung |
 | 2 Arbeitsböcke, 2 Leitern, eine zweite Person | – | Elemente bauen und einheben |
 
 ## Zuschnitt Kantholz 70×55 aus 300-cm-Stangen
