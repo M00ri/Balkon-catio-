@@ -35,6 +35,7 @@ export const BESTAND = {
 // ---------------------------------------------------------------------------
 export const DEFAULTS = {
   neigung: 6,             // Dachneigung in Grad, Gefälle nach links (weg von der Betonmauer)
+  hoeheLinks: 2.71,       // Unterkante Dachplatte an der linken (tiefen) Seite, knapp über der Mauerkrone
   platte: "2x2",
   plattenStaerke: 0.016,
 };
@@ -46,6 +47,7 @@ export const PLATTEN = {
 
 export const GRENZEN = {
   neigung: [4, 9, 1],
+  hoeheLinks: [2.55, 2.90, 0.01],
   plattenStaerke: [0.008, 0.010, 0.016],
 };
 
@@ -58,9 +60,9 @@ const UEBERLAPPUNG = 0.10;          // Querstoß der Platten
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus dem LiDAR-Scan. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer befestigt. Rechts die Betonmauer mit flacher Krone auf 2,66 m. Sie endet etwa 26 cm vor der Gartenbrüstung." },
   { n: 2, titel: "Pfosten auf den Balken", text: "Fünf Pfosten 70×55 stehen auf deinen Balken: drei auf dem linken Balken (an der Hauswand, in der Mitte, an der Ecke) und zwei weitere auf dem Gartenbalken. Jeder Pfosten bekommt zwei Winkel, die in den Balken geschraubt werden. Nichts steht auf dem Boden." },
-  { n: 3, titel: "Mauerlatte und Wandständer", text: "Auf die Krone der Betonmauer kommt eine Mauerlatte, vollflächig mit MS-Polymer verklebt. Sie trägt die hohe Seite des Dachs. Den Spalt am Mauerende schließt ein Wandständer: Er steht auf dem Balken vor der Mauer, wird an die Mauer geklebt und mit der Mauerlatte verschraubt. Ein Riegel verbindet ihn mit dem Eckpfosten." },
+  { n: 3, titel: "Mauerlatte und Wandständer", text: "Auf die Krone der Betonmauer kommt eine Mauerlatte, vollflächig mit MS-Polymer verklebt. Darauf stehen kurze Stiele mit einem Wandrähm, damit die hohe Seite des Dachs über der Mauer liegt. Den Spalt am Mauerende schließt ein Wandständer: Er steht auf dem Balken vor der Mauer, wird an die Mauer geklebt und mit der Mauerlatte verschraubt. Ein Riegel verbindet ihn mit dem Eckpfosten." },
   { n: 4, titel: "Traufriegel und Gartenrähm", text: "Links liegt der Traufriegel auf den drei Pfosten, das ist die tiefe Seite des Dachs. Über die Gartenpfosten läuft der Rähm mit dem Dachgefälle. Er besteht aus zwei Stücken, die sich über dem Mittelpfosten treffen, weil 3 m nicht ganz reichen." },
-  { n: 5, titel: "Doppelsparren", text: "Die Sparren an der Hauswand und in der Mitte überspannen gut 3 m ohne Stütze. Jeder besteht deshalb aus zwei 70×55 übereinander, verleimt und alle 20 cm verschraubt. Die Stöße liegen versetzt, je einer nah an jedem Auflager. Unter dem Plattenstoß liegt ein Querriegel." },
+  { n: 5, titel: "Doppelsparren", text: "Die Sparren an der Hauswand und in der Mitte überspannen gut 3 m ohne Stütze. Jeder besteht deshalb aus zwei 70×55 übereinander, verleimt und alle 20 cm verschraubt. Der Doppelsparren an der Hauswand wird zusätzlich mit Raupen aus elastischem MS-Polymer an die Wand geklebt. Das hält ihn ruhig, getragen wird er trotzdem von Pfosten und Mauer. Die Stöße liegen versetzt, je einer nah an jedem Auflager. Unter dem Plattenstoß liegt ein Querriegel." },
   { n: 6, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen das Gerüst an der linken Seite, an der Gartenseite und unter den Doppelsparren aus. Damit hält es auch Kratzbaum und Liegebretter." },
   { n: 7, titel: "Dachplatten", text: "Die Platten liegen mit den Stegen in Gefällerichtung, also nach links. Die obere Platte überlappt die untere 10 cm, mit Dichtband dazwischen. Oben kommt Alu-Klebeband auf die Kante, unten Antistaubband und ein Tropfprofil. Befestigt wird mit Schrauben mit Dichtscheibe und Abstandshaltern." },
   { n: 8, titel: "Abdichtung an der Hauswand", text: "Entlang der Hauswand läuft die Plattenkante schräg. Ein Wandanschlussprofil wird mit MS-Polymer an die Wand geklebt, dahinter dichtet Kompriband, oben läuft eine Dichtfuge. Die Dichtlippe liegt auf der Platte. So kommt kein Regenwasser an die Hauswand. Siehe Detailzeichnung." },
@@ -88,9 +90,10 @@ export function baueModell(param = {}) {
   const mlOK = B.hMauerkrone + H.a;
   const zP0 = B.zLinksAussen - 0.08, zP1 = mlZ1;
   const xP0 = B.xFassade + 0.005, xGartenSoll = B.xBrAussen + 0.10;
-  // Höhe: Doppelsparren liegen auf der Mauerlatte auf
+  // Höhe: links ist die Unterkante der Platte vorgegeben, nach rechts steigt das Dach an
   const zAufl = mlZ1 - 0.035;
-  const yU = (z) => mlOK + d140 - tan * (zAufl - z);             // Unterkante Platte = Oberkante Sparren
+  const zTr0 = (zl0 + zl1) / 2;
+  const yU = (z) => p.hoeheLinks + tan * (z - zTr0);              // Unterkante Platte = Oberkante Sparren
   const yTop = (z) => yU(z) + t / cos;
 
   const parts = [];
@@ -130,7 +133,7 @@ export function baueModell(param = {}) {
   const innen = xs.slice(0, -1);                                       // Doppelsparren (Fassade + Mitte)
 
   // --- Höhen der Tragglieder -----------------------------------------------------------------
-  const zTr = (zl0 + zl1) / 2;
+  const zTr = zTr0;
   const trOK = yU(zTr) - d140, trUK = trOK - H.b;                      // Traufriegel unter den Doppelsparren
   const raUK = (z) => yU(z) - d70;                                     // Gartenrähm (einfach)
   const zMitte = (zl1 + zw0) / 2;
@@ -149,6 +152,19 @@ export function baueModell(param = {}) {
 
   // --- 3 Mauerlatte + Wandständer + Lückenriegel ------------------------------------------------
   box(3, "Mauerlatte (auf die Mauerkrone geklebt)", "holz", B.xFassade, B.xWandEnde, B.hMauerkrone, mlOK, mlZ0, mlZ1, { ...holz, laenge: B.xWandEnde - B.xFassade });
+  // Auflager der hohen Seite: so hoch wie nötig über der Mauerlatte
+  const auflOK = yU(zAufl) - d140;
+  const luecke = auflOK - mlOK;
+  let auflager = "direkt";
+  const stielX = () => [B.xFassade + H.a / 2, ...xs.slice(1, -1), B.xWandEnde - H.a / 2];
+  if (luecke >= H.b + 0.03) {
+    auflager = "stiele";
+    box(3, "Wandrähm auf Stielen", "holz", B.xFassade, B.xWandEnde, auflOK - H.b, auflOK, mlZ0, mlZ1, { ...holz, laenge: B.xWandEnde - B.xFassade });
+    for (const x of stielX()) box(3, "Stiel auf der Mauerlatte", "holz", x - H.a / 2, x + H.a / 2, mlOK, auflOK - H.b, mlZ0 + 0.0075, mlZ1 - 0.0075, { ...holz, laenge: auflOK - H.b - mlOK });
+  } else if (luecke > 0.005) {
+    auflager = "futter";
+    for (const x of stielX().slice(0, -1)) box(3, "Futterklotz auf der Mauerlatte", "holz", x - H.a / 2, x + H.a / 2, mlOK, auflOK, mlZ0, mlZ1, { ...holz, laenge: H.b });
+  } else if (luecke < -0.02) auflager = "zuTief";
   box(3, "Wandständer (an die Mauer geklebt)", "holz", B.xWandEnde - H.b, B.xWandEnde, hB, mlOK, zw0, zw1, { ...holz, laenge: mlOK - hB });
   box(3, "Lückenriegel Wandständer–Eckpfosten", "holz", B.xWandEnde, xg0, mlOK - H.b, mlOK, zw0, zw1, { ...holz, laenge: xg0 - B.xWandEnde });
 
@@ -167,7 +183,7 @@ export function baueModell(param = {}) {
     stab(step, name, "holz", [x, yU(z0) - off, z0], [x, yU(z1) - off, z1], H.a, H.b, { ...holz, schnitt: `Enden lotrecht ${p.neigung}°` });
   };
   innen.forEach((x, i) => {
-    const nm = i === 0 ? "Doppelsparren Hauswand" : `Doppelsparren Mitte${innen.length > 2 ? " " + i : ""}`;
+    const nm = i === 0 ? "Doppelsparren Hauswand (an die Wand geklebt)" : `Doppelsparren Mitte${innen.length > 2 ? " " + i : ""}`;
     if (lGes <= LAGER) { seg(5, `${nm} oben`, x, zS0, zS1, "oben"); seg(5, `${nm} unten`, x, zS0, zS1, "unten"); return; }
     seg(5, `${nm} unten, lang`, x, zS0, zS0 + dz, "unten"); seg(5, `${nm} unten, Ergänzung`, x, zS0 + dz, zS1, "unten");
     seg(5, `${nm} oben, Ergänzung`, x, zS0, zS1 - dz, "oben"); seg(5, `${nm} oben, lang`, x, zS1 - dz, zS1, "oben");
@@ -228,7 +244,8 @@ export function baueModell(param = {}) {
   const kopfTuer = yU(0.6) - d140;
   const kennwerte = {
     neigung: p.neigung, gefaelleCmProM: tan * 100,
-    hoeheMauer: yTop(zP1), hoeheLinks: yTop(zP0), fugeLinks,
+    hoeheMauer: yTop(zP1), hoeheLinks: yTop(zP0), fugeLinks, unterkanteLinks: p.hoeheLinks,
+    ueberKrone: p.hoeheLinks - B.hMauerkrone, auflager, luecke,
     kopfTuer, kopfLinks: trUK,
     plattenAnzahl: nPlatten, reihen: reihen.length, spalten: nSp,
     sparrenAnzahl: xs.length, sparrenAbstand: Math.max(...abst),
@@ -240,7 +257,7 @@ export function baueModell(param = {}) {
     : { stufe: "ok", text: `${p.neigung}° Neigung nach links: ${cm(yTop(zP1) - yTop(zP0))} cm Höhenunterschied, das Wasser läuft weg von der Betonmauer und tropft links ab.` });
   hinweise.push(fugeLinks < B.hSturzUK + 0.03
     ? { stufe: "warn", text: `Links liegt die Dachkante an der Hauswand nur noch auf ${cm(fugeLinks)} cm. Das ist unter dem Sturz (${cm(B.hSturzUK)} cm) in der Fensternische, dort kann man nicht abdichten. Weniger Neigung wählen.` }
-    : { stufe: "ok", text: `Die Fuge an der Hauswand liegt überall auf Wandfläche (links ${cm(fugeLinks)} cm, über dem Sturz bei ${cm(B.hSturzUK)} cm). Rechts auf Ziegel, links auf dem glatten Betonsturz.` });
+    : { stufe: "ok", text: `Die Fuge an der Hauswand liegt überall auf Wandfläche (links ${cm(fugeLinks)} cm, über dem Sturz bei ${cm(B.hSturzUK)} cm). ${fugeLinks > B.hSturzOK ? "Sie verläuft komplett auf dem Ziegel über dem Betonsturz, die Mörtelfugen mit MS-Polymer satt füllen." : "Rechts auf Ziegel, links auf dem glatten Betonsturz."}` });
   hinweise.push(nPlatten <= PLATTEN_VORHANDEN
     ? { stufe: "ok", text: `${nPlatten} Platten ${PL.label} reichen (du hast ${PLATTEN_VORHANDEN}). ${reihen.length > 1 ? `Eine wird auf ${cm((reihen[reihen.length - 1][1] - reihen[reihen.length - 1][0]) / cos)} cm gekürzt, der Querstoß überlappt 10 cm.` : ""}` }
     : { stufe: "warn", text: `Mit ${PL.label} brauchst du ${nPlatten} Platten, du hast ${PLATTEN_VORHANDEN}. Die Dachfläche ist ${cm((zP1 - zP0) / cos)} × ${cm(xP1 - xP0)} cm, und die Stege müssen in Gefällerichtung liegen.` });
@@ -249,8 +266,19 @@ export function baueModell(param = {}) {
     : { stufe: "ok", text: `${xs.length} Sparrenlinien, max. ${cm(Math.max(...abst))} cm Abstand (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
   hinweise.push({ stufe: "info", text: `Die Doppelsparren sind ${cm(lGes)} cm lang, also länger als deine 3-m-Stangen. Jede Lage wird gestoßen, die Stöße liegen versetzt nah an den Auflagern. Verleimt und verschraubt trägt das wie ein durchgehender Balken.` });
   hinweise.push({ stufe: kopfTuer < 2.0 ? "warn" : "ok", text: `Kopffreiheit vor der Tür ${cm(kopfTuer)} cm, links unter dem Traufriegel ${cm(trUK)} cm.` });
+  hinweise.push(p.hoeheLinks < B.hMauerkrone
+    ? { stufe: "info", text: `Links liegt die Dachunterkante ${cm(B.hMauerkrone - p.hoeheLinks)} cm unter der Mauerkrone.` }
+    : { stufe: "ok", text: `Links liegt die Dachunterkante ${cm(p.hoeheLinks - B.hMauerkrone)} cm über der Mauerkrone (${cm(B.hMauerkrone)} cm).` });
+  hinweise.push({
+    stiele: { stufe: "ok", text: `An der Betonmauer liegen die Sparren auf einem Wandrähm. Er steht auf ${cm(luecke - H.b)} cm hohen Stielen auf der Mauerlatte.` },
+    futter: { stufe: "ok", text: `An der Betonmauer liegen die Sparren auf ${cm(luecke)} cm Futterklötzen auf der Mauerlatte.` },
+    direkt: { stufe: "ok", text: `An der Betonmauer liegen die Sparren direkt auf der Mauerlatte.` },
+    zuTief: { stufe: "warn", text: `So tief würden die Sparren ${cm(-luecke)} cm in die Mauerlatte schneiden. Höher bauen oder weniger Neigung.` },
+  }[auflager]);
+  hinweise.push({ stufe: "info", text: `Der Doppelsparren an der Hauswand wird zusätzlich mit elastischem MS-Polymer an die Wand geklebt, nicht mit hartem Montagekleber. Holz arbeitet, eine starre Klebung reißt. Die Klebung hält ihn ruhig, tragen tun Pfosten und Mauer.` });
+  hinweise.push({ stufe: "info", text: `Bitte prüfen: Ist über der Hauswand bis ${cm(yTop(zP1) + 0.1)} cm Höhe frei (kein Fenster, keine Fensterbank, kein Balkon darüber)?` });
   hinweise.push({ stufe: "ok", text: `Spalt zwischen Mauerende und Eckpfosten: ${cm(xg0 - B.xWandEnde)} cm. Er wird mit Wandständer, Riegel und Netz geschlossen.` });
-  hinweise.push({ stufe: "info", text: `Die Mauerlatte hält nur über den Kleber auf der Mauerkrone und die Verschraubung mit dem Wandständer. Vollflächig kleben, 24 h aushärten lassen, erst dann die Sparren auflegen.` });
+  hinweise.push({ stufe: "info", text: `Die Mauerlatte hält über den Kleber auf der Mauerkrone und die Verschraubung mit dem Wandständer. Vollflächig kleben, 24 h aushärten lassen, erst dann die Sparren auflegen.` });
 
   const masse = [
     { t: "Balken 70×55 auf Brüstung", p: [B.xBrAussen, hB + 0.06, 1.2], ab: 1, bis: 3 },
@@ -258,6 +286,7 @@ export function baueModell(param = {}) {
     { t: `Spalt ${cm(xg0 - B.xWandEnde)} cm`, p: [(B.xWandEnde + xg0) / 2, 1.4, zw0], ab: 1, bis: 9 },
     { t: "Sturz OK 2,57 m", p: [B.xFassade - 0.02, B.hSturzOK + 0.06, 1.2], ab: 1, bis: 2 },
     { t: "innenliegendes Geländer", p: [gx, B.hGelaender + 0.06, 0.4], ab: 1, bis: 1 },
+    { t: `Mauerkrone ${fmt(B.hMauerkrone)} m`, p: [0.0, B.hMauerkrone + 0.06, B.zWand + 0.05], ab: 4, bis: 9 },
     { t: `Hoch ${fmt(yTop(zP1))} m`, p: [0.2, yTop(zP1) + 0.1, zP1], ab: 5, bis: 9 },
     { t: `Tief ${fmt(yTop(zP0))} m`, p: [0.2, yTop(zP0) + 0.1, zP0], ab: 5, bis: 9 },
     { t: `${p.neigung}° nach links`, p: [0.6, yTop(1.1) + 0.12, 1.1], ab: 5, bis: 9 },
@@ -294,7 +323,7 @@ export function einkauf(parts, k, p, PL, g) {
     { status: "bestellen", teil: "Butyl-Dichtband 15 mm", menge: `${cm(bDach * g.stoesseZ.length + 0.2)} cm`, hinweis: "zwischen die Platten im Querstoß" },
     { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `${cm(lDach)} cm`, hinweis: "an der Hauswand, schräg verlegt" },
     { status: "bestellen", teil: "Kompriband 15/3–7 mm", menge: `${cm(lDach + 0.2)} cm`, hinweis: "hinter dem Wandanschlussprofil" },
-    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "4 Kartuschen", hinweis: "Mauerlatte vollflächig, Wandständer, Wandprofil, Fuge oben" },
+    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "6 Kartuschen", hinweis: "Mauerlatte vollflächig, Wandständer, Doppelsparren an der Hauswand, Wandprofil, Fuge oben" },
     { status: "vorhanden", teil: `${HOLZ}, 3,00 m`, menge: `${stangen.length} Stangen`, hinweis: `Verschnitt ${cm(stangen.reduce((s, x) => s + Math.max(0, x.rest), 0))} cm` },
     { status: "vorhanden", teil: `Polycarbonat-Stegplatten ${PL.label}`, menge: `${k.plattenAnzahl} von 3`, hinweis: "Stege in Gefällerichtung (nach links)" },
     { status: "vorhanden", teil: "Rand- und Verbindungsprofile", menge: `${1 + k.spalten - 1} × ${cm(lDach)} cm`, hinweis: "Gartenkante, Plattenstöße" },

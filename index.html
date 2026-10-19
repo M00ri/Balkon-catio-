@@ -168,7 +168,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V4 · Dach nach links<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V5 · auf Mauerhöhe<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -230,7 +230,10 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
       <div class="regler">
         <label for="r-neigung">Dachneigung <output id="o-neigung"></output>
           <input type="range" id="r-neigung">
-          <span class="hint">Gefälle nach links, weg von der Betonmauer. Die hohe Seite liegt auf der Mauerlatte, daraus ergibt sich die Höhe.</span></label>
+          <span class="hint">Gefälle nach links, weg von der Betonmauer. Die hohe Seite liegt rechts über der Betonmauer.</span></label>
+        <label for="r-links">Dachunterkante links <output id="o-links"></output>
+          <input type="range" id="r-links">
+          <span class="hint">Tiefste Stelle des Dachs. Die Mauerkrone liegt bei 2,66 m. Rechts liegt das Dach um die Neigung höher und steht auf Stielen über der Mauer.</span></label>
         <label>Deine Platten <output id="o-platte"></output>
           <div class="seg" role="group" aria-label="Plattengröße" id="g-platte"></div>
           <span class="hint">Die Stege müssen in Gefällerichtung liegen. Das Dach ist gut 3,3 m lang, deshalb gibt es einen Querstoß mit 10 cm Überlappung.</span></label>
@@ -600,6 +603,7 @@ function choice(id, key, values, fmtOut) {
 }
 const syncs = [
   slider("neigung", "neigung", GRENZEN.neigung, 1, (v) => `${v}°`),
+  slider("links", "hoeheLinks", GRENZEN.hoeheLinks, 100, (v) => `${de(v)} m`),
   choice("platte", "platte", Object.keys(PLATTEN), (v) => PLATTEN[v].label),
   choice("staerke", "plattenStaerke", GRENZEN.plattenStaerke, (v) => `${Math.round(v * 1000)} mm`),
 ];
@@ -610,7 +614,7 @@ function renderPlan() {
   const items = [
     [`${de(k.hoeheMauer)} m`, "Dach an der Betonmauer (hoch)"],
     [`${de(k.hoeheLinks)} m`, "Dach links (Tropfkante)"],
-    [`${de(k.fugeLinks)} m`, "Fuge Hauswand links (Sturz UK 2,40)"],
+    [`${k.ueberKrone >= 0 ? "+" : "−"}${cm(Math.abs(k.ueberKrone))} cm`, "Dachunterkante links zur Mauerkrone"],
     [`${de(k.kopfTuer)} m`, "Kopffreiheit vor der Tür"],
     [`${k.plattenAnzahl} von 3`, `Platten ${model.platte.label}`],
     [`${k.sparrenAnzahl} Linien`, `Sparren, max. ${cm(k.sparrenAbstand)} cm Abstand`],
