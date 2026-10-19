@@ -5,8 +5,8 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 | Datei | Inhalt |
 |---|---|
 | `index.html` | 3D-Viewer: Scan + Gehege, Schritt-für-Schritt-Aufbau, Material, Maße |
-| `cad/catio_modell.py` | Parametrisches Modell. Alle Maße stehen oben in der Datei |
-| `cad/modell.json` | Vom Modell erzeugt: Bauteile und Bauschritte für den Viewer |
+| `cad/modell.js` | Parametrisches Modell (Bestand, Planungswerte, Bauteile, Prüfungen, Einkauf) |
+| `cad/stueckliste.mjs` | Erzeugt `docs/stueckliste.md` aus dem Modell |
 | `docs/stueckliste.md` | Vom Modell erzeugt: Einkaufs- und Zuschnittliste |
 | `scan/balkon_scan.usdz` | Original-Scan (3d Scanner App, iPhone LiDAR) |
 | `scan/balkon_scan_ausgerichtet.glb` | Scan gerade ausgerichtet (12° gedreht, Boden auf y = 0) und zugeschnitten |
@@ -14,8 +14,8 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 ## Modell ändern
 
 ```bash
-python3 cad/catio_modell.py   # schreibt cad/modell.json und docs/stueckliste.md neu
-python3 -m http.server        # dann http://localhost:8000 öffnen
+node cad/stueckliste.mjs neigung=10 ueberstand=0.1   # Stückliste mit eigenen Werten
+python3 -m http.server                               # Viewer unter http://localhost:8000
 ```
 
-Koordinaten in Metern: y nach oben (Boden = 0), x von der Glasfront Richtung Garten, z von der Stirnbrüstung zur weißen Seitenwand.
+Koordinaten in Metern: y nach oben (Boden = 0), x von der Fassade (Sturzvorderkante) Richtung Garten, z von der Stirnbrüstung zur weißen Seitenwand.
