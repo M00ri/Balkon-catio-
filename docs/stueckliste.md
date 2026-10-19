@@ -18,7 +18,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 - ✔ 7° Neigung nach vorne: 24,4 cm Höhenunterschied auf 2 m Platte.
 - ✔ Deine 3 Platten 2,00 × 1,05 m decken 315 cm Breite ab, ohne Querstoß und ohne Zuschnitt. Rechts liegt der äußere Sparren auf der Mauerkrone, die Platte steht 6,3 cm über die Mauer. Links liegt der Sparren über deinem Balken, die Plattenkante endet 5,3 cm vor der Außenkante der Brüstung.
-- ✔ Das Dach liegt rechts auf der Betonmauer: Die Wandpfette liegt hinten direkt auf einer 1-cm-Unterlegplatte auf der Krone, der rechte Sparren auf Klötzen, ebenfalls auf Unterlegplatten. Die Klötze nehmen nur Druck auf (Dach und Schnee nach unten). Gegen Windsog halten die Sparrenpfettenanker an den Pfetten. Damit nichts verrutscht, ist jeder Klotz unten geklebt und oben mit einem Winkel am Holz darüber verschraubt. Bitte prüfen: Die Mauerkrone muss mindestens 7 cm breit sein.
+- ✔ Rechts stehen die Platten 6,3 cm über die Betonmauer, das Regenwasser läuft außen auf die Mauer. Der rechte Dachbalken liegt nicht auf der Mauer, er wird wie alle anderen von den beiden Querbalken getragen. Zwischen Mauerkrone und Dachbalken bleibt eine Lücke von 4,6 cm (vorne) bis 21,8 cm (hinten). Die schließt das Netz, gegen Schlagregen von der Seite zusätzlich ein Brett innen an den Dachbalken schrauben. Nur die Wandpfette liegt hinten auf der Krone (Unterlegplatte).
 - ✔ Vorne stehen die Platten 13,5 cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.
 - ✔ Jedes Element hat zwei Sparren, 98,9 cm auseinander (Richtwert bis 105 cm bei 16 mm).
 - ✔ Die Fuge an der Hauswand ist waagerecht auf 292,8 cm, auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen.
@@ -56,7 +56,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 16 Stangen | Verschnitt 637,5 cm |
+| Kantholz 70×55, 3,00 m | 16 Stangen | Verschnitt 668,9 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
@@ -72,14 +72,14 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 1 | 300 Wandpfette unten (an die Wand geklebt), lang | 0 |
 | 2 | 300 Wandpfette Mitte (an die Wand geklebt), lang | 0 |
 | 3 | 300 Wandpfette oben (berührt die Wand nicht, 1,5 cm Luft zum Ziegel), lang | 0 |
-| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden, oben bündig mit der Mauerkrone) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 4,2 Auflagerklotz unter den rechten Sparren geschoben (4,2 cm) (oben 7° schräg, Höhe am Sparren abnehmen) | 4,4 |
+| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden, oben bündig mit der Mauerkrone) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) | 9,1 |
 | 5 | 198,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette | 7,3 |
 | 6 | 197 Element links: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
 | 7 | 197 Element links: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
 | 8 | 197 Element Mitte: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) · 16 Wandpfette unten (an die Wand geklebt), Ergänzung | 0,2 |
 | 9 | 197 Element Mitte: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 16 Wandpfette Mitte (an die Wand geklebt), Ergänzung | 0,2 |
 | 10 | 197 Element rechts: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband links Hauswand (an den linken Sparren) (beide Enden 45°) · 42,4 Kopfband links Ecke (an den linken Sparren) (beide Enden 45°) · 16 Wandpfette oben (berührt die Wand nicht, 1,5 cm Luft zum Ziegel), Ergänzung | 0,2 |
-| 11 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) · 15,9 Auflagerklotz unter den rechten Sparren geschoben (15,9 cm) (oben 7° schräg, Höhe am Sparren abnehmen) · 9,7 Auflagerklotz unter den rechten Sparren geschoben (9,7 cm) (oben 7° schräg, Höhe am Sparren abnehmen) | 4,5 |
+| 11 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) | 31,1 |
 | 12 | 194,4 Eckpfosten links/Garten (steht 5,5 cm tief in der Aussparung im Balken) | 105,1 |
 | 13 | 194,4 Eckpfosten Garten/Mauer (steht 5,5 cm tief in der Aussparung im Balken) | 105,1 |
 | 14 | 188,9 Pfosten Garten Mitte | 110,6 |
