@@ -24,7 +24,7 @@ for (const [status, titel] of [["bestellen", "Noch bestellen"], ["vorhanden", "H
   for (const e of m.einkauf.zeilen.filter((e) => e.status === status)) z.push(`| ${e.teil} | ${e.menge} | ${e.hinweis} |`);
 }
 z.push("", `## Zuschnitt ${HOLZ} aus ${cm(LAGER)}-cm-Stangen`, "", "| Stange | Zuschnitt (cm) | Rest (cm) |", "|---|---|---|");
-m.einkauf.stangen.forEach((s, i) => z.push(`| ${i + 1} | ${s.teile.map((q) => `${cm(q.laenge)} ${q.name}${q.schnitt ? ` (${q.schnitt})` : ""}`).join(" · ")} | ${cm(Math.max(0, s.rest))} |`));
+m.einkauf.stangen.forEach((s, i) => z.push(`| ${i + 1} | ${s.teile.map((q) => `${cm(q.laenge)} ${q.name}${q.winkel || q.schnitt ? ` (${[q.winkel, q.schnitt].filter(Boolean).join(", ")})` : ""}`).join(" · ")} | ${cm(Math.max(0, s.rest))} |`));
 z.push("");
 mkdirSync(new URL("../docs/", import.meta.url), { recursive: true });
 writeFileSync(new URL("../docs/stueckliste.md", import.meta.url), z.join("\n"));

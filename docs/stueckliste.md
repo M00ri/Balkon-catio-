@@ -49,13 +49,13 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
 | Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 31 m | von innen über den Netzrand schrauben |
-| Edelstahlschrauben 4×40 für die Klemmleisten | 113 | alle 25 cm |
+| Edelstahlschrauben 4×40 für die Klemmleisten | 112 | alle 25 cm |
 
 ## Hast du schon (nur prüfen)
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 14 Stangen | Verschnitt 403,4 cm |
+| Kantholz 70×55, 3,00 m | 14 Stangen | Verschnitt 375,7 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
@@ -71,14 +71,14 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 1 | 300 Wandpfette unten (an die Wand geklebt) | 0 |
 | 2 | 300 Wandpfette oben (an die Wand geklebt) | 0 |
 | 3 | 300 Traufpfette (kragt rechts über den Eckpfosten aus) | 0 |
-| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
+| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (26°, beide Enden, parallel (Kappsäge auf 26°), am Bau anhalten und anreißen) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
 | 5 | 197,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette | 8,3 |
-| 6 | 197 Element links: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 85,9 Füllholz über der Traufpfette · 8 Element links: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
-| 7 | 197 Element links: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 85,9 Füllholz über der Traufpfette · 8 Element Mitte: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
-| 8 | 197 Element Mitte: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) · 8 Element Mitte: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
-| 9 | 197 Element Mitte: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 8 Element rechts: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
-| 10 | 197 Element rechts: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband links Hauswand (an den linken Sparren) (beide Enden 45°) · 42,4 Kopfband links Ecke (an den linken Sparren) (beide Enden 45°) · 8 Element rechts: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
-| 11 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) | 31,1 |
+| 6 | 197 Element links: Sparren links (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 85,9 Füllholz über der Traufpfette · 8 Element links: Klotz unter dem Sparrenende rechts (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
+| 7 | 197 Element links: Sparren rechts (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 85,9 Füllholz über der Traufpfette · 8 Element Mitte: Klotz unter dem Sparrenende links (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
+| 8 | 197 Element Mitte: Sparren links (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 42,4 Kopfband vorne Ecke links (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 42,4 Kopfband vorne Mitte 1 (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 8 Element Mitte: Klotz unter dem Sparrenende rechts (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
+| 9 | 197 Element Mitte: Sparren rechts (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 42,4 Kopfband vorne Mitte 2 (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 42,4 Kopfband Hauswand (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 8 Element rechts: Klotz unter dem Sparrenende links (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
+| 10 | 197 Element rechts: Sparren links (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 42,4 Kopfband links Hauswand (an den linken Sparren) (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 42,4 Kopfband links Ecke (an den linken Sparren) (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 8 Element rechts: Klotz unter dem Sparrenende rechts (7 cm) (7°, oben schräg, liegt satt am Sparren an (Kappsäge auf 7°), auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
+| 11 | 197 Element rechts: Sparren rechts (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe vorne über der Traufpfette, 7 mm tief) · 42,4 Kopfband vorne Ecke Mauer (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°)) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (26°, beide Enden, parallel (Kappsäge auf 26°)) · 27,2 Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten) (26°, beide Enden, parallel (Kappsäge auf 26°), liegt flach) | 3,4 |
 | 12 | 193,4 Eckpfosten links/Garten (steht 5,5 cm tief in der Aussparung im Balken) | 106,1 |
 | 13 | 193,4 Eckpfosten Garten/Mauer (steht 5,5 cm tief in der Aussparung im Balken) | 106,1 |
 | 14 | 187,9 Pfosten Garten Mitte | 111,6 |
