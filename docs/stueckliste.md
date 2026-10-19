@@ -9,29 +9,28 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 |---|---|
 | Dachneigung | 7° nach vorne (12 cm/m) |
 | Platten | 3 × 2,00 × 1,05 m, 16 mm |
-| Oberkante Dach an der Hauswand / vorne | 292,8 / 268,4 cm |
+| Oberkante Dach an der Hauswand / vorne | 291,8 / 267,4 cm |
 | Überstand vorne über die Brüstung | 13,5 cm |
-| Kopffreiheit Wandpfette / Traufpfette | 262,9 / 255,9 cm |
+| Kopffreiheit Wandpfette / Traufpfette | 261,9 / 254,9 cm |
 | Dachelemente | 3 Stück, je 2 Sparren |
 
 ## Prüfungen
 
 - ✔ 7° Neigung nach vorne: 24,4 cm Höhenunterschied auf 2 m Platte.
 - ✔ Alle Querbalken sind genau 300 cm lang, ohne Stoß, und liegen rechts 5,5 cm auf der Mauer. Deine 3 Platten 2,00 × 1,05 m decken 315 cm ab, ohne Zuschnitt: Sie stehen links und rechts je 7,5 cm über die äußeren Dachbalken (mit Randprofil kein Problem). Rechts reicht die Platte 13 cm auf die Mauer, links bis zur Außenkante der Brüstung.
-- ✔ Rechts stehen die Platten 13 cm über die Betonmauer, das Regenwasser läuft außen auf die Mauer. Der rechte Dachbalken liegt nicht auf der Mauer, er wird wie alle anderen von den beiden Querbalken getragen. Zwischen Mauerkrone und Dachbalken bleibt eine Lücke von 4,6 cm (vorne) bis 21,8 cm (hinten). Die schließt das Netz, gegen Schlagregen von der Seite zusätzlich ein Brett innen an den Dachbalken schrauben. Nur die Wandpfette liegt hinten auf der Krone (Unterlegplatte).
+- ✔ Rechts stehen die Platten 13 cm über die Betonmauer, das Regenwasser läuft außen auf die Mauer. Der rechte Dachbalken liegt nicht auf der Mauer, er wird wie alle anderen von den beiden Querbalken getragen. Zwischen deinem Balken auf der Mauer und dem Dachbalken bleibt eine Lücke von 3,4 cm (vorne) bis 20,6 cm (hinten). Die schließt das Netz, gegen Schlagregen von der Seite zusätzlich ein Brett innen an den Dachbalken schrauben. Nur die Wandpfette liegt hinten auf deinem flachen Balken auf der Krone.
 - ✔ Vorne stehen die Platten 13,5 cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.
 - ✔ Jedes Element hat zwei Sparren, 98,9 cm auseinander (Richtwert bis 105 cm bei 16 mm).
-- ✔ Die Fuge an der Hauswand ist waagerecht auf 292,8 cm, auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen.
-- ✔ Das Wandprofil endet bei 298,8 cm, die Hauswand ist bis 310 cm frei (11,2 cm Reserve).
+- ✔ Die Fuge an der Hauswand ist waagerecht auf 291,8 cm, auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen.
+- ✔ Das Wandprofil endet bei 297,8 cm, die Hauswand ist bis 310 cm frei (12,2 cm Reserve).
 - ✔ Die Rinne fällt 3 mm pro Meter zur Betonmauer. Dort sitzt der Ablaufstutzen, das Fallrohr kann später an der Mauerecke runter.
-- ✔ Kopffreiheit: 262,9 cm unter der Wandpfette, 255,9 cm unter der Traufpfette vorne.
+- ✔ Kopffreiheit: 261,9 cm unter der Wandpfette, 254,9 cm unter der Traufpfette vorne.
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
-- ✔ Wandpfette 262,9–276,9 cm: Beide Lagen liegen komplett an der glatten Betonfläche (bis 278 cm) und können dort geklebt werden. Die Dachbalken liegen mit ihren 7 cm hohen Klötzen darauf. Rechts liegt die Wandpfette direkt auf der Mauerkrone, 1,2 cm darüber (Unterlegplatte).
-- ℹ️ Die Wandpfette ist 300 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
+- ✔ Wandpfette 261,9–275,9 cm: Beide Lagen liegen komplett an der glatten Betonfläche (bis 278 cm) und können dort geklebt werden. Die Dachbalken liegen mit ihren 7 cm hohen Klötzen darauf. Rechts liegt sie auf deinem flachen Balken auf der Mauerkrone (oben 261,9 cm), links auf dem Pfosten.
 - ✔ Das Netz sitzt Feld für Feld zwischen den Hölzern, 2 cm hinter der Außenkante, nie an den Platten. Die Innenseiten von Pfosten und Balken bleiben frei für Wandelemente. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Leiste 20×20 außen bündig drüber.
 - ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen, die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten). Oben liegt der Eckriegel genau auf der Netzlinie: vorne mit einem Winkel an der Traufpfette, hinten auf dem Wandpfosten verschraubt, direkt unter dem rechten Sparren. Das Netz über Eck (27,2 cm breit) hat so an allen vier Seiten Holz bzw. Beton. Ein Füllholz auf dem Eckriegel schließt bis unter die Platte.
 - ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 137,8 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (5 N/mm²). Der Stoß sitzt über dem Mittelpfosten.
-- ✔ Vorne liegt die Dachunterkante 8,3 cm über der Mauerkrone, hinten an der Hauswand 29,4 cm darüber.
+- ✔ Vorne liegt die Dachunterkante 12,6 cm über der Mauerkrone, hinten an der Hauswand 33,7 cm darüber.
 
 ## Noch bestellen
 
@@ -56,7 +55,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 14 Stangen | Verschnitt 399,4 cm |
+| Kantholz 70×55, 3,00 m | 14 Stangen | Verschnitt 403,4 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
@@ -72,14 +71,14 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 1 | 300 Wandpfette unten (an die Wand geklebt) | 0 |
 | 2 | 300 Wandpfette oben (an die Wand geklebt) | 0 |
 | 3 | 300 Traufpfette (kragt rechts über den Eckpfosten aus) | 0 |
-| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben bündig mit der Mauerkrone) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
-| 5 | 198,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette | 7,3 |
+| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 8 Element links: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 0,6 |
+| 5 | 197,3 Wandpfosten an die Mauer geklebt · 93,4 Füllholz über der Traufpfette | 8,3 |
 | 6 | 197 Element links: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 85,9 Füllholz über der Traufpfette · 8 Element links: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
 | 7 | 197 Element links: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 85,9 Füllholz über der Traufpfette · 8 Element Mitte: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 7,6 |
 | 8 | 197 Element Mitte: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Ecke links (beide Enden 45°) · 42,4 Kopfband vorne Mitte 1 (beide Enden 45°) · 8 Element Mitte: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
 | 9 | 197 Element Mitte: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 8 Element rechts: Klotz unter dem Sparrenende links (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
 | 10 | 197 Element rechts: Sparren links (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband links Hauswand (an den linken Sparren) (beide Enden 45°) · 42,4 Kopfband links Ecke (an den linken Sparren) (beide Enden 45°) · 8 Element rechts: Klotz unter dem Sparrenende rechts (7 cm) (auf den Böcken von der Seite an den Sparren schrauben) | 8,2 |
 | 11 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über der Traufpfette) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) | 31,1 |
-| 12 | 194,4 Eckpfosten links/Garten (steht 5,5 cm tief in der Aussparung im Balken) | 105,1 |
-| 13 | 194,4 Eckpfosten Garten/Mauer (steht 5,5 cm tief in der Aussparung im Balken) | 105,1 |
-| 14 | 188,9 Pfosten Garten Mitte | 110,6 |
+| 12 | 193,4 Eckpfosten links/Garten (steht 5,5 cm tief in der Aussparung im Balken) | 106,1 |
+| 13 | 193,4 Eckpfosten Garten/Mauer (steht 5,5 cm tief in der Aussparung im Balken) | 106,1 |
+| 14 | 187,9 Pfosten Garten Mitte | 111,6 |
