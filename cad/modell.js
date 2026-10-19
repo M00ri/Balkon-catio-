@@ -229,10 +229,13 @@ export function baueModell(param = {}) {
     box(4, "Winkel Eckriegel seitlich an den Wandpfosten", "stahl", xw1, xw1 + 0.003, ry(xw1) - 0.03, ry(xw1) + 0.03, rB[1] - 0.02, rB[1] + 0.02);
     // darüber bis unter die Platte: Füllholz bis an den rechten Sparren
     const zSp = zPf1 - H.a - 0.003;                                           // Innenkante rechter Sparren
-    const tF = Math.min(1, Math.max(0, (zSp - H.a / 2 - rA[1]) / (rB[1] - rA[1])));
-    const fB = [rA[0] + (rB[0] - rA[0]) * tF, rA[1] + (rB[1] - rA[1]) * tF];
+    const tF = (zSp - rA[1]) / d[1];                                          // bis an die Seite des rechten Sparrens
+    const fB = [rA[0] + d[0] * tF, rA[1] + d[1] * tF];
     const fy = (x) => spU(x) + H.b / 2;
-    if (tF > 0.2) schnittStab(8, "Füllholz auf dem Eckriegel (bis unter die Platte)", "holz", [rA[0], fy(rA[0]) - 0.003, rA[1]], [fB[0], fy(fB[0]) - 0.003, fB[1]], H.a, H.b, ebX(rA[0]), ebX(fB[0]), { ...holz, ...wk(wEck, "beide Enden, parallel") });
+    schnittStab(8, "Füllholz auf dem Eckriegel (bis unter die Platte)", "holz", [rA[0], fy(rA[0]) - 0.003, rA[1]], [fB[0], fy(fB[0]) - 0.003, fB[1]], H.a, H.b, ebX(rA[0]), ebZ(zSp), { ...holz, winkel: `vorne ${wEck}° (Kappsäge auf ${wEck}°), hinten ${90 - wEck}° gegen den Dachbalken: das schafft kaum eine Kappsäge, also anreißen (Schnittlinie ${wEck}° zur Längskante) und mit der Handsäge schneiden`, schnitt: "hinten satt an den rechten Dachbalken: zwei Schrauben 6×120 quer in den Dachbalken, dazu von unten zwei 6×120 durch den Eckriegel ins Füllholz" });
+    winkelLabels.push({ t: `${90 - wEck}°`, p: [fB[0] + 0.05, fy(fB[0]) + 0.06, zSp - 0.02], ab: 8, bis: 8 });
+    for (const dy of [-0.017, 0.017]) stab(8, "Schraube 6×120 Füllholz in den Dachbalken", "stahl", [fB[0] + 0.03, fy(fB[0]) + dy, zSp - 0.07], [fB[0] + 0.03, fy(fB[0]) + dy, zSp + 0.05], 0.006, 0.006);
+    for (const t of [0.35, 0.7]) { const q = [rA[0] + (rB[0] - rA[0]) * t, rA[1] + (rB[1] - rA[1]) * t]; stab(8, "Schraube 6×120 von unten durch den Eckriegel ins Füllholz", "stahl", [q[0], ry(q[0]) - H.b / 2, q[1]], [q[0], ry(q[0]) + H.b / 2 + 0.05, q[1]], 0.006, 0.006); }
   } else {
     const khUK = tpUK - H.b;                                                   // Kopfholz: verbindet Wandpfosten oben mit der Traufpfette
     box(3, "Kopfholz auf dem Wandpfosten (unter dem Ende der Traufpfette)", "holz", xw0, xg1, khUK, tpUK, wz0, wz1, { ...holz, laenge: xg1 - xw0 });
@@ -246,10 +249,12 @@ export function baueModell(param = {}) {
   box(3, "Unterlegplatte 1 cm unter dem Wandpfosten", "stahl", xw0, xw1, B.hBruestung, B.hBruestung + 0.01, wz0 + 0.005, wz1 - 0.005);
   // Schwelle unten auf der Netzlinie: verbindet Eckbalken und Wandpfosten, daran wird das Netz über Eck unten befestigt
   const ed = [(eckB[0] - eckA[0]) / eckL, (eckB[1] - eckA[1]) / eckL], en = [ed[1], -ed[0]];   // en zeigt nach außen
-  const swA = [eckA[0] + en[0] * H.b / 2, eckA[1] + en[1] * H.b / 2], swB = [eckB[0] + en[0] * H.b / 2, eckB[1] + en[1] * H.b / 2];
+  // vorne schräg ans Balkenende (z = Ende Eckbalken), außen bündig mit deinem Balken; hinten an die Vorderseite des Wandpfostens
+  const kq = en[0] - (ed[0] * en[1]) / ed[1], swO = (xg1 - eckA[0]) / kq - H.b / 2;   // Versatz der Schwellenmitte zur Netzlinie
+  const swA = [eckA[0] + en[0] * swO, eckA[1] + en[1] * swO], swB = [eckB[0] + en[0] * swO, eckB[1] + en[1] * swO];
   const swUK = B.hBruestung + 0.01, swOK = swUK + H.a;
-  schnittStab(3, "Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten)", "holz", [swA[0], swUK + H.a / 2, swA[1]], [swB[0], swUK + H.a / 2, swB[1]], H.b, H.a, ebX(swA[0]), ebX(swB[0]), { ...holz, ...wk(wEck, "beide Enden, parallel"), schnitt: "liegt flach" });
-  winkelLabels.push({ t: `${wEck}°`, p: [swA[0] - 0.06, swOK + 0.06, swA[1] + 0.03], ab: 3, bis: 3 });
+  schnittStab(3, "Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten)", "holz", [swA[0], swUK + H.a / 2, swA[1]], [swB[0], swUK + H.a / 2, swB[1]], H.b, H.a, ebZ(zw1), ebX(xw1), { ...holz, winkel: `vorne ${90 - wEck}° gegen das Balkenende: anreißen (Schnittlinie ${wEck}° zur Längskante) und mit der Handsäge schneiden, hinten ${wEck}° an den Wandpfosten (Kappsäge auf ${wEck}°)`, schnitt: "liegt flach" });
+  winkelLabels.push({ t: `vorne ${90 - wEck}°`, p: [swA[0] + 0.02, swOK + 0.05, swA[1]], ab: 3, bis: 3 }, { t: `hinten ${wEck}°`, p: [swB[0] + 0.03, swOK + 0.05, swB[1]], ab: 3, bis: 3 });
   stab(3, "Unterlegplatte 1 cm unter der Schwelle", "stahl", [swA[0], B.hBruestung + 0.005, swA[1]], [swB[0], B.hBruestung + 0.005, swB[1]], H.b - 0.01, 0.01);
   box(3, "Winkel Schwelle an den Eckbalken", "stahl", eckA[0] - 0.02, eckA[0] + 0.02, swUK, swOK, eckA[1], eckA[1] + 0.003);
   box(3, "Winkel Schwelle an den Wandpfosten", "stahl", xw1, xw1 + 0.003, swUK, swOK + 0.02, wz0 + 0.01, wz0 + 0.05);
