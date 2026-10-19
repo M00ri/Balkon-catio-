@@ -1,5 +1,5 @@
 // Schreibt docs/stueckliste.md aus dem Modell (mit Standardwerten oder eigenen Werten).
-// Aufruf: node cad/stueckliste.mjs [neigung=8] [hoeheVorne=2.71] [plattenStaerke=0.016] [ohneMittelpfosten=true] [eckriegel=false]
+// Aufruf: node cad/stueckliste.mjs [neigung=8] [hoeheVorne=2.71] [plattenStaerke=0.016] [ohneMittelpfosten=true] [ecke=gerade|riegel|kopfholz]
 import { writeFileSync, mkdirSync } from "node:fs";
 import { baueModell, cm, HOLZ, LAGER } from "./modell.js";
 
