@@ -2,8 +2,8 @@
 //
 // Koordinaten in Metern, passend zum ausgerichteten Scan (scan/balkon_scan_ausgerichtet.glb):
 //   y nach oben, y = 0 ist der Fliesenboden
-//   x von der Fassade (-) Richtung Garten (+)
-//   z entlang des Balkons, von der Stirnbrüstung (-) zur weißen Seitenwand (+)
+//   x von der Hauswand (-) Richtung Garten (+)
+//   z entlang des Balkons: links die Brüstung (-), rechts die Betonmauer (+)
 //
 // Viewer:     index.html importiert baueModell()
 // Stückliste: node cad/stueckliste.mjs  ->  docs/stueckliste.md
@@ -13,72 +13,85 @@
 // ---------------------------------------------------------------------------
 export const BESTAND = {
   xGlas: -1.08,           // Glasfront, sitzt in einer Nische
-  xFassade: -0.78,        // Vorderkante Betonsturz / Ziegelfassade
-  hSturzUK: 2.40,         // Unterkante Sturz (Oberkante Nische)
+  xFassade: -0.76,        // Vorderkante Hauswand (Betonsturz / Ziegel darüber)
+  hSturzUK: 2.40,         // Unterkante Sturz = Oberkante Nische
   hSturzOK: 2.57,         // Oberkante Betonsturz, darüber Ziegel
-  xBrInnen: 0.93,         // Innenseite Gartenbrüstung
-  xBrAussen: 1.10,
-  zStirnInnen: -0.33,     // Innenseite Stirnbrüstung
-  zStirnAussen: -0.47,
-  zSeitenwand: 2.67,      // Innenseite weiße Seitenwand
-  xSeitenwandEnde: 0.55,  // Seitenwand reicht bis hier Richtung Garten
-  hMauer: 0.59,           // Oberkante Brüstungsmauer
-  hBalken: 0.68,          // Oberkante der vorhandenen Balken (mit U-Bügeln auf der Brüstung befestigt)
-  balkenB: 0.11,
+  xBrAussen: 1.10,        // Außenkante Gartenbrüstung
+  zLinksAussen: -0.47,    // Außenkante linke Brüstung
+  zWand: 2.67,            // Innenseite Betonmauer rechts
+  xWandEnde: 0.68,        // Betonmauer endet hier, danach Spalt bis zum Eckpfosten
+  hMauerkrone: 2.66,      // Oberkante Betonmauer (flach, nutzbar)
+  hBruestung: 0.60,       // Oberkante Betonbrüstung
+  hGelaender: 0.80,       // innenliegendes Metallgeländer, Oberkante
+  // Bestandsbalken 70×55, auf der Brüstung, mit U-Bügeln am Geländer befestigt
+  balken: { b: 0.055, h: 0.07 },
+  xBalkenGarten: 0.945,   // Innenkante Gartenbalken
+  zBalkenLinks: -0.345,   // Innenkante linker Balken
+  zBalkenWand: 2.615,     // Innenkante Balken auf dem Brüstungsstück vor der Mauer
 };
 
 // ---------------------------------------------------------------------------
 // Planungswerte – im Viewer unter „Planen“ veränderbar
 // ---------------------------------------------------------------------------
 export const DEFAULTS = {
-  neigung: 8,             // Dachneigung in Grad, Gefälle zum Garten
-  hoeheFassade: 2.50,     // Oberkante Dachplatte an der Fassade
-  platte: "2x1",          // vorhandene Polycarbonatplatten
+  neigung: 6,             // Dachneigung in Grad, Gefälle nach links (weg von der Betonmauer)
+  platte: "2x2",
   plattenStaerke: 0.016,
 };
 
 export const PLATTEN = {
-  "2x1": { laenge: 2.0, breite: 1.0, label: "2,0 × 1,0 m" },
   "2x2": { laenge: 2.0, breite: 2.0, label: "2,0 × 2,0 m" },
+  "2x1": { laenge: 2.0, breite: 1.0, label: "2,0 × 1,0 m" },
 };
 
 export const GRENZEN = {
-  neigung: [5, 15, 1],
-  hoeheFassade: [2.42, 2.52, 0.01],
+  neigung: [4, 9, 1],
   plattenStaerke: [0.008, 0.010, 0.016],
 };
 
-// Alles Holz ist 70×55 aus 3-m-Stangen (vorhanden)
-const H = { a: 0.055, b: 0.070 };         // a = schmale Seite, b = breite Seite
+const H = { a: 0.055, b: 0.070 };   // Holz 70×55: a = schmal, b = breit
 export const HOLZ = "Kantholz 70×55";
 export const LAGER = 3.0;
-const ANZAHL_PLATTEN_VORHANDEN = 3;
+const PLATTEN_VORHANDEN = 3;
+const UEBERLAPPUNG = 0.10;          // Querstoß der Platten
 
 export const SCHRITTE = [
-  { n: 1, titel: "Bestand", text: "Dein Balkon aus dem LiDAR-Scan, gerade ausgerichtet. Braun markiert sind deine Balken auf der Brüstung, die mit U-Bügeln befestigt sind. Auf ihnen steht das Gerüst. Die Glasfront sitzt in einer Nische, die Fassade mit dem Betonsturz liegt 30 cm weiter vorne." },
-  { n: 2, titel: "Pfosten auf den Balken", text: "Drei Pfosten 70×55 stehen auf dem Gartenbalken. Je zwei Winkelverbinder pro Pfosten werden in den Balken geschraubt, nicht in die Mauer. Die Pfosten sind kurz, weil sie erst auf 68 cm Höhe anfangen." },
-  { n: 3, titel: "Pfosten an der Fassade", text: "Zwei Pfosten stehen an den Enden vor der Fassade, damit Tür und Fenster frei bleiben. Der Pfosten an der Stirnseite wird seitlich an den Stirnbalken geschraubt. Der an der Seitenwand bekommt einen aufgeklebten Pfostenfuß." },
-  { n: 4, titel: "Pfetten", text: "Die Wandpfette überspannt die ganzen 3 m ohne Mittelpfosten. Deshalb besteht sie aus zwei 70×55 hochkant übereinander, verleimt und alle 20 cm verschraubt, zusammen 55×140. Die Traufpfette auf den Gartenpfosten ist eine einfache Latte 70×55 hochkant." },
-  { n: 5, titel: "Sparren mit Dachschräge", text: "Sparren 70×55 hochkant liegen unter jedem Plattenstoß und an beiden Rändern. Auf den Pfetten bekommen sie eine flache Kerbe mit dem Neigungswinkel, die Enden werden lotrecht abgeschnitten. Die Winkel stehen in der Zuschnittliste. Der Stirnriegel trägt oben das Netz an der Stirnseite." },
-  { n: 6, titel: "Kopfbänder", text: "Kopfbänder aus Resten 70×55 steifen alle vier Seiten aus. So wird das Gerüst stabil genug für Kratzbaum und Liegebretter, die später an Pfosten und Pfetten kommen." },
-  { n: 7, titel: "Dachplatten", text: "Drei Platten mit den Stegen in Gefällerichtung auflegen. Vorher oben Alu-Klebeband aufkleben (dicht), unten Antistaubband (lässt Kondenswasser raus). Die Platten werden mit Schrauben mit Dichtscheibe und Abstandshalter auf den Sparren befestigt. Unten schließt ein Tropfprofil ab." },
-  { n: 8, titel: "Wandanschluss abdichten", text: "An der Fassade kommt ein Wandanschlussprofil mit Dichtlippe auf den glatten Betonsturz. Es wird mit MS-Polymer geklebt, oben läuft eine Dichtfuge. Die Lippe drückt auf die Platte und leitet das Wasser auf das Dach. An der Seitenwand dichtet ein Kompriband. Siehe Detailzeichnung." },
-  { n: 9, titel: "Katzennetz", text: "Das Netz wird innen an Pfosten und Pfetten getackert, unten an die Bestandsbalken. Dazu kommen die Stirnseite bis zur Nische und die Lücke am Ende der Seitenwand." },
+  { n: 1, titel: "Bestand", text: "Dein Balkon aus dem LiDAR-Scan. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer befestigt. Rechts die Betonmauer mit flacher Krone auf 2,66 m. Sie endet etwa 26 cm vor der Gartenbrüstung." },
+  { n: 2, titel: "Pfosten auf den Balken", text: "Fünf Pfosten 70×55 stehen auf deinen Balken: drei auf dem linken Balken (an der Hauswand, in der Mitte, an der Ecke) und zwei weitere auf dem Gartenbalken. Jeder Pfosten bekommt zwei Winkel, die in den Balken geschraubt werden. Nichts steht auf dem Boden." },
+  { n: 3, titel: "Mauerlatte und Wandständer", text: "Auf die Krone der Betonmauer kommt eine Mauerlatte, vollflächig mit MS-Polymer verklebt. Sie trägt die hohe Seite des Dachs. Den Spalt am Mauerende schließt ein Wandständer: Er steht auf dem Balken vor der Mauer, wird an die Mauer geklebt und mit der Mauerlatte verschraubt. Ein Riegel verbindet ihn mit dem Eckpfosten." },
+  { n: 4, titel: "Traufriegel und Gartenrähm", text: "Links liegt der Traufriegel auf den drei Pfosten, das ist die tiefe Seite des Dachs. Über die Gartenpfosten läuft der Rähm mit dem Dachgefälle. Er besteht aus zwei Stücken, die sich über dem Mittelpfosten treffen, weil 3 m nicht ganz reichen." },
+  { n: 5, titel: "Doppelsparren", text: "Die Sparren an der Hauswand und in der Mitte überspannen gut 3 m ohne Stütze. Jeder besteht deshalb aus zwei 70×55 übereinander, verleimt und alle 20 cm verschraubt. Die Stöße liegen versetzt, je einer nah an jedem Auflager. Unter dem Plattenstoß liegt ein Querriegel." },
+  { n: 6, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen das Gerüst an der linken Seite, an der Gartenseite und unter den Doppelsparren aus. Damit hält es auch Kratzbaum und Liegebretter." },
+  { n: 7, titel: "Dachplatten", text: "Die Platten liegen mit den Stegen in Gefällerichtung, also nach links. Die obere Platte überlappt die untere 10 cm, mit Dichtband dazwischen. Oben kommt Alu-Klebeband auf die Kante, unten Antistaubband und ein Tropfprofil. Befestigt wird mit Schrauben mit Dichtscheibe und Abstandshaltern." },
+  { n: 8, titel: "Abdichtung an der Hauswand", text: "Entlang der Hauswand läuft die Plattenkante schräg. Ein Wandanschlussprofil wird mit MS-Polymer an die Wand geklebt, dahinter dichtet Kompriband, oben läuft eine Dichtfuge. Die Dichtlippe liegt auf der Platte. So kommt kein Regenwasser an die Hauswand. Siehe Detailzeichnung." },
+  { n: 9, titel: "Katzennetz", text: "Netz an der Gartenseite, an der linken Seite bis in die Fensternische, im Spalt zwischen Wandständer und Eckpfosten und als Streifen über der Mauerkrone. Getackert an Pfosten, Riegel und deine Balken." },
 ];
 
 // ---------------------------------------------------------------------------
 export function baueModell(param = {}) {
   const p = { ...DEFAULTS, ...param };
   const B = BESTAND;
-  const PL = PLATTEN[p.platte] ?? PLATTEN["2x1"];
+  const PL = PLATTEN[p.platte] ?? PLATTEN["2x2"];
   const a = (p.neigung * Math.PI) / 180;
   const tan = Math.tan(a), cos = Math.cos(a);
   const t = p.plattenStaerke;
-  const xTraufe = B.xFassade + PL.laenge * cos;          // Plattenende unten
-  const ueberstand = xTraufe - B.xBrAussen;
-  const yTop = (x) => p.hoeheFassade - tan * (x - B.xFassade);
-  const yU = (x) => yTop(x) - t / cos;                    // Unterkante Platte = Oberkante Sparren
-  const dvS = H.b / cos;                                  // Sparrenhöhe lotrecht
+  const d70 = H.b / cos, d140 = (2 * H.b) / cos;              // Bauteilhöhen lotrecht gemessen
+
+  // Lagen der Balken auf der Brüstung
+  const xg0 = B.xBalkenGarten, xg1 = xg0 + B.balken.b;          // Gartenbalken
+  const zl1 = B.zBalkenLinks, zl0 = zl1 - B.balken.b;            // linker Balken
+  const zw0 = B.zBalkenWand, zw1 = zw0 + B.balken.b;             // Balken vor der Mauer
+  const hB = B.hBruestung + B.balken.h;                          // Oberkante Balken
+
+  // Dachfläche: links 8 cm über die Brüstung, rechts bis über die Mauerlatte
+  const mlZ0 = B.zWand, mlZ1 = B.zWand + H.b;                    // Mauerlatte 70 breit, 55 hoch
+  const mlOK = B.hMauerkrone + H.a;
+  const zP0 = B.zLinksAussen - 0.08, zP1 = mlZ1;
+  const xP0 = B.xFassade + 0.005, xGartenSoll = B.xBrAussen + 0.10;
+  // Höhe: Doppelsparren liegen auf der Mauerlatte auf
+  const zAufl = mlZ1 - 0.035;
+  const yU = (z) => mlOK + d140 - tan * (zAufl - z);             // Unterkante Platte = Oberkante Sparren
+  const yTop = (z) => yU(z) + t / cos;
 
   const parts = [];
   const add = (o) => { parts.push({ id: parts.length, ...o }); };
@@ -87,154 +100,174 @@ export function baueModell(param = {}) {
   const stab = (step, name, art, A, Bp, b, h, extra = {}) =>
     add({ step, name, art, form: "stab", a: A, b: Bp, q: [b, h], laenge: Math.hypot(Bp[0] - A[0], Bp[1] - A[1], Bp[2] - A[2]), ...extra });
   const poly = (step, name, art, pts, extra = {}) => add({ step, name, art, form: "poly", pts, ...extra });
+  const holz = { profil: HOLZ };
 
-  // --- 1 Bestand ----------------------------------------------------------------
-  box(1, "Bestandsbalken Gartenseite", "bestand", B.xBrInnen, B.xBrInnen + B.balkenB, B.hMauer, B.hBalken, B.zStirnAussen, B.zSeitenwand);
-  box(1, "Bestandsbalken Stirnseite", "bestand", B.xGlas + 0.1, B.xBrInnen, B.hMauer, B.hBalken, B.zStirnInnen - B.balkenB, B.zStirnInnen);
+  // --- 1 Bestand -------------------------------------------------------------------
+  box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, zl0, zw1);
+  box(1, "Bestandsbalken links", "bestand", B.xGlas + 0.1, xg0, B.hBruestung, hB, zl0, zl1);
+  box(1, "Bestandsbalken vor der Mauer", "bestand", 0.45, xg0, B.hBruestung, hB, zw0, zw1);
+  // innenliegendes Geländer (schematisch)
+  const gx = xg0 - 0.012, gz = zl1 + 0.012, gw = zw0 - 0.012;
+  box(1, "Geländer Garten (Bestand)", "geländer", gx - 0.008, gx + 0.008, B.hGelaender - 0.02, B.hGelaender, zl1, zw0);
+  box(1, "Geländer links (Bestand)", "geländer", B.xGlas + 0.1, gx, B.hGelaender - 0.02, B.hGelaender, gz - 0.008, gz + 0.008);
+  box(1, "Geländer vor der Mauer (Bestand)", "geländer", 0.45, gx, B.hGelaender - 0.02, B.hGelaender, gw - 0.008, gw + 0.008);
+  for (let z = zl1 + 0.3; z < zw0; z += 0.75) box(1, "Geländerstütze", "geländer", gx - 0.008, gx + 0.008, B.hBruestung, B.hGelaender, z - 0.008, z + 0.008);
 
-  // --- Lagen -----------------------------------------------------------------------
-  const z0 = B.zStirnInnen, z1 = B.zSeitenwand;                 // Dachlänge = 3,00 m
-  const xgc = B.xBrInnen + B.balkenB / 2;                        // Gartenpfosten mittig auf dem Balken
-  const xg0 = xgc - H.a / 2, xg1 = xgc + H.a / 2;
-  const xf0 = B.xFassade, xf1 = B.xFassade + H.b;                // Fassadenpfosten
-  const zs0 = z0, zs1 = z0 + H.b, zw0 = z1 - H.b, zw1 = z1;
-  const zm = (z0 + z1) / 2;
-  const wpH = 2 * H.b;                                           // Wandpfette doppelt
-  const xwp0 = B.xFassade, xwp1 = B.xFassade + H.a;
-  const wpOK = yU((xwp0 + xwp1) / 2) - dvS;
-  const tpOK = yU(xgc) - dvS;
-  const hWP = wpOK - wpH, hTP = tpOK - H.b;                      // Unterkanten der Pfetten
-
-  // --- 2 Gartenpfosten auf dem Bestandsbalken --------------------------------------------
-  for (const [name, za, zb] of [["Pfosten Garten/Stirn", zs0, zs1], ["Pfosten Garten Mitte", zm - H.b / 2, zm + H.b / 2], ["Pfosten Garten/Seitenwand", zw0, zw1]]) {
-    box(2, name, "holz", xg0, xg1, B.hBalken, hTP, za, zb, { profil: HOLZ, laenge: hTP - B.hBalken });
-    for (const s of [-1, 1]) box(2, `${name} – Winkel`, "stahl", s < 0 ? xg0 - 0.004 : xg1, s < 0 ? xg0 : xg1 + 0.004, B.hBalken, B.hBalken + 0.07, (za + zb) / 2 - 0.025, (za + zb) / 2 + 0.025);
-  }
-
-  // --- 3 Fassadenpfosten -------------------------------------------------------------------
-  box(3, "Pfosten Fassade/Stirn", "holz", xf0, xf1, 0, hWP, zs0, zs0 + H.a, { profil: HOLZ, laenge: hWP });
-  box(3, "Pfosten Fassade/Stirn – Verschraubung am Stirnbalken", "stahl", xf0 + 0.02, xf1 - 0.02, B.hMauer + 0.02, B.hBalken - 0.02, zs0 - 0.06, zs0 + H.a + 0.01);
-  box(3, "Pfosten Fassade/Seitenwand", "holz", xf0, xf1, 0.008, hWP, zw1 - H.a, zw1, { profil: HOLZ, laenge: hWP - 0.008 });
-  box(3, "Pfosten Fassade/Seitenwand – Pfostenfuß geklebt", "stahl", xf0 - 0.02, xf1 + 0.02, 0, 0.008, zw1 - H.a - 0.02, zw1);
-
-  // --- 4 Pfetten -----------------------------------------------------------------------------
-  box(4, "Wandpfette unten", "holz", xwp0, xwp1, hWP, hWP + H.b, z0, z1, { profil: HOLZ, laenge: z1 - z0 });
-  box(4, "Wandpfette oben", "holz", xwp0, xwp1, hWP + H.b, wpOK, z0, z1, { profil: HOLZ, laenge: z1 - z0 });
-  box(4, "Traufpfette", "holz", xg0, xg1, hTP, tpOK, z0, z1, { profil: HOLZ, laenge: z1 - z0 });
-
-  // --- 5 Sparren -----------------------------------------------------------------------------
-  const maxAbstand = t >= 0.016 ? 1.05 : t >= 0.010 ? 0.80 : 0.60;  // Richtwerte, Herstellerangabe prüfen
-  const stoesse = [];
-  for (let z = z0 + PL.breite; z < z1 - 0.01; z += PL.breite) stoesse.push(z);
-  const nPl = stoesse.length + 1;
-  const linien = [z0 + H.a / 2, ...stoesse, z1 - H.a / 2];
-  const sparrenZ = [];
-  for (let i = 0; i < linien.length - 1; i++) {                   // Zwischensparren, wenn ein Feld zu breit ist
+  // --- Sparrenlinien (in x, laufen mit dem Gefälle in z) ----------------------------------------
+  const maxAbstand = t >= 0.016 ? 1.05 : t >= 0.010 ? 0.80 : 0.60;   // Richtwerte, Herstellerangabe prüfen
+  const nSp = Math.max(1, Math.ceil((xGartenSoll - xP0) / PL.breite - 0.02));
+  const xP1 = xP0 + nSp * PL.breite;                                  // Gartenkante der Platten
+  const xF = B.xFassade + H.a / 2, xG = xg0 + H.a / 2;                 // Fassaden- und Gartenlinie
+  let linien = [xF];
+  for (let k = 1; k < nSp; k++) { const xs = xP0 + k * PL.breite; if (xs > xF + 0.1 && xs < xG - 0.1) linien.push(xs); }
+  linien.push(xG);
+  const xs = [];
+  for (let i = 0; i < linien.length - 1; i++) {
     const n = Math.ceil((linien[i + 1] - linien[i]) / maxAbstand - 0.001);
-    for (let k = 0; k < n; k++) sparrenZ.push(linien[i] + (k * (linien[i + 1] - linien[i])) / n);
+    for (let k = 0; k < n; k++) xs.push(linien[i] + (k * (linien[i + 1] - linien[i])) / n);
   }
-  sparrenZ.push(linien[linien.length - 1]);
-  const xSp1 = xTraufe - 0.03;                                    // Platte steht 3 cm über das Sparrenende
-  const cY = (x) => yU(x) - dvS / 2;
-  sparrenZ.forEach((z, i) => {
-    const istStoss = stoesse.some((s) => Math.abs(s - z) < 0.001);
-    stab(5, `Sparren ${i + 1}${istStoss ? " (Plattenstoß)" : ""}`, "holz", [B.xFassade, cY(B.xFassade), z], [xSp1, cY(xSp1), z], H.a, H.b,
-      { profil: HOLZ, schnitt: `beide Enden lotrecht ${p.neigung}°, Kerben ${p.neigung}° über den Pfetten` });
+  xs.push(xG);
+  const innen = xs.slice(0, -1);                                       // Doppelsparren (Fassade + Mitte)
+
+  // --- Höhen der Tragglieder -----------------------------------------------------------------
+  const zTr = (zl0 + zl1) / 2;
+  const trOK = yU(zTr) - d140, trUK = trOK - H.b;                      // Traufriegel unter den Doppelsparren
+  const raUK = (z) => yU(z) - d70;                                     // Gartenrähm (einfach)
+  const zMitte = (zl1 + zw0) / 2;
+
+  // --- 2 Pfosten auf den Balken -------------------------------------------------------------
+  const pfosten = (name, x0, x1, z0, z1, oben) => {
+    box(2, name, "holz", x0, x1, hB, oben, z0, z1, { ...holz, laenge: oben - hB });
+    box(2, `${name} – Winkel`, "stahl", x0 - 0.003, x1 + 0.003, hB, hB + 0.06, (z0 + z1) / 2 - 0.02, (z0 + z1) / 2 + 0.02);
+  };
+  pfosten("Pfosten links an der Hauswand", B.xFassade, B.xFassade + H.b, zl0, zl1, trUK);
+  const xL2 = innen[1] ?? (xF + xG) / 2;
+  pfosten("Pfosten links Mitte", xL2 - H.b / 2, xL2 + H.b / 2, zl0, zl1, trUK);
+  pfosten("Eckpfosten links/Garten", xg0, xg1, zl0, zl0 + H.b, raUK(zl0 + H.b / 2));
+  pfosten("Pfosten Garten Mitte", xg0, xg1, zMitte - H.b / 2, zMitte + H.b / 2, raUK(zMitte));
+  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zw1 - H.b, zw1, raUK(zw1 - H.b / 2));
+
+  // --- 3 Mauerlatte + Wandständer + Lückenriegel ------------------------------------------------
+  box(3, "Mauerlatte (auf die Mauerkrone geklebt)", "holz", B.xFassade, B.xWandEnde, B.hMauerkrone, mlOK, mlZ0, mlZ1, { ...holz, laenge: B.xWandEnde - B.xFassade });
+  box(3, "Wandständer (an die Mauer geklebt)", "holz", B.xWandEnde - H.b, B.xWandEnde, hB, mlOK, zw0, zw1, { ...holz, laenge: mlOK - hB });
+  box(3, "Lückenriegel Wandständer–Eckpfosten", "holz", B.xWandEnde, xg0, mlOK - H.b, mlOK, zw0, zw1, { ...holz, laenge: xg0 - B.xWandEnde });
+
+  // --- 4 Traufriegel + Gartenrähm ---------------------------------------------------------------
+  box(4, "Traufriegel links", "holz", B.xFassade, xg0, trUK, trOK, zl0, zl1, { ...holz, laenge: xg0 - B.xFassade });
+  const zR0 = zl0, zR1 = zw1;
+  stab(4, "Gartenrähm Teil 1", "holz", [xG, yU(zR0) - d70 / 2, zR0], [xG, yU(zMitte) - d70 / 2, zMitte], H.a, H.b, { ...holz, schnitt: `Stoß über dem Mittelpfosten, Enden lotrecht ${p.neigung}°` });
+  stab(4, "Gartenrähm Teil 2", "holz", [xG, yU(zMitte) - d70 / 2, zMitte], [xG, yU(zR1) - d70 / 2, zR1], H.a, H.b, { ...holz, schnitt: `Enden lotrecht ${p.neigung}°` });
+
+  // --- 5 Doppelsparren mit versetzten Stößen ---------------------------------------------------------
+  const zS0 = zl0 - 0.03, zS1 = mlZ1 - 0.005;
+  const lGes = (zS1 - zS0) / cos;
+  const dz = LAGER * cos;                                              // 3 m Stange in z gemessen
+  const seg = (step, name, x, z0, z1, lage) => {
+    const off = lage === "oben" ? d70 / 2 : 1.5 * d70;
+    stab(step, name, "holz", [x, yU(z0) - off, z0], [x, yU(z1) - off, z1], H.a, H.b, { ...holz, schnitt: `Enden lotrecht ${p.neigung}°` });
+  };
+  innen.forEach((x, i) => {
+    const nm = i === 0 ? "Doppelsparren Hauswand" : `Doppelsparren Mitte${innen.length > 2 ? " " + i : ""}`;
+    if (lGes <= LAGER) { seg(5, `${nm} oben`, x, zS0, zS1, "oben"); seg(5, `${nm} unten`, x, zS0, zS1, "unten"); return; }
+    seg(5, `${nm} unten, lang`, x, zS0, zS0 + dz, "unten"); seg(5, `${nm} unten, Ergänzung`, x, zS0 + dz, zS1, "unten");
+    seg(5, `${nm} oben, Ergänzung`, x, zS0, zS1 - dz, "oben"); seg(5, `${nm} oben, lang`, x, zS1 - dz, zS1, "oben");
   });
-  const zr = zs0 + H.a / 2;
-  const rx0 = xwp1, rx1 = xg0;
-  stab(5, "Stirnriegel", "holz", [rx0, yU(rx0) - dvS / 2, zr + H.a], [rx1, yU(rx1) - dvS / 2, zr + H.a], H.a, H.b, { profil: HOLZ, schnitt: `beide Enden ${p.neigung}° schräg` });
+  // Querriegel unter dem Plattenstoß
+  const reihen = [];
+  { let zo = zP1; while (zo > zP0 + 0.001) { const zu = Math.max(zP0, zo - PL.laenge); reihen.push([zu, zo]); zo = zu + (zu > zP0 ? UEBERLAPPUNG : 0); if (zu <= zP0) break; } }
+  const stoesseZ = reihen.slice(0, -1).map(([zu]) => zu + UEBERLAPPUNG / 2);
+  stoesseZ.forEach((zq, j) => {
+    for (let i = 0; i < xs.length - 1; i++) {
+      const x0 = xs[i] + H.a / 2, x1 = xs[i + 1] - H.a / 2;
+      box(5, `Querriegel Plattenstoß ${j + 1}.${i + 1}`, "holz", x0, x1, yU(zq) - H.b, yU(zq), zq - H.a / 2, zq + H.a / 2, { ...holz, laenge: x1 - x0 });
+    }
+  });
 
-  // --- 6 Kopfbänder -------------------------------------------------------------------------
-  const d = 0.30;
-  const kb = (name, A, Bp) => stab(6, name, "holz", A, Bp, H.a, H.a, { profil: HOLZ, schnitt: "beide Enden 45°" });
-  for (const [zf, s, i] of [[zs1, 1, 1], [zm - H.b / 2, -1, 2], [zm + H.b / 2, 1, 3], [zw0, -1, 4]]) kb(`Kopfband Garten ${i}`, [xgc, hTP - d, zf], [xgc, hTP, zf + s * d]);
-  for (const [zf, s, i] of [[zs0 + H.a, 1, 1], [zw1 - H.a, -1, 2]]) kb(`Kopfband Fassade ${i}`, [xf0 + H.b / 2, hWP - d, zf], [xf0 + H.b / 2, hWP, zf + s * d]);
-  const ukR = (x) => yU(x) - dvS;
-  const zSW = sparrenZ[sparrenZ.length - 1];
-  for (const [zc, label] of [[zr + H.a, "Stirn"], [zSW, "Seitenwand"]]) {
-    kb(`Kopfband ${label} Fassade`, [xf1, ukR(xf1 + d) - d, zc], [xf1 + d, ukR(xf1 + d), zc]);
-    kb(`Kopfband ${label} Garten`, [xg0, ukR(xg0 - d) - d, zc], [xg0 - d, ukR(xg0 - d), zc]);
+  // --- 6 Kopfbänder -----------------------------------------------------------------------------
+  const kd = 0.30;
+  const kb = (name, A, Bp) => stab(6, name, "holz", A, Bp, H.a, H.a, { ...holz, schnitt: "beide Enden 45°" });
+  for (const [x, s, nm] of [[B.xFassade + H.b, 1, "Hauswand"], [xL2 - H.b / 2, -1, "Mitte 1"], [xL2 + H.b / 2, 1, "Mitte 2"], [xg0, -1, "Ecke"]])
+    kb(`Kopfband links ${nm}`, [x, trUK - kd, zTr], [x + s * kd, trUK, zTr]);
+  for (const [z, s, nm] of [[zl0 + H.b, 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zw1 - H.b, -1, "Ecke Mauer"]])
+    kb(`Kopfband Garten ${nm}`, [xG, raUK(z + s * kd) - kd, z], [xG, raUK(z + s * kd), z + s * kd]);
+  for (const [x, nm] of [[xF, "Hauswand"], [xL2, "Mitte"]])
+    kb(`Kopfband Doppelsparren ${nm}`, [x, trUK - kd + 0.05, zl1], [x, yU(zl1 + kd) - d140, zl1 + kd]);
+
+  // --- 7 Dachplatten -----------------------------------------------------------------------------
+  let nPlatten = 0;
+  for (let c = 0; c < nSp; c++) {
+    const x0 = xP0 + c * PL.breite, x1 = x0 + PL.breite;
+    reihen.forEach(([zu, zo], r) => {
+      nPlatten++;
+      const lift = r === 0 && reihen.length > 1 ? t / cos : 0;             // obere Platte liegt auf der unteren
+      const yc = (z) => yTop(z) - t / cos / 2 + lift;
+      const kurz = (zo - zu) / cos < PL.laenge - 0.01;
+      stab(7, `Platte ${nPlatten}${kurz ? ` (auf ${cm((zo - zu) / cos)} cm kürzen)` : ""}`, "platte", [(x0 + x1) / 2, yc(zu), zu], [(x0 + x1) / 2, yc(zo), zo], PL.breite - 0.004, t,
+        { breite: PL.breite, quer: true });
+    });
   }
+  const prof = (name, x) => stab(7, name, "profil", [x, yTop(zP0) + 0.006, zP0], [x, yTop(zP1) + 0.006, zP1], 0.05, 0.012);
+  prof("Randprofil Gartenseite", xP1 - 0.025);
+  for (let c = 1; c < nSp; c++) prof(`Verbindungsprofil ${c}`, xP0 + c * PL.breite);
+  stab(7, "Tropfprofil links", "profil", [xP0, yTop(zP0) - 0.012, zP0], [xP1, yTop(zP0) - 0.012, zP0], 0.02, 0.04, { laenge: xP1 - xP0 });
 
-  // --- 7 Dachplatten -----------------------------------------------------------------------
-  const breiten = [];
-  for (let i = 0; i < nPl; i++) {
-    const a0 = z0 + i * PL.breite, a1 = Math.min(z1, a0 + PL.breite);
-    breiten.push(a1 - a0);
-    const yc = (x) => yTop(x) - t / cos / 2;
-    stab(7, `Platte ${i + 1}${a1 - a0 < PL.breite - 0.01 ? ` (auf ${cmStr(a1 - a0)} cm Breite schneiden)` : ""}`, "platte",
-      [B.xFassade + 0.01, yc(B.xFassade + 0.01), (a0 + a1) / 2], [xTraufe, yc(xTraufe), (a0 + a1) / 2], a1 - a0 - 0.004, t, { breite: a1 - a0 });
-  }
-  const prof = (name, z) => stab(7, name, "profil", [B.xFassade, yTop(B.xFassade) + 0.006, z], [xTraufe, yTop(xTraufe) + 0.006, z], 0.05, 0.012);
-  prof("Randprofil Stirnseite", z0 + 0.025);
-  stoesse.forEach((z, i) => prof(`Verbindungsprofil ${i + 1}`, z));
-  prof("Randprofil Seitenwand", z1 - 0.025);
-  stab(7, "Tropfprofil Traufe", "profil", [xTraufe, yTop(xTraufe) - 0.012, z0], [xTraufe, yTop(xTraufe) - 0.012, z1], 0.02, 0.04);
+  // --- 8 Abdichtung Hauswand + Mauerkrone -------------------------------------------------------------
+  stab(8, "Wandanschlussprofil an der Hauswand (geklebt)", "dicht", [B.xFassade + 0.01, yTop(zP0) + 0.03, zP0], [B.xFassade + 0.01, yTop(zP1) + 0.03, zP1], 0.035, 0.06, { laenge: (zP1 - zP0) / cos });
+  box(8, "Abschluss obere Plattenkante über der Mauer", "dicht", xP0, xP1, yTop(zP1) - 0.02, yTop(zP1) + 0.01, zP1 - 0.01, zP1 + 0.01);
 
-  // --- 8 Wandanschluss ----------------------------------------------------------------------
-  box(8, "Wandanschlussprofil mit Dichtlippe (geklebt)", "dicht", B.xFassade - 0.004, B.xFassade + 0.035, p.hoeheFassade - 0.004, p.hoeheFassade + 0.06, z0, z1, { laenge: z1 - z0 });
-  stab(8, "Kompriband Seitenwand", "dicht", [B.xFassade, yTop(B.xFassade) - 0.025, z1 - 0.006], [xTraufe, yTop(xTraufe) - 0.025, z1 - 0.006], 0.012, 0.05);
+  // --- 9 Katzennetz ------------------------------------------------------------------------------
+  const xn = xg0 - 0.003, zn = zl1 + 0.003;
+  poly(9, "Netz Gartenseite", "netz", [[xn, hB, zn], [xn, hB, zw0], [xn, yU(zw0), zw0], [xn, yU(zn), zn]]);
+  poly(9, "Netz links bis in die Nische", "netz", [[B.xGlas + 0.1, hB - 0.05, zn], [xn, hB - 0.05, zn], [xn, yU(zn), zn], [B.xFassade, yU(zn), zn], [B.xFassade, B.hSturzUK, zn], [B.xGlas + 0.1, B.hSturzUK, zn]]);
+  poly(9, "Netz Spalt Wandständer–Eckpfosten", "netz", [[B.xWandEnde, hB, zw0 - 0.003], [xg0, hB, zw0 - 0.003], [xg0, yU(zw0), zw0 - 0.003], [B.xWandEnde, yU(zw0), zw0 - 0.003]]);
+  poly(9, "Netzstreifen über der Mauerkrone", "netz", [[B.xFassade, mlOK, mlZ0 + 0.003], [B.xWandEnde, mlOK, mlZ0 + 0.003], [B.xWandEnde, yU(mlZ0), mlZ0 + 0.003], [B.xFassade, yU(mlZ0), mlZ0 + 0.003]]);
 
-  // --- 9 Katzennetz ---------------------------------------------------------------------------
-  const xn = xg0 - 0.004, zn = z0 + 0.004, zg = zw0 - 0.004;
-  poly(9, "Netz Gartenseite", "netz", [[xn, B.hBalken, zn], [xn, B.hBalken, z1], [xn, yU(xn), z1], [xn, yU(xn), zn]]);
-  poly(9, "Netz Stirnseite", "netz", [[B.xGlas + 0.1, B.hBalken - 0.06, zn], [xn, B.hBalken - 0.06, zn], [xn, yU(xn), zn], [B.xFassade, yU(B.xFassade), zn], [B.xFassade, B.hSturzUK, zn], [B.xGlas + 0.1, B.hSturzUK, zn]]);
-  const xl = B.xSeitenwandEnde - 0.10;
-  poly(9, "Netz Lücke Seitenwand", "netz", [[xl, 0.0, zg], [xn, 0.0, zg], [xn, yU(xn), zg], [xl, yU(xl), zg]]);
-
-  // --- Kennwerte & Prüfungen -----------------------------------------------------------------
-  const abst = sparrenZ.slice(1).map((z, i) => z - sparrenZ[i]);
+  // --- Kennwerte & Prüfungen -------------------------------------------------------------------------
+  const abst = xs.slice(1).map((x, i) => x - xs[i]);
+  const fugeLinks = yTop(B.zLinksAussen + 0.14);
+  const kopfTuer = yU(0.6) - d140;
   const kennwerte = {
-    neigung: p.neigung,
-    gefaelleCmProM: tan * 100,
-    hoeheFassade: p.hoeheFassade,
-    hoeheTraufe: yTop(xTraufe),
-    ueberstand,
-    kopfFassade: hWP,
-    kopfGarten: hTP,
-    plattenAnzahl: nPl,
-    plattenBreiten: breiten,
-    sparrenAnzahl: sparrenZ.length,
-    sparrenAbstand: Math.max(...abst),
-    hoehenunterschied: yTop(B.xFassade) - yTop(xTraufe),
+    neigung: p.neigung, gefaelleCmProM: tan * 100,
+    hoeheMauer: yTop(zP1), hoeheLinks: yTop(zP0), fugeLinks,
+    kopfTuer, kopfLinks: trUK,
+    plattenAnzahl: nPlatten, reihen: reihen.length, spalten: nSp,
+    sparrenAnzahl: xs.length, sparrenAbstand: Math.max(...abst),
+    spalt: xg0 - B.xWandEnde, laengeSparren: lGes,
   };
   const hinweise = [];
-  hinweise.push(p.neigung < 7
-    ? { stufe: "warn", text: `Unter 7° bleibt auf Stegplatten leicht Wasser und Laub liegen. Die meisten Hersteller verlangen mindestens 5°.` }
-    : { stufe: "ok", text: `${p.neigung}° Neigung: ${(kennwerte.hoehenunterschied * 100).toFixed(0)} cm Höhenunterschied auf 2 m Platte, das Wasser läuft zum Garten.` });
-  hinweise.push(ueberstand < 0.05
-    ? { stufe: "warn", text: `Die Platte steht nur ${(ueberstand * 100).toFixed(0)} cm über die Brüstung. Das Wasser läuft an der Brüstung herunter. Flacher bauen oder ein Tropfblech unter die Plattenkante setzen.` }
-    : { stufe: "ok", text: `Die Platte steht ${(ueberstand * 100).toFixed(0)} cm über die Außenkante der Brüstung, das Wasser tropft frei ab.` });
+  hinweise.push(p.neigung < 5
+    ? { stufe: "warn", text: `Unter 5° bleibt auf Stegplatten Wasser stehen. Mindestens 5° einplanen.` }
+    : { stufe: "ok", text: `${p.neigung}° Neigung nach links: ${cm(yTop(zP1) - yTop(zP0))} cm Höhenunterschied, das Wasser läuft weg von der Betonmauer und tropft links ab.` });
+  hinweise.push(fugeLinks < B.hSturzUK + 0.03
+    ? { stufe: "warn", text: `Links liegt die Dachkante an der Hauswand nur noch auf ${cm(fugeLinks)} cm. Das ist unter dem Sturz (${cm(B.hSturzUK)} cm) in der Fensternische, dort kann man nicht abdichten. Weniger Neigung wählen.` }
+    : { stufe: "ok", text: `Die Fuge an der Hauswand liegt überall auf Wandfläche (links ${cm(fugeLinks)} cm, über dem Sturz bei ${cm(B.hSturzUK)} cm). Rechts auf Ziegel, links auf dem glatten Betonsturz.` });
+  hinweise.push(nPlatten <= PLATTEN_VORHANDEN
+    ? { stufe: "ok", text: `${nPlatten} Platten ${PL.label} reichen (du hast ${PLATTEN_VORHANDEN}). ${reihen.length > 1 ? `Eine wird auf ${cm((reihen[reihen.length - 1][1] - reihen[reihen.length - 1][0]) / cos)} cm gekürzt, der Querstoß überlappt 10 cm.` : ""}` }
+    : { stufe: "warn", text: `Mit ${PL.label} brauchst du ${nPlatten} Platten, du hast ${PLATTEN_VORHANDEN}. Die Dachfläche ist ${cm((zP1 - zP0) / cos)} × ${cm(xP1 - xP0)} cm, und die Stege müssen in Gefällerichtung liegen.` });
   hinweise.push(Math.max(...abst) > maxAbstand + 0.001
-    ? { stufe: "warn", text: `Sparrenabstand ${(Math.max(...abst) * 100).toFixed(0)} cm ist zu weit.` }
-    : { stufe: "ok", text: `${sparrenZ.length} Sparren, max. ${(Math.max(...abst) * 100).toFixed(0)} cm Abstand. Für ${(t * 1000).toFixed(0)} mm Platten sind bis ca. ${(maxAbstand * 100).toFixed(0)} cm üblich.` });
-  hinweise.push(nPl <= ANZAHL_PLATTEN_VORHANDEN
-    ? { stufe: "ok", text: `${nPl} von deinen ${ANZAHL_PLATTEN_VORHANDEN} Platten reichen für 3,00 m Dachlänge${breiten.some((b) => b < PL.breite - 0.01) ? `, eine wird auf ${cmStr(Math.min(...breiten))} cm geschnitten` : ""}.` }
-    : { stufe: "warn", text: `Du brauchst ${nPl} Platten, hast aber ${ANZAHL_PLATTEN_VORHANDEN}.` });
-  hinweise.push({ stufe: "ok", text: `Kopffreiheit: ${cmStr(hWP)} cm unter der Wandpfette, ${cmStr(hTP)} cm unter der Traufpfette.` });
-  if (p.hoeheFassade + 0.06 > B.hSturzOK) hinweise.push({ stufe: "warn", text: `Das Wandanschlussprofil ragt über den Betonsturz auf die Ziegel. Auf Ziegeln mit Fugen hält Kleber schlechter und dichtet schlechter.` });
-  else hinweise.push({ stufe: "ok", text: `Das Wandanschlussprofil sitzt komplett auf dem glatten Betonsturz (Oberkante ${cmStr(p.hoeheFassade + 0.06)} von max. ${cmStr(B.hSturzOK)} cm).` });
+    ? { stufe: "warn", text: `Sparrenabstand ${cm(Math.max(...abst))} cm ist zu weit.` }
+    : { stufe: "ok", text: `${xs.length} Sparrenlinien, max. ${cm(Math.max(...abst))} cm Abstand (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
+  hinweise.push({ stufe: "info", text: `Die Doppelsparren sind ${cm(lGes)} cm lang, also länger als deine 3-m-Stangen. Jede Lage wird gestoßen, die Stöße liegen versetzt nah an den Auflagern. Verleimt und verschraubt trägt das wie ein durchgehender Balken.` });
+  hinweise.push({ stufe: kopfTuer < 2.0 ? "warn" : "ok", text: `Kopffreiheit vor der Tür ${cm(kopfTuer)} cm, links unter dem Traufriegel ${cm(trUK)} cm.` });
+  hinweise.push({ stufe: "ok", text: `Spalt zwischen Mauerende und Eckpfosten: ${cm(xg0 - B.xWandEnde)} cm. Er wird mit Wandständer, Riegel und Netz geschlossen.` });
+  hinweise.push({ stufe: "info", text: `Die Mauerlatte hält nur über den Kleber auf der Mauerkrone und die Verschraubung mit dem Wandständer. Vollflächig kleben, 24 h aushärten lassen, erst dann die Sparren auflegen.` });
 
-  // --- Maßbeschriftungen -------------------------------------------------------------------------
   const masse = [
-    { t: "Innen 3,00 m", p: [B.xBrInnen + 0.3, 0.05, zm], ab: 1, bis: 3 },
-    { t: "Fassade–Brüstung 1,71 m", p: [(B.xFassade + B.xBrInnen) / 2, 0.05, z0 + 0.3], ab: 1, bis: 3 },
-    { t: "Balken OK 68 cm", p: [B.xBrAussen, B.hBalken + 0.06, 1.9], ab: 1, bis: 3 },
-    { t: "Sturz OK 2,57 m", p: [B.xFassade - 0.02, B.hSturzOK + 0.06, 1.2], ab: 1, bis: 3 },
-    { t: "Glasfront in Nische", p: [B.xGlas, 1.2, 0.6], ab: 1, bis: 1 },
-    { t: `Dach ${fmt(p.hoeheFassade)} m`, p: [B.xFassade, p.hoeheFassade + 0.12, 1.2], ab: 4, bis: 9 },
-    { t: `Traufe ${fmt(yTop(xTraufe))} m`, p: [xTraufe + 0.05, yTop(xTraufe) + 0.08, 1.9], ab: 4, bis: 9 },
-    { t: `${p.neigung}° Neigung`, p: [0.1, yTop(0.1) + 0.12, 2.2], ab: 5, bis: 9 },
-    { t: `Überstand ${Math.round(ueberstand * 100)} cm`, p: [xTraufe, yTop(xTraufe) - 0.4, 0.2], ab: 7, bis: 9 },
+    { t: "Balken 70×55 auf Brüstung", p: [B.xBrAussen, hB + 0.06, 1.2], ab: 1, bis: 3 },
+    { t: `Mauerkrone ${fmt(B.hMauerkrone)} m`, p: [0.0, B.hMauerkrone + 0.08, B.zWand + 0.05], ab: 1, bis: 3 },
+    { t: `Spalt ${cm(xg0 - B.xWandEnde)} cm`, p: [(B.xWandEnde + xg0) / 2, 1.4, zw0], ab: 1, bis: 9 },
+    { t: "Sturz OK 2,57 m", p: [B.xFassade - 0.02, B.hSturzOK + 0.06, 1.2], ab: 1, bis: 2 },
+    { t: "innenliegendes Geländer", p: [gx, B.hGelaender + 0.06, 0.4], ab: 1, bis: 1 },
+    { t: `Hoch ${fmt(yTop(zP1))} m`, p: [0.2, yTop(zP1) + 0.1, zP1], ab: 5, bis: 9 },
+    { t: `Tief ${fmt(yTop(zP0))} m`, p: [0.2, yTop(zP0) + 0.1, zP0], ab: 5, bis: 9 },
+    { t: `${p.neigung}° nach links`, p: [0.6, yTop(1.1) + 0.12, 1.1], ab: 5, bis: 9 },
   ];
 
-  return { param: p, platte: PL, parts, schritte: SCHRITTE, masse, kennwerte, hinweise, einkauf: einkauf(parts, kennwerte, p, PL) };
+  return { param: p, platte: PL, parts, schritte: SCHRITTE, masse, kennwerte, hinweise, einkauf: einkauf(parts, kennwerte, p, PL, { xP0, xP1, zP0, zP1, cos, stoesseZ }) };
 }
 
 function fmt(v) { return v.toFixed(2).replace(".", ","); }
-function cmStr(v) { return (Math.round(v * 1000) / 10).toLocaleString("de-DE"); }
-export const cm = cmStr;
+export function cm(v) { return (Math.round(v * 1000) / 10).toLocaleString("de-DE"); }
 
 // First-Fit-Decreasing auf 3-m-Stangen, 5 mm Sägeschnitt
 export function zuschnitt(parts) {
@@ -248,32 +281,27 @@ export function zuschnitt(parts) {
   return stangen;
 }
 
-export function einkauf(parts, k, p, PL) {
+export function einkauf(parts, k, p, PL, g) {
   const stangen = zuschnitt(parts);
-  const lPl = PL.laenge;
-  const L = BESTAND.zSeitenwand - BESTAND.zStirnInnen;
-  const proSparren = Math.ceil(lPl / 0.4) + 1;                 // Schrauben alle ca. 40 cm
-  const schrauben = k.sparrenAnzahl * proSparren + Math.ceil(L / 0.3);  // + Tropfprofil
-  const nStoss = k.plattenAnzahl - 1;
+  const lDach = (g.zP1 - g.zP0) / g.cos, bDach = g.xP1 - g.xP0;
+  const schrauben = k.sparrenAnzahl * (Math.ceil(lDach / 0.4) + 1) + Math.ceil(bDach / 0.3) * (1 + g.stoesseZ.length);
   const mm = Math.round(p.plattenStaerke * 1000);
   const zeilen = [
-    // Bestellen
-    { status: "bestellen", teil: `Spenglerschrauben 6,5 × ${mm + 45} mm mit EPDM-Dichtscheibe`, menge: `${schrauben}`, hinweis: `Länge = Platte ${mm} mm + Profil + 30–35 mm im Holz` },
+    { status: "bestellen", teil: `Spenglerschrauben 6,5 × ${mm + 45} mm mit EPDM-Dichtscheibe`, menge: `${schrauben}`, hinweis: `Platte ${mm} mm + Profil + 30–35 mm im Holz, alle ca. 40 cm` },
     { status: "bestellen", teil: "Abstandshalter (Distanzhülsen) für die Plattenschrauben", menge: `${schrauben}`, hinweis: `passend zu ${mm} mm, verhindern das Eindrücken der Platte` },
-    { status: "bestellen", teil: "Alu-Klebeband, geschlossen (oben)", menge: `1 Rolle (min. ${cmStr(L + 0.2)} cm)`, hinweis: "obere Plattenkante an der Wand" },
-    { status: "bestellen", teil: "Antistaubband, gelocht (unten)", menge: `1 Rolle (min. ${cmStr(L + 0.2)} cm)`, hinweis: "untere Plattenkante, lässt Kondenswasser raus" },
-    { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `1 × ${cmStr(L)} cm`, hinweis: "falls nicht vorhanden" },
-    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "2 Kartuschen", hinweis: "Wandprofil kleben + Fuge oben, Pfostenfuß" },
-    { status: "bestellen", teil: "Kompriband 15/3–7 mm, selbstklebend", menge: `1 Rolle (${cmStr(lPl + 0.2)} cm)`, hinweis: "Fuge zur Seitenwand" },
-    // Vorhanden – nur prüfen
-    { status: "vorhanden", teil: `${HOLZ}, 3,00 m`, menge: `${stangen.length} Stangen`, hinweis: `Verschnitt gesamt ${cmStr(stangen.reduce((s, x) => s + Math.max(0, x.rest), 0))} cm` },
-    { status: "vorhanden", teil: `Polycarbonat-Stegplatten ${PL.label}`, menge: `${k.plattenAnzahl} von 3`, hinweis: `Stege in Gefällerichtung` },
-    { status: "vorhanden", teil: "Randprofile / Verbindungsprofile", menge: `2 + ${nStoss} × ${cmStr(lPl)} cm`, hinweis: "Rand: Stirnseite und Seitenwand" },
-    { status: "vorhanden", teil: "Tropf- bzw. Abschlussprofil", menge: `1 × ${cmStr(L)} cm`, hinweis: "untere Plattenkante" },
-    { status: "vorhanden", teil: "Winkelverbinder", menge: "ca. 24", hinweis: "Pfostenfüße, Pfettenauflager, Stirnriegel" },
-    { status: "vorhanden", teil: "Sparrenpfettenanker", menge: `${k.sparrenAnzahl * 4}`, hinweis: "je Sparren 2 an jeder Pfette" },
-    { status: "vorhanden", teil: "Holzschrauben 6×100 / 6×140", menge: "ca. 60", hinweis: "Wandpfette verschrauben (alle 20 cm), Kopfbänder" },
-    { status: "vorhanden", teil: "Holzleim D3 / PU-Leim", menge: "1 Flasche", hinweis: "Wandpfette verleimen" },
+    { status: "bestellen", teil: "Alu-Klebeband, geschlossen", menge: `${cm(bDach + 0.2)} cm`, hinweis: "obere Plattenkante (über der Mauer)" },
+    { status: "bestellen", teil: "Antistaubband, gelocht", menge: `${cm(bDach * (1 + g.stoesseZ.length) + 0.2)} cm`, hinweis: "untere Kante links + Querstoß" },
+    { status: "bestellen", teil: "Butyl-Dichtband 15 mm", menge: `${cm(bDach * g.stoesseZ.length + 0.2)} cm`, hinweis: "zwischen die Platten im Querstoß" },
+    { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `${cm(lDach)} cm`, hinweis: "an der Hauswand, schräg verlegt" },
+    { status: "bestellen", teil: "Kompriband 15/3–7 mm", menge: `${cm(lDach + 0.2)} cm`, hinweis: "hinter dem Wandanschlussprofil" },
+    { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "4 Kartuschen", hinweis: "Mauerlatte vollflächig, Wandständer, Wandprofil, Fuge oben" },
+    { status: "vorhanden", teil: `${HOLZ}, 3,00 m`, menge: `${stangen.length} Stangen`, hinweis: `Verschnitt ${cm(stangen.reduce((s, x) => s + Math.max(0, x.rest), 0))} cm` },
+    { status: "vorhanden", teil: `Polycarbonat-Stegplatten ${PL.label}`, menge: `${k.plattenAnzahl} von 3`, hinweis: "Stege in Gefällerichtung (nach links)" },
+    { status: "vorhanden", teil: "Rand- und Verbindungsprofile", menge: `${1 + k.spalten - 1} × ${cm(lDach)} cm`, hinweis: "Gartenkante, Plattenstöße" },
+    { status: "vorhanden", teil: "Tropfprofil", menge: `${cm(bDach)} cm`, hinweis: "linke Plattenkante" },
+    { status: "vorhanden", teil: "Winkelverbinder", menge: "ca. 30", hinweis: "Pfosten auf Balken, Riegel, Mauerlatte–Wandständer" },
+    { status: "vorhanden", teil: "Sparrenpfettenanker", menge: `${k.sparrenAnzahl * 4}`, hinweis: "Sparren auf Traufriegel und Mauerlatte" },
+    { status: "vorhanden", teil: "Holzschrauben 6×120 + Holzleim D3", menge: "ca. 80", hinweis: "Doppelsparren alle 20 cm, Kopfbänder" },
     { status: "vorhanden", teil: "Katzenschutznetz + Tacker", menge: `ca. ${Math.ceil(netzFlaeche(parts) * 1.15)} m²`, hinweis: "inkl. 15 % Überlappung" },
   ];
   return { zeilen, stangen };

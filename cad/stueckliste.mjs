@@ -1,5 +1,5 @@
 // Schreibt docs/stueckliste.md aus dem Modell (mit Standardwerten oder eigenen Werten).
-// Aufruf: node cad/stueckliste.mjs [neigung=8] [hoeheFassade=2.5] [platte=2x1] [plattenStaerke=0.016]
+// Aufruf: node cad/stueckliste.mjs [neigung=6] [platte=2x2] [plattenStaerke=0.016]
 import { writeFileSync, mkdirSync } from "node:fs";
 import { baueModell, cm, HOLZ, LAGER } from "./modell.js";
 
@@ -13,11 +13,10 @@ z.push("Die Maße stammen aus dem LiDAR-Scan (±2 cm). **Vor dem Zuschnitt am Ba
 z.push("## Planungswerte", "", "| Wert | |", "|---|---|");
 z.push(`| Dachneigung | ${m.param.neigung}° (${k.gefaelleCmProM.toFixed(0)} cm/m) |`);
 z.push(`| Platten | ${k.plattenAnzahl} × ${m.platte.label}, ${Math.round(m.param.plattenStaerke * 1000)} mm |`);
-z.push(`| Oberkante Dach an der Fassade | ${cm(k.hoeheFassade)} cm |`);
-z.push(`| Oberkante Dach an der Traufe | ${cm(k.hoeheTraufe)} cm |`);
-z.push(`| Überstand über die Brüstung | ${cm(k.ueberstand)} cm |`);
-z.push(`| Kopffreiheit Wandpfette / Traufpfette | ${cm(k.kopfFassade)} / ${cm(k.kopfGarten)} cm |`);
-z.push(`| Sparren | ${k.sparrenAnzahl} Stück, max. Abstand ${cm(k.sparrenAbstand)} cm |`, "");
+z.push(`| Oberkante Dach an der Betonmauer / links | ${cm(k.hoeheMauer)} / ${cm(k.hoeheLinks)} cm |`);
+z.push(`| Fuge an der Hauswand links | ${cm(k.fugeLinks)} cm |`);
+z.push(`| Kopffreiheit vor der Tür / links | ${cm(k.kopfTuer)} / ${cm(k.kopfLinks)} cm |`);
+z.push(`| Sparrenlinien | ${k.sparrenAnzahl} Stück, max. Abstand ${cm(k.sparrenAbstand)} cm |`, "");
 z.push("## Prüfungen", "");
 for (const h of m.hinweise) z.push(`- ${{ warn: "⚠️", ok: "✔", info: "ℹ️" }[h.stufe]} ${h.text}`);
 for (const [status, titel] of [["bestellen", "Noch bestellen"], ["vorhanden", "Hast du schon (nur prüfen)"]]) {

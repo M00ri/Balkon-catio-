@@ -14,8 +14,8 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 ## Modell ändern
 
 ```bash
-node cad/stueckliste.mjs neigung=10 platte=2x2   # Stückliste mit eigenen Werten
+node cad/stueckliste.mjs neigung=7 platte=2x1   # Stückliste mit eigenen Werten
 python3 -m http.server                               # Viewer unter http://localhost:8000
 ```
 
-Koordinaten in Metern: y nach oben (Boden = 0), x von der Fassade (Sturzvorderkante) Richtung Garten, z von der Stirnbrüstung zur weißen Seitenwand.
+Koordinaten in Metern: y nach oben (Boden = 0), x von der Hauswand Richtung Garten, z von der linken Brüstung zur Betonmauer rechts.

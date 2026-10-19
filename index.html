@@ -168,7 +168,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V3 · Holz 70×55<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V4 · Dach nach links<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -185,32 +185,32 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <p id="steptext"></p>
       </div>
       <figure class="detail" id="detail" hidden>
-        <svg viewBox="0 0 360 236" role="img" aria-label="Schnitt durch den Wandanschluss">
-          <defs><marker id="pfeil" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--chalk)"/></marker></defs>
-          <rect class="wall" x="10" y="4" width="60" height="62"/>
-          <path class="brick" d="M10,20 H70 M10,36 H70 M10,52 H70 M40,4 V20 M25,20 V36 M55,20 V36 M40,36 V52 M25,52 V66 M55,52 V66"/>
-          <rect class="wall" x="10" y="66" width="60" height="118"/>
-          <text x="16" y="178" class="dim">Betonsturz</text>
-          <text x="16" y="14" class="dim">Ziegel</text>
-          <text x="16" y="196" class="dim">Nische ↓</text>
-          <polygon class="wood" points="72,151 100,155 100,222 72,222"/>
-          <line x1="72" y1="186" x2="100" y2="186" stroke="var(--ink)" stroke-width="0.8"/>
-          <polygon class="wood" points="78,119 350,157 350,187 78,149"/>
-          <polygon class="plate" points="80,109 350,147 350,155 80,117"/>
-          <path d="M80,107 V119" stroke="var(--ink-soft)" stroke-width="3"/>
-          <path class="alu" d="M71.5,64 V100 M71.5,86 L116,110"/>
-          <path class="seal" d="M112,108 l8,2 l-1,3 l-8,-2 z"/>
-          <path class="seal" d="M70,58 h6 l-6,8 z"/>
-          <line x1="70.6" y1="64" x2="70.6" y2="100" stroke="var(--ink)" stroke-width="1.4" stroke-dasharray="2 1.5"/>
-          <path class="water" d="M150,113 L300,134"/>
-          <path class="lead" d="M74,62 L150,22"/><text x="153" y="25">MS-Polymer-Fuge oben</text>
-          <path class="lead" d="M73,80 L150,40"/><text x="153" y="43">Wandprofil auf Beton geklebt</text>
-          <path class="lead" d="M117,110 L150,58"/><text x="153" y="61">Dichtlippe drückt auf Platte</text>
-          <path class="lead" d="M80,104 L150,76"/><text x="153" y="79">Alu-Klebeband, 1 cm Luft zur Wand</text>
-          <text x="210" y="126" id="d-platte">Stegplatte, 8° Gefälle</text>
-          <text x="210" y="176">Sparren 70×55 hochkant</text>
-          <path class="lead" d="M100,206 L130,206"/><text x="133" y="209">Wandpfette 2 × 70×55, verleimt</text>
-          <text x="133" y="221" class="dim">steht auf Pfosten, nicht an der Wand</text>
+        <svg viewBox="0 0 360 236" role="img" aria-label="Schnitt durch den Anschluss an der Hauswand">
+          <rect class="wall" x="10" y="4" width="60" height="228"/>
+          <path class="brick" d="M10,22 H70 M10,40 H70 M10,58 H70 M10,76 H70 M40,4 V22 M25,22 V40 M55,22 V40 M40,40 V58 M25,58 V76 M55,58 V76 M40,76 V94"/>
+          <text x="16" y="120" class="dim">Hauswand</text>
+          <text x="16" y="132" class="dim">Ziegel oder</text>
+          <text x="16" y="144" class="dim">Betonsturz</text>
+          <rect class="wood" x="72" y="122" width="28" height="35"/>
+          <rect class="wood" x="72" y="157" width="28" height="35"/>
+          <rect class="plate" x="71" y="113" width="282" height="9"/>
+          <path d="M71,111 h7 M71,124 h7 M71.5,111 v13" stroke="var(--ink-soft)" stroke-width="2.2" fill="none"/>
+          <path class="alu" d="M71.5,58 V100 M71.5,84 L118,107"/>
+          <path class="seal" d="M113,106 l9,2 l-1,4 l-9,-2 z"/>
+          <path class="seal" d="M70,51 h7 l-7,9 z"/>
+          <line x1="70.6" y1="60" x2="70.6" y2="100" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="2 1.5"/>
+          <circle cx="300" cy="117" r="6" fill="none" stroke="var(--chalk)" stroke-width="1.3"/>
+          <path d="M296,113 l8,8 M304,113 l-8,8" stroke="var(--chalk)" stroke-width="1.3"/>
+          <path class="lead" d="M75,55 L150,22"/><text x="153" y="25">MS-Polymer-Fuge oben</text>
+          <path class="lead" d="M73,80 L150,40"/><text x="153" y="43">Wandprofil an die Wand geklebt</text>
+          <path class="lead" d="M71,92 L150,58"/><text x="153" y="61" class="dim">dahinter Kompriband</text>
+          <path class="lead" d="M118,109 L150,76"/><text x="153" y="79">Dichtlippe liegt auf der Platte</text>
+          <path class="lead" d="M75,118 L150,94"/><text x="153" y="97">Randprofil, 1 cm Luft zur Wand</text>
+          <text x="180" y="140" id="d-platte">Stegplatte</text>
+          <text x="180" y="152" class="dim">Wasser fließt in die Bildebene,</text>
+          <text x="180" y="164" class="dim">also nach links ab (⊗)</text>
+          <path class="lead" d="M100,175 L130,198"/><text x="133" y="201">Doppelsparren 2 × 70×55</text>
+          <text x="133" y="213" class="dim">steht auf Pfosten, nicht an der Wand</text>
         </svg>
       </figure>
       <div class="controls">
@@ -230,13 +230,10 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
       <div class="regler">
         <label for="r-neigung">Dachneigung <output id="o-neigung"></output>
           <input type="range" id="r-neigung">
-          <span class="hint">Gefälle zum Garten. Das Wasser tropft außen über die Brüstung ab.</span></label>
-        <label for="r-hoehe">Dachhöhe an der Fassade <output id="o-hoehe"></output>
-          <input type="range" id="r-hoehe">
-          <span class="hint">Oberkante Platte. Das Anschlussprofil wird darüber auf den Betonsturz geklebt (Sturz reicht bis 2,57 m).</span></label>
+          <span class="hint">Gefälle nach links, weg von der Betonmauer. Die hohe Seite liegt auf der Mauerlatte, daraus ergibt sich die Höhe.</span></label>
         <label>Deine Platten <output id="o-platte"></output>
           <div class="seg" role="group" aria-label="Plattengröße" id="g-platte"></div>
-          <span class="hint">Die 2 m liegen immer in Gefällerichtung. Daraus ergibt sich der Überstand über die Brüstung.</span></label>
+          <span class="hint">Die Stege müssen in Gefällerichtung liegen. Das Dach ist gut 3,3 m lang, deshalb gibt es einen Querstoß mit 10 cm Überlappung.</span></label>
         <label>Plattenstärke <output id="o-staerke"></output>
           <div class="seg" role="group" aria-label="Plattenstärke" id="g-staerke"></div></label>
         <div><button class="btn" id="reset">Vorschlag wiederherstellen</button></div>
@@ -263,22 +260,21 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
     <section id="p-best" class="block" hidden>
       <h3>Aus dem Scan gemessen</h3>
       <dl class="masse">
-        <dt>Innenlänge Stirnbrüstung bis Seitenwand</dt><dd>300 cm</dd>
-        <dt>Fassade (Sturzvorderkante) bis Gartenbrüstung</dt><dd>171 cm</dd>
+        <dt>Länge innen, linke Brüstung bis Betonmauer</dt><dd>ca. 300 cm</dd>
+        <dt>Hauswand bis Außenkante Gartenbrüstung</dt><dd>186 cm</dd>
         <dt>Glasfront zurückgesetzt um</dt><dd>ca. 30 cm</dd>
         <dt>Betonsturz Unterkante / Oberkante</dt><dd>240 / 257 cm</dd>
-        <dt>Brüstungsmauer Höhe / Dicke</dt><dd>59 / 17–20 cm</dd>
-        <dt>Bestandsbalken (mit U-Bügeln) Oberkante</dt><dd>68 cm</dd>
-        <dt>Seitenwand reicht Richtung Garten bis</dt><dd>133 cm ab Fassade</dd>
-        <dt>Balkon über dem Garten</dt><dd>ca. 290 cm</dd>
+        <dt>Betonbrüstung Oberkante</dt><dd>ca. 60 cm</dd>
+        <dt>Deine Balken 70×55, Oberkante</dt><dd>ca. 67 cm</dd>
+        <dt>Krone der Betonmauer</dt><dd>ca. 266 cm</dd>
+        <dt>Spalt Mauerende bis Eckpfosten</dt><dd>ca. 26 cm</dd>
       </dl>
-      <h3>Noch offen</h3>
+      <h3>Bitte prüfen</h3>
       <ul class="fragen">
-        <li><strong>Platten nachmessen:</strong> 2×1 m oder 2×2 m, und wie dick? Im Reiter „Planen“ umschaltbar.</li>
-        <li><strong>Bestandsbalken:</strong> Im Scan ca. 11 cm breit. Liegt auch auf der Stirnbrüstung ein Balken bis zur Fassade? Dort wird der Pfosten an der Stirnseite angeschraubt.</li>
-        <li><strong>Metallgeländer:</strong> Wie hoch ist es über dem Balken? Die Platte steht 10 cm über die Brüstung hinaus und muss über das Geländer passen.</li>
-        <li><strong>Ende der Seitenwand:</strong> Ist zwischen Seitenwand und Gartenbrüstung unten offen oder gemauert? Im Plan läuft das Netz dort vom Boden hoch.</li>
-        <li><strong>Betonmauer hinter der Stirnseite:</strong> Ein Balken oben drauf kann später als Strebe gegen Wind dienen. Für den Plan ist er nicht nötig.</li>
+        <li><strong>Plattengröße:</strong> Mit 2×2 m reichen 2 Platten. Mit 2×1 m bräuchtest du für das seitliche Gefälle 4 Stück, weil die Stege in Gefällerichtung liegen müssen.</li>
+        <li><strong>Lage deiner Balken:</strong> Ich habe sie direkt neben das Geländer gelegt. Stimmt das, und liegt vor der Betonmauer auch ein Balken auf dem kurzen Brüstungsstück?</li>
+        <li><strong>Mauerkrone:</strong> Ist sie wirklich flach und mindestens 7 cm tief? Dort liegt die Mauerlatte.</li>
+        <li><strong>Ein Foto vom Spalt</strong> an der Betonmauer hilft mir, den Wandständer genau zu setzen.</li>
       </ul>
     </section>
   </aside>
@@ -340,11 +336,11 @@ new ResizeObserver(resize).observe(stage);
 
 // ---------- Kamera ----------
 const views = {
-  aussen: { pos: [4.4, 3.4, -2.4], tgt: [0, 1.2, 1.1] },
+  aussen: { pos: [4.2, 3.6, -2.6], tgt: [0, 1.5, 1.1] },
   innen: { pos: [-0.6, 1.55, -0.1], tgt: [0.7, 1.3, 2.5] },
-  seite: { pos: [0.1, 1.4, -5.2], tgt: [0.1, 1.4, 1.1] },
+  seite: { pos: [5.6, 1.7, 1.1], tgt: [0.1, 1.7, 1.1] },
   oben: { pos: [0.15, 7, 1.1], tgt: [0.15, 0, 1.1] },
-  detail: { pos: [0.35, 2.95, -1.25], tgt: [-0.72, 2.42, 0.25] },
+  detail: { pos: [0.55, 3.0, -1.0], tgt: [-0.74, 2.55, 0.6] },
 };
 let camAnim = null;
 function setView(name, instant) {
@@ -424,6 +420,7 @@ function materialFor(art) {
     case "netz": return new THREE.MeshBasicMaterial({ map: netTex.clone(), transparent: true, opacity: 0.6, side: THREE.DoubleSide, depthWrite: false });
     case "platte": return new THREE.MeshStandardMaterial({ map: plattenTex.clone(), color: 0xffffff, transparent: true, opacity: 0.55, roughness: 0.3, side: THREE.DoubleSide, depthWrite: false });
     case "profil": return new THREE.MeshStandardMaterial({ color: 0xb9c0c4, metalness: 0.6, roughness: 0.35, transparent: true });
+    case "geländer": return new THREE.MeshStandardMaterial({ color: 0x3c4448, metalness: 0.6, roughness: 0.5, transparent: true });
     case "stahl": return new THREE.MeshStandardMaterial({ color: 0x5d666c, metalness: 0.7, roughness: 0.4, transparent: true });
     case "dicht": return new THREE.MeshStandardMaterial({ color: 0x2b2f31, roughness: 0.9, transparent: true });
     default: return new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.85, transparent: true });
@@ -536,7 +533,7 @@ function go(n, { animate = true } = {}) {
     else { m.userData.anim = null; resetPose(m); }
   }
   $("detail").hidden = current !== 8;
-  $("d-platte").textContent = `Stegplatte, ${model.param.neigung}° Gefälle`;
+  $("d-platte").textContent = `Stegplatte ${Math.round(model.param.plattenStaerke * 1000)} mm, ${model.param.neigung}° Gefälle`;
   if (animate && current === 8) setView("detail");
   renderNewParts(current);
   updateLabels();
@@ -547,10 +544,14 @@ function resetPose(m) {
   m.material.opacity = art === "netz" ? 0.6 : art === "platte" ? 0.55 : 1;
 }
 function renderNewParts(n) {
-  const ps = model.parts.filter((p) => p.step === n);
+  const ps = [];
+  for (const p of model.parts.filter((q) => q.step === n)) {
+    const same = ps.find((q) => q.name === p.name);
+    if (same) same.anzahl++; else ps.push({ ...p, anzahl: 1 });
+  }
   const rows = ps.map((p) => {
     const wert = p.art === "netz" ? "" : p.laenge ? cm(p.laenge) + " cm" : "";
-    return `<tr><td>${p.name}${p.schnitt ? `<br><small>${p.schnitt}</small>` : ""}</td><td class="num">${wert}</td></tr>`;
+    return `<tr><td>${p.anzahl > 1 ? `${p.anzahl} × ` : ""}${p.name}${p.schnitt ? `<br><small>${p.schnitt}</small>` : ""}</td><td class="num">${wert}</td></tr>`;
   }).join("");
   $("newparts").innerHTML = ps.length ? `<table><tbody>${rows}</tbody></table>` : `<p class="empty">Nichts Neues.</p>`;
 }
@@ -599,7 +600,6 @@ function choice(id, key, values, fmtOut) {
 }
 const syncs = [
   slider("neigung", "neigung", GRENZEN.neigung, 1, (v) => `${v}°`),
-  slider("hoehe", "hoeheFassade", GRENZEN.hoeheFassade, 100, (v) => `${de(v)} m`),
   choice("platte", "platte", Object.keys(PLATTEN), (v) => PLATTEN[v].label),
   choice("staerke", "plattenStaerke", GRENZEN.plattenStaerke, (v) => `${Math.round(v * 1000)} mm`),
 ];
@@ -608,12 +608,12 @@ $("reset").onclick = () => { Object.assign(param, DEFAULTS); syncs.forEach((f) =
 function renderPlan() {
   const k = model.kennwerte;
   const items = [
-    [`${de(k.kopfFassade)} m`, "Kopffreiheit an der Fassade"],
-    [`${de(k.kopfGarten)} m`, "Kopffreiheit an der Brüstung"],
-    [`${de(k.hoeheTraufe)} m`, "Traufkante (tiefster Punkt)"],
-    [`${Math.round(k.ueberstand * 100)} cm`, "Überstand über die Brüstung"],
-    [`${k.plattenAnzahl} Stück`, `Platten ${model.platte.label}`],
-    [`${k.sparrenAnzahl} Stück`, `Sparren, max. ${cm(k.sparrenAbstand)} cm Abstand`],
+    [`${de(k.hoeheMauer)} m`, "Dach an der Betonmauer (hoch)"],
+    [`${de(k.hoeheLinks)} m`, "Dach links (Tropfkante)"],
+    [`${de(k.fugeLinks)} m`, "Fuge Hauswand links (Sturz UK 2,40)"],
+    [`${de(k.kopfTuer)} m`, "Kopffreiheit vor der Tür"],
+    [`${k.plattenAnzahl} von 3`, `Platten ${model.platte.label}`],
+    [`${k.sparrenAnzahl} Linien`, `Sparren, max. ${cm(k.sparrenAbstand)} cm Abstand`],
   ];
   $("kenn").innerHTML = items.map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join("");
   const label = { ok: "passt", warn: "prüfen", info: "info" };
