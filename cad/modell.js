@@ -121,6 +121,20 @@ export function baueModell(param = {}) {
   const stab = (step, name, art, A, Bp, b, h, extra = {}) =>
     add({ step, name, art, form: "stab", a: A, b: Bp, q: [b, h], laenge: Math.hypot(Bp[0] - A[0], Bp[1] - A[1], Bp[2] - A[2]), ...extra });
   const poly = (step, name, art, pts, extra = {}) => add({ step, name, art, form: "poly", pts, ...extra });
+  // Stab mit echten Schrägschnitten: jedes Ende wird an einer Ebene {n, p} abgeschnitten (ohne Ebene: gerade).
+  // Die 8 Ecken gehen an den Viewer, die lange und kurze Kante in die Stückliste.
+  const schnittStab = (step, name, art, A, Bp, b, h, ebeneA, ebeneB, extra = {}) => {
+    const L = Math.hypot(...v3.sub(Bp, A)), d = v3.scale(v3.sub(Bp, A), 1 / L);
+    const up = Math.abs(d[1]) > 0.95 ? [1, 0, 0] : [0, 1, 0];
+    const side = v3.norm(v3.cross(d, up)), nUp = v3.norm(v3.cross(side, d));
+    const offs = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([i, j]) => v3.add(v3.scale(side, (i * b) / 2), v3.scale(nUp, (j * h) / 2)));
+    const ende = (P, e, t0) => (e ? v3.add(P, v3.scale(d, v3.dot(e.n, v3.sub(e.p, P)) / v3.dot(e.n, d))) : v3.add(P, v3.scale(d, t0)));
+    const ea = offs.map((o) => ende(v3.add(A, o), ebeneA, 0)), eb = offs.map((o) => ende(v3.add(A, o), ebeneB, L));
+    const kanten = ea.map((v, i) => Math.hypot(...v3.sub(eb[i], v)));
+    stab(step, name, art, A, Bp, b, h, { ecken: [...ea, ...eb], laenge: Math.max(...kanten), kurzeKante: Math.min(...kanten), ...extra });
+  };
+  const ebX = (x) => ({ n: [1, 0, 0], p: [x, 0, 0] }), ebY = (y) => ({ n: [0, 1, 0], p: [0, y, 0] }), ebZ = (z) => ({ n: [0, 0, 1], p: [0, 0, z] });
+  const ebSparren = (x) => ({ n: [tan, 1, 0], p: [x, spU(x), 0] });              // Unterkante eines Sparrens (schräg)
   const holz = { profil: HOLZ };
 
   // --- 1 Bestand -------------------------------------------------------------------
@@ -207,7 +221,7 @@ export function baueModell(param = {}) {
     const off = (P, s, t) => [P[0] + n[0] * s + d[0] * t, P[1] + n[1] * s + d[1] * t];
     const rA = off(eckA, H.a / 2, -(H.a / 2) * n[0] / d[0]), rB = off(eckB, H.a / 2, 0.02);
     const ry = (x) => spU(x) - H.b / 2;
-    stab(4, "Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten)", "holz", [rA[0], ry(rA[0]), rA[1]], [rB[0], ry(rB[0]), rB[1]], H.a, H.b, { ...holz, ...wk(wEck, "beide Enden, parallel"), schnitt: "am Bau anhalten und anreißen" });
+    schnittStab(4, "Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten)", "holz", [rA[0], ry(rA[0]), rA[1]], [rB[0], ry(rB[0]), rB[1]], H.a, H.b, ebX(rA[0]), ebX(rB[0]), { ...holz, ...wk(wEck, "beide Enden, parallel"), schnitt: "am Bau anhalten und anreißen" });
     winkelLabels.push({ t: `${wEck}°`, p: [rA[0] - 0.08, ry(rA[0]) - 0.08, rA[1] + 0.03], ab: 4, bis: 4 });
     box(4, "Winkel Eckriegel an die Traufpfette", "stahl", xg0 - 0.003, xg0, ry(xg0) - 0.03, ry(xg0) + 0.03, rA[1] - 0.02, rA[1] + 0.02);
     wpfOK = spU(xw1) - H.b;
@@ -217,7 +231,7 @@ export function baueModell(param = {}) {
     const tF = Math.min(1, Math.max(0, (zSp - H.a / 2 - rA[1]) / (rB[1] - rA[1])));
     const fB = [rA[0] + (rB[0] - rA[0]) * tF, rA[1] + (rB[1] - rA[1]) * tF];
     const fy = (x) => spU(x) + H.b / 2;
-    if (tF > 0.2) stab(8, "Füllholz auf dem Eckriegel (bis unter die Platte)", "holz", [rA[0], fy(rA[0]) - 0.003, rA[1]], [fB[0], fy(fB[0]) - 0.003, fB[1]], H.a, H.b, { ...holz, ...wk(wEck, "beide Enden, parallel") });
+    if (tF > 0.2) schnittStab(8, "Füllholz auf dem Eckriegel (bis unter die Platte)", "holz", [rA[0], fy(rA[0]) - 0.003, rA[1]], [fB[0], fy(fB[0]) - 0.003, fB[1]], H.a, H.b, ebX(rA[0]), ebX(fB[0]), { ...holz, ...wk(wEck, "beide Enden, parallel") });
   } else {
     const khUK = tpUK - H.b;                                                   // Kopfholz: verbindet Wandpfosten oben mit der Traufpfette
     box(3, "Kopfholz auf dem Wandpfosten (unter dem Ende der Traufpfette)", "holz", xw0, xg1, khUK, tpUK, wz0, wz1, { ...holz, laenge: xg1 - xw0 });
@@ -232,7 +246,7 @@ export function baueModell(param = {}) {
   const ed = [(eckB[0] - eckA[0]) / eckL, (eckB[1] - eckA[1]) / eckL], en = [ed[1], -ed[0]];   // en zeigt nach außen
   const swA = [eckA[0] + en[0] * H.b / 2, eckA[1] + en[1] * H.b / 2], swB = [eckB[0] + en[0] * H.b / 2, eckB[1] + en[1] * H.b / 2];
   const swUK = B.hBruestung + 0.01, swOK = swUK + H.a;
-  stab(3, "Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten)", "holz", [swA[0], swUK + H.a / 2, swA[1]], [swB[0], swUK + H.a / 2, swB[1]], H.b, H.a, { ...holz, ...wk(wEck, "beide Enden, parallel"), schnitt: "liegt flach" });
+  schnittStab(3, "Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten)", "holz", [swA[0], swUK + H.a / 2, swA[1]], [swB[0], swUK + H.a / 2, swB[1]], H.b, H.a, ebX(swA[0]), ebX(swB[0]), { ...holz, ...wk(wEck, "beide Enden, parallel"), schnitt: "liegt flach" });
   winkelLabels.push({ t: `${wEck}°`, p: [swA[0] - 0.06, swOK + 0.06, swA[1] + 0.03], ab: 3, bis: 3 });
   stab(3, "Unterlegplatte 1 cm unter der Schwelle", "stahl", [swA[0], B.hBruestung + 0.005, swA[1]], [swB[0], B.hBruestung + 0.005, swB[1]], H.b - 0.01, 0.01);
   box(3, "Winkel Schwelle an den Eckbalken", "stahl", eckA[0] - 0.02, eckA[0] + 0.02, swUK, swOK, eckA[1], eckA[1] + 0.003);
@@ -263,16 +277,16 @@ export function baueModell(param = {}) {
   // --- 5 Kopfbänder ------------------------------------------------------------------------------
   const kd = 0.30;
   const KL = 0.02;                                                           // Klemmleiste 20×20 fürs Netz, außen bündig
-  const kb = (name, A, Bp, step = 5) => {
-    stab(step, name, "holz", A, Bp, H.a, H.a, { ...holz, ...wk(45, "beide Enden, Schnitte parallel") });
+  const kb = (name, A, Bp, step, eA, eB) => {
+    schnittStab(step, name, "holz", A, Bp, H.a, H.a, eA, eB, { ...holz, ...wk(45, "beide Enden, Schnitte parallel") });
     winkelLabels.push({ t: "45°", p: [(A[0] + Bp[0]) / 2 - 0.04, (A[1] + Bp[1]) / 2, (A[2] + Bp[2]) / 2], ab: step, bis: step });
   };
   const kbVorne = [[zl0 + H.b, 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
   for (const [z, s, nm] of kbVorne.filter((k) => !p.ohneMittelpfosten || !k[2].startsWith("Mitte")))
-    kb(`Kopfband vorne ${nm}`, [xG - KL, tpUK - kd, z], [xG - KL, tpUK, z + s * kd]);   // 2 cm nach innen, das Netz läuft außen vorbei
-  kb("Kopfband Hauswand", [xF, wpUK - kd, zh1], [xF, wpUK, zh1 + kd]);
+    kb(`Kopfband vorne ${nm}`, [xG - KL, tpUK - kd, z], [xG - KL, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));   // 2 cm nach innen, das Netz läuft außen vorbei
+  kb("Kopfband Hauswand", [xF, wpUK - kd, zh1], [xF, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
   for (const [x, s, nm] of [[xF0 + H.b, 1, "Hauswand"], [xg0, -1, "Ecke"]])
-    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zr + KL], [x + s * kd, spU(x + s * kd), zr + KL], 8);
+    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zr + KL], [x + s * kd, spU(x + s * kd), zr + KL], 8, ebX(x), ebSparren(x + s * kd));
 
   // --- 6 Wandanschluss vorab (waagerecht) -----------------------------------------------------
   stab(6, "Wandanschlussprofil mit Dichtlippe (vorab geklebt)", "dicht", [B.xFassade + 0.012, yTop(xP0) + 0.03, zP0], [B.xFassade + 0.012, yTop(xP0) + 0.03, zP1], 0.035, 0.06, { laenge: zP1 - zP0 });
@@ -290,8 +304,9 @@ export function baueModell(param = {}) {
     elemente.push(name);
     const [zsl, zsr] = sparrenZ(i);
     for (const [zc, seite] of [[zsl, "links"], [zsr, "rechts"]])
-    { box(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", xF0 + 0.01, xF1 + 0.035, wpOK, wpOK + SK, zc - H.a / 2, zc + H.a / 2, { ...holz, laenge: xF1 + 0.025 - xF0, ...wk(p.neigung, "oben schräg, liegt satt am Sparren an"), schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
-      stab(8, `${name}: Sparren ${seite}`, "holz", [xSp0, cS(xSp0), zc], [xSp1, cS(xSp1), zc], H.a, H.b, { ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe vorne über der Traufpfette, ${Math.round(H.a * tan * 1000)} mm tief`, ...e });
+    { const xk = (xF0 + 0.01 + xF1 + 0.035) / 2;
+      schnittStab(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", [xk, wpOK, zc], [xk, spU(xk), zc], H.a, xF1 + 0.025 - xF0, null, ebSparren(xk), { ...holz, laenge: xF1 + 0.025 - xF0, kurzeKante: undefined, ...wk(p.neigung, "oben schräg, liegt satt am Sparren an"), schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
+      schnittStab(8, `${name}: Sparren ${seite}`, "holz", [xSp0, cS(xSp0), zc], [xSp1, cS(xSp1), zc], H.a, H.b, ebX(xSp0), ebX(xSp1), { ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe vorne über der Traufpfette, ${Math.round(H.a * tan * 1000)} mm tief`, ...e });
       if (i === 0 && seite === "links") winkelLabels.push({ t: `${p.neigung}°`, p: [xSp1 + 0.02, cS(xSp1) + 0.1, zc], ab: 7, bis: 8 });
     }
     const yc = (x) => yTop(x) - t / cos / 2;
@@ -412,6 +427,14 @@ export function baueModell(param = {}) {
   return { param: p, platte: PL, parts, schritte, masse, kennwerte, hinweise, einkauf: einkauf(parts, kennwerte, p) };
 }
 
+const v3 = {
+  add: (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]],
+  sub: (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]],
+  scale: (a, k) => [a[0] * k, a[1] * k, a[2] * k],
+  dot: (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2],
+  cross: (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]],
+  norm: (a) => { const l = Math.hypot(...a); return [a[0] / l, a[1] / l, a[2] / l]; },
+};
 function fmt(v) { return v.toFixed(2).replace(".", ","); }
 export function cm(v) { return (Math.round(v * 1000) / 10).toLocaleString("de-DE"); }
 

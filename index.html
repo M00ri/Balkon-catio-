@@ -230,7 +230,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V38 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V39 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -524,6 +524,18 @@ function meshFor(p) {
     mesh = new THREE.Mesh(geo, mat);
     mesh.position.set(...p.c);
     if (p.art === "holz" || p.art === "bestand") mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo), edgeMat));
+  } else if (p.ecken) {
+    // Stab mit Schrägschnitten: 8 Ecken (4 am Anfang, 4 am Ende) aus dem Modell
+    const E = p.ecken.map((v) => new THREE.Vector3(...v));
+    const c = E.reduce((s, v) => s.add(v), new THREE.Vector3()).multiplyScalar(1 / 8);
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.Float32BufferAttribute(E.flatMap((v) => [v.x - c.x, v.y - c.y, v.z - c.z]), 3));
+    geo.setIndex([0, 2, 1, 0, 3, 2, 4, 5, 6, 4, 6, 7, 0, 1, 5, 0, 5, 4, 1, 2, 6, 1, 6, 5, 2, 3, 7, 2, 7, 6, 3, 0, 4, 3, 4, 7]);
+    geo.computeVertexNormals();
+    mat.side = THREE.DoubleSide;
+    mesh = new THREE.Mesh(geo, mat);
+    mesh.position.copy(c);
+    if (p.art === "holz") mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo, 20), edgeMat));
   } else if (p.form === "stab") {
     const A = new THREE.Vector3(...p.a), Bv = new THREE.Vector3(...p.b);
     const dir = Bv.clone().sub(A); const len = dir.length(); dir.normalize();
@@ -591,7 +603,7 @@ let picked = null, down = null;
 function masseVon(p) {
   const mm = (v) => Math.round(v * 1000);
   if (p.art === "platte") return [["Größe", `${cm(p.laenge)} × ${cm(p.breite)} cm`], ["Stärke", `${mm(model.param.plattenStaerke)} mm`]];
-  if (p.profil) return [["Holz", p.profil], ["Länge", `${cm(p.laenge)} cm`]];
+  if (p.profil) return [["Holz", p.profil], ["Länge", p.kurzeKante && p.laenge - p.kurzeKante > 0.005 ? `${cm(p.laenge)} cm (lange Kante), ${cm(p.kurzeKante)} cm (kurze Kante)` : `${cm(p.laenge)} cm`]];
   if (p.form === "stab") {
     const q = p.q.map(mm).sort((a, b) => b - a);
     return [["Querschnitt", `${q[0]} × ${q[1]} mm`], ["Länge", `${cm(p.laenge)} cm`]];
