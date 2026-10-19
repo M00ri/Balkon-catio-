@@ -18,10 +18,11 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 - ✔ 8° Neigung nach vorne: 27,8 cm Höhenunterschied auf 2 m Platte.
 - ✔ Deine 3 Platten 2,00 × 1,05 m decken 315 cm Breite ab, ohne Querstoß und ohne Zuschnitt. Links stehen sie 1,5 cm über die Brüstung, rechts bleibt 5 mm Luft zur Mauer.
-- ✔ Vorne stehen die Platten 13,1 cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Das Fallrohr kommt später an eine Ecke.
+- ✔ Vorne stehen die Platten 13,1 cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.
 - ✔ Jedes Element hat zwei Sparren, 98,9 cm auseinander (Richtwert bis 105 cm bei 16 mm).
 - ✔ Die Fuge an der Hauswand ist waagerecht auf 296,8 cm, auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen.
-- ℹ️ Bitte prüfen: Ist die Hauswand bis 308,8 cm frei (kein Fenster, keine Fensterbank von oben)?
+- ✔ Das Wandprofil endet bei 302,8 cm, die Hauswand ist bis 310 cm frei (7,2 cm Reserve).
+- ✔ Die Rinne fällt 3 mm pro Meter zur Betonmauer. Dort sitzt der Ablaufstutzen, das Fallrohr kann später an der Mauerecke runter.
 - ✔ Kopffreiheit: 273,9 cm unter der Wandpfette, 256,9 cm unter der Traufpfette vorne.
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
 - ℹ️ Die Wandpfette ist 322 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
@@ -41,7 +42,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Wandanschlussprofil Alu mit Dichtlippe | 315 cm | waagerecht an die Hauswand |
 | Kompriband 15/3–7 mm | 535 cm | hinter dem Wandprofil und am Wandpfosten |
 | MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest | 5 Kartuschen | Mauerlatte, Wandpfette an der Hauswand, Wandprofil, Fuge, Pfostenfuß |
-| Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Fallrohr später, wenn unten gebaut wird |
+| Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
 | Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 27 m | von innen über den Netzrand schrauben |
 | Edelstahlschrauben 4×40 für die Klemmleisten | 96 | alle 25 cm |

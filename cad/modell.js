@@ -20,6 +20,7 @@ export const BESTAND = {
   zLinksAussen: -0.47,    // Außenkante linke Brüstung
   zWand: 2.67,            // Innenseite Betonmauer rechts, reicht bis zur Gartenecke
   hMauerkrone: 2.66,      // Oberkante Betonmauer (flach, nutzbar)
+  hWandFrei: 3.10,        // Hauswand ist bis hier frei (gemessen)
   hBruestung: 0.60,       // Oberkante Betonbrüstung
   hGelaender: 0.80,       // innenliegendes Metallgeländer, Oberkante
   // deine Balken 70×55 auf der Brüstung, mit U-Bügeln am Geländer befestigt
@@ -44,7 +45,7 @@ export const PLATTE = { laenge: 2.0, breite: 1.05, label: "2,00 × 1,05 m", anza
 export const GRENZEN = {
   neigung: [5, 12, 1],
   hoeheVorne: [2.60, 2.85, 0.01],
-  plattenStaerke: [0.008, 0.010, 0.016],
+  plattenStaerke: [0.010, 0.016, 0.020],
 };
 
 const H = { a: 0.055, b: 0.070 };   // Holz 70×55: a = schmal, b = breit
@@ -189,8 +190,10 @@ export function baueModell(param = {}) {
     box(8, `${name}: Alu-Klebeband oben`, "dicht", xP0 - 0.004, xP0 + 0.006, yTop(xP0) - 0.02, yTop(xP0) + 0.004, z0, z1, e);
     for (const [zc] of [[z0 + 0.25], [z1 - 0.25]]) box(8, `${name}: Rinnenhalter`, "stahl", xSp1 - 0.02, xP1 + 0.10, cS(xSp1) - 0.01, cS(xSp1) + 0.004, zc - 0.012, zc + 0.012, e);
   }
-  // Rinne: von innen eingehängt, bevor das Netz an der Gartenseite hängt
-  stab(8, "Dachrinne vorne (in die Halter gehängt)", "rinne", [xP1 + 0.06, yTop(xP1) - 0.07, zP0 - 0.02], [xP1 + 0.06, yTop(xP1) - 0.07, zP1], 0.10, 0.07, { laenge: zP1 - zP0 + 0.02 });
+  // Rinne: von innen eingehängt, bevor das Netz an der Gartenseite hängt, mit Gefälle zum Ablauf an der Betonmauer
+  const yR = yTop(xP1) - 0.07, rGef = 0.003 * (zP1 - zP0);          // 3 mm pro Meter
+  stab(8, "Dachrinne vorne (Gefälle zur Betonmauer)", "rinne", [xP1 + 0.06, yR + rGef, zP0 - 0.02], [xP1 + 0.06, yR, zP1], 0.10, 0.07, { laenge: zP1 - zP0 + 0.02 });
+  box(8, "Ablaufstutzen an der Betonmauer (Fallrohr später)", "rinne", xP1 + 0.03, xP1 + 0.09, yR - 0.12, yR - 0.035, zP1 - 0.15, zP1 - 0.09);
   // Füllhölzer zwischen den Sparren über der Traufpfette
   for (let i = 0; i < PL.anzahl; i++) {
     const z0 = zP0 + i * PL.breite + H.a + 0.003, z1 = zP0 + (i + 1) * PL.breite - H.a - 0.003;
@@ -225,12 +228,16 @@ export function baueModell(param = {}) {
   hinweise.push({ stufe: "ok", text: `Deine 3 Platten ${PL.label} decken ${cm(zP1 - zP0)} cm Breite ab, ohne Querstoß und ohne Zuschnitt. Links stehen sie ${cm(B.zLinksAussen - zP0)} cm über die Brüstung, rechts bleibt 5 mm Luft zur Mauer.` });
   hinweise.push(ueberstand < 0.05
     ? { stufe: "warn", text: `Vorne stehen die Platten nur ${cm(ueberstand)} cm über die Brüstung. Die Rinne braucht etwas Platz, weniger Neigung wählen.` }
-    : { stufe: "ok", text: `Vorne stehen die Platten ${cm(ueberstand)} cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Das Fallrohr kommt später an eine Ecke.` });
+    : { stufe: "ok", text: `Vorne stehen die Platten ${cm(ueberstand)} cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.` });
   hinweise.push(sparrenAbstand > maxAbstand + 0.001
     ? { stufe: "warn", text: `Sparrenabstand ${cm(sparrenAbstand)} cm ist für ${Math.round(t * 1000)} mm Platten zu weit. Pro Element einen dritten Sparren einplanen.` }
     : { stufe: "ok", text: `Jedes Element hat zwei Sparren, ${cm(sparrenAbstand)} cm auseinander (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
   hinweise.push({ stufe: "ok", text: `Die Fuge an der Hauswand ist waagerecht auf ${cm(yTop(xP0))} cm, ${yTop(xP0) > B.hSturzOK ? "auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen." : "auf dem glatten Betonsturz."}` });
-  hinweise.push({ stufe: "info", text: `Bitte prüfen: Ist die Hauswand bis ${cm(yTop(xP0) + 0.12)} cm frei (kein Fenster, keine Fensterbank von oben)?` });
+  const profilOK = yTop(xP0) + 0.06;
+  hinweise.push(profilOK > B.hWandFrei
+    ? { stufe: "warn", text: `Das Wandprofil reicht bis ${cm(profilOK)} cm, die Hauswand ist aber nur bis ${cm(B.hWandFrei)} cm frei. Dach vorne tiefer oder flacher bauen.` }
+    : { stufe: "ok", text: `Das Wandprofil endet bei ${cm(profilOK)} cm, die Hauswand ist bis ${cm(B.hWandFrei)} cm frei (${cm(B.hWandFrei - profilOK)} cm Reserve).` });
+  hinweise.push({ stufe: "ok", text: `Die Rinne fällt 3 mm pro Meter zur Betonmauer. Dort sitzt der Ablaufstutzen, das Fallrohr kann später an der Mauerecke runter.` });
   hinweise.push({ stufe: tpUK < 1.95 ? "warn" : "ok", text: `Kopffreiheit: ${cm(wpUK)} cm unter der Wandpfette, ${cm(tpUK)} cm unter der Traufpfette vorne.` });
   hinweise.push({ stufe: "ok", text: `Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist ${cm(xg0 - xF1)} cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.` });
   hinweise.push({ stufe: "info", text: `Die Wandpfette ist ${cm(lPf)} cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.` });
@@ -284,7 +291,7 @@ export function einkauf(parts, k, p) {
     { status: "bestellen", teil: "Wandanschlussprofil Alu mit Dichtlippe", menge: `${cm(L)} cm`, hinweis: "waagerecht an die Hauswand" },
     { status: "bestellen", teil: "Kompriband 15/3–7 mm", menge: `${cm(L + 2.2)} cm`, hinweis: "hinter dem Wandprofil und am Wandpfosten" },
     { status: "bestellen", teil: "MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest", menge: "5 Kartuschen", hinweis: "Mauerlatte, Wandpfette an der Hauswand, Wandprofil, Fuge, Pfostenfuß" },
-    { status: "bestellen", teil: "Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen", menge: `1 × ${cm(L + 0.05)} cm`, hinweis: "Fallrohr später, wenn unten gebaut wird" },
+    { status: "bestellen", teil: "Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen", menge: `1 × ${cm(L + 0.05)} cm`, hinweis: "Ablauf rechts an der Betonmauer, Fallrohr später" },
     { status: "bestellen", teil: "Rinnenhalter zum Anschrauben an den Sparren", menge: `${2 * PLATTE.anzahl}`, hinweis: "auf den Böcken vormontieren" },
     { status: "bestellen", teil: "Holzleisten 20×40 als Klemmleisten fürs Netz", menge: `ca. ${Math.ceil(rand * 1.1)} m`, hinweis: "von innen über den Netzrand schrauben" },
     { status: "bestellen", teil: "Edelstahlschrauben 4×40 für die Klemmleisten", menge: `${Math.ceil(rand / 0.25)}`, hinweis: "alle 25 cm" },
