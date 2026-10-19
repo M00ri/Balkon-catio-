@@ -290,16 +290,17 @@ export function baueModell(param = {}) {
   // --- 5 Kopfbänder ------------------------------------------------------------------------------
   const kd = 0.30;
   const KL = 0.02;                                                           // Klemmleiste 20×20 fürs Netz, außen bündig
+  const KBD = 0.035;                                                         // Kopfband 35×55 (70×55 längs halbiert): innen bündig, das Netz läuft außen vorbei
   const kb = (name, A, Bp, step, eA, eB) => {
-    schnittStab(step, name, "holz", A, Bp, H.a, H.a, eA, eB, { ...holz, ...wk(45, "beide Enden, Schnitte parallel") });
+    schnittStab(step, name, "holz", A, Bp, KBD, H.a, eA, eB, { ...holz, ...wk(45, "beide Enden, Schnitte parallel"), schnitt: "aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder" });
     winkelLabels.push({ t: "45°", p: [(A[0] + Bp[0]) / 2 - 0.04, (A[1] + Bp[1]) / 2, (A[2] + Bp[2]) / 2], ab: step, bis: step });
   };
   const kbVorne = [[zEL[1], 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
   for (const [z, s, nm] of kbVorne.filter((k) => !p.ohneMittelpfosten || !k[2].startsWith("Mitte")))
-    kb(`Kopfband vorne ${nm}`, [xG - KL, tpUK - kd, z], [xG - KL, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));   // 2 cm nach innen, das Netz läuft außen vorbei
-  kb("Kopfband Hauswand", [xF, wpUK - kd, zh1], [xF, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
+    kb(`Kopfband vorne ${nm}`, [xg0 + KBD / 2, tpUK - kd, z], [xg0 + KBD / 2, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));
+  kb("Kopfband Hauswand", [xF1 - KBD / 2, wpUK - kd, zh1], [xF1 - KBD / 2, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
   for (const [x, s, nm] of [[xF0 + H.b, 1, "Hauswand"], [xg0, -1, "Ecke"]])
-    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zr + KL], [x + s * kd, spU(x + s * kd), zr + KL], 8, ebX(x), ebSparren(x + s * kd));
+    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zEL[1] - KBD / 2], [x + s * kd, spU(x + s * kd), zEL[1] - KBD / 2], 8, ebX(x), ebSparren(x + s * kd));
 
   // --- 6 Wandanschluss vorab (waagerecht) -----------------------------------------------------
   stab(6, "Wandanschlussprofil mit Dichtlippe (vorab geklebt)", "dicht", [B.xFassade + 0.012, yTop(xP0) + 0.03, zP0], [B.xFassade + 0.012, yTop(xP0) + 0.03, zP1], 0.035, 0.06, { laenge: zP1 - zP0 });
@@ -362,11 +363,14 @@ export function baueModell(param = {}) {
   poly(9, "Netz über Eck (Eckpfosten bis Wandpfosten)", "netz", [[eckA[0] - 0.003, swOK, eckA[1]], [eckB[0] - 0.003, swOK, eckB[1]], [eckB[0] - 0.003, netzOben[1], eckB[1]], [eckA[0] - 0.003, netzOben[0], eckA[1]]]);
   // links: Feld zwischen Pfosten an der Hauswand und Eckpfosten, außen bündig an deinem Balken, oben am linken Sparren, hinten bis in die Fensternische
   const zN = zl1 + 0.002, xHw = xF0 + H.b;                                    // Netzebene = Außenseite der linken Pfosten
-  poly(9, "Netz links (zwischen den linken Pfosten) bis in die Nische", "netz", [[B.xGlas + 0.1, hB, zN], [xg0, hB, zN], [xg0, spU(xg0), zN], [xF1, spU(xF1), zN], [B.xFassade, B.hSturzUK, zN], [B.xGlas + 0.1, B.hSturzUK, zN]]);
-  leiste("Klemmleiste links unten (auf deinem Balken, innen bündig)", B.xGlas + 0.1, xg0, hB, hB + KL, zl1 - KL, zl1);
-  stab(9, "Klemmleiste links oben (unter dem linken Sparren)", "holz", [xHw, spU(xHw) - KL / 2, zN + KL / 2], [xg0, spU(xg0) - KL / 2, zN + KL / 2], KL, KL);
+  poly(9, "Netz links (zwischen den linken Pfosten)", "netz", [[xHw, hB, zN], [xg0, hB, zN], [xg0, spU(xg0), zN], [xHw, spU(xHw), zN]]);
+  poly(9, "Netz links in der Fensternische (hinter dem Pfosten an der Hauswand)", "netz", [[B.xGlas + 0.1, hB, zN], [xF0, hB, zN], [xF0, B.hSturzUK, zN], [B.xGlas + 0.1, B.hSturzUK, zN]]);
+  leiste("Klemmleiste links unten (auf deinem Balken, innen bündig)", xHw, xg0, hB, hB + KL, zl1 - KL, zl1);
+  leiste("Klemmleiste Nische unten (auf deinem Balken)", B.xGlas + 0.1, xF0, hB, hB + KL, zl1 - KL, zl1);
+  stab(9, "Klemmleiste links oben (unter dem linken Sparren)", "holz", [xHw + KL, spU(xHw + KL) - KL / 2, zN + KL / 2], [xg0 - KL, spU(xg0 - KL) - KL / 2, zN + KL / 2], KL, KL);
   leiste("Klemmleiste links vorne (am Eckpfosten)", xg0 - KL, xg0, hB + KL, spU(xg0) - KL, zN, zN + KL);
-  leiste("Klemmleiste links hinten (am Pfosten an der Hauswand)", xHw, xHw + KL, hB + KL, spU(xHw) - KL, zN, zN + KL);
+  leiste("Klemmleiste links hinten (am Pfosten an der Hauswand)", xHw, xHw + KL, hB + KL, wpUK, zN, zN + KL);
+  leiste("Klemmleiste links hinten oben (an der Wandpfette)", xHw, xHw + KL, wpUK, spU(xHw + KL) - KL, zN, zN + KL);
   // Ecke an der Mauer: der Eckpfosten steht 5,5 cm innen, das Netz läuft außen bis ans Balkenende und wird dort mit dem Netz über Eck verbunden
   {
     const za = zEck[1], zb = zw1;
