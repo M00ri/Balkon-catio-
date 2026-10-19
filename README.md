@@ -4,7 +4,7 @@ Planung eines Katzengeheges für den Balkon: 3D-Scan, parametrisches CAD-Modell,
 
 | Datei | Inhalt |
 |---|---|
-| `index.html` | 3D-Viewer: Scan + Gehege, Schritt-für-Schritt-Aufbau, Material, Maße |
+| `index.html` | 3D-Viewer: Scan + Gehege, Aufbau von innen in 9 Schritten, Material, Maße |
 | `cad/modell.js` | Parametrisches Modell: Bestand, Planungswerte, Bauteile aus 70×55, Prüfungen, Bestell- und Sägeliste |
 | `cad/stueckliste.mjs` | Erzeugt `docs/stueckliste.md` aus dem Modell |
 | `docs/stueckliste.md` | Vom Modell erzeugt: Einkaufs- und Zuschnittliste |

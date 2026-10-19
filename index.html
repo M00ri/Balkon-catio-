@@ -169,7 +169,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V6 · Ecke an der Mauer<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V7 · Bau von innen<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -212,6 +212,22 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
           <text x="180" y="164" class="dim">also nach links ab (⊗)</text>
           <path class="lead" d="M100,175 L130,198"/><text x="133" y="201">Doppelsparren 2 × 70×55</text>
           <text x="133" y="213" class="dim">steht auf Pfosten, nicht an der Wand</text>
+        </svg>
+      </figure>
+      <figure class="detail" id="detail-netz" hidden>
+        <svg viewBox="0 0 360 170" role="img" aria-label="Schnitt durch die Netzbefestigung mit Klemmleiste">
+          <rect class="wood" x="20" y="30" width="110" height="70"/>
+          <text x="30" y="70">Pfosten / Rähm</text>
+          <line x1="20" y1="104" x2="160" y2="104" stroke="var(--ink)" stroke-width="2" stroke-dasharray="5 3"/>
+          <rect class="wood" x="50" y="107" width="60" height="24"/>
+          <line x1="80" y1="140" x2="80" y2="60" stroke="var(--ink-soft)" stroke-width="2.5"/>
+          <path d="M74,140 h12" stroke="var(--ink-soft)" stroke-width="3"/>
+          <path d="M36,104 l4,-6 l4,6" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+          <path class="lead" d="M160,104 L178,104"/><text x="181" y="107">Katzennetz (innen)</text>
+          <path class="lead" d="M110,119 L178,124"/><text x="181" y="127">Klemmleiste 20×40</text>
+          <path class="lead" d="M86,140 L178,146"/><text x="181" y="149">Schraube 4×40, alle 25 cm</text>
+          <path class="lead" d="M44,99 L178,24"/><text x="181" y="27">zuerst tackern</text>
+          <text x="20" y="165" class="dim">Alles von innen machbar.</text>
         </svg>
       </figure>
       <div class="controls">
@@ -271,14 +287,14 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
         <dt>Betonbrüstung Oberkante</dt><dd>ca. 60 cm</dd>
         <dt>Deine Balken 70×55, Oberkante</dt><dd>ca. 67 cm</dd>
         <dt>Krone der Betonmauer</dt><dd>ca. 266 cm</dd>
-        <dt>Spalt Mauerende bis Eckpfosten</dt><dd>ca. 26 cm</dd>
+        <dt>Betonstreifen Eckbalken bis Mauer</dt><dd>ca. 10 cm</dd>
       </dl>
       <h3>Bitte prüfen</h3>
       <ul class="fragen">
-        <li><strong>Plattengröße:</strong> Mit 2×2 m reichen 2 Platten. Mit 2×1 m bräuchtest du für das seitliche Gefälle 4 Stück, weil die Stege in Gefällerichtung liegen müssen.</li>
-        <li><strong>Lage deiner Balken:</strong> Ich habe sie direkt neben das Geländer gelegt. Stimmt das, und liegt vor der Betonmauer auch ein Balken auf dem kurzen Brüstungsstück?</li>
-        <li><strong>Mauerkrone:</strong> Ist sie wirklich flach und mindestens 7 cm tief? Dort liegt die Mauerlatte.</li>
-        <li><strong>Ein Foto vom Spalt</strong> an der Betonmauer hilft mir, den Wandständer genau zu setzen.</li>
+        <li><strong>Plattengröße:</strong> Mit 2×2 m reichen 2 Platten. Mit 2×1 m bräuchtest du für das Gefälle nach links 4 Stück.</li>
+        <li><strong>Streifen an der Mauer:</strong> Auf deinem Foto sieht er nach 10–15 cm aus. Ist er breiter als 10 cm, kommt zwischen Wandpfosten und Mauer noch ein Netzstreifen.</li>
+        <li><strong>Mauerkrone:</strong> Reicht sie wirklich bis zur Gartenecke, und ist sie flach und mindestens 7 cm tief? Dort liegt die Mauerlatte.</li>
+        <li><strong>Platz über der Hauswand:</strong> Bis etwa 3,15 m muss die Wand frei sein.</li>
       </ul>
     </section>
   </aside>
@@ -479,7 +495,8 @@ function meshFor(p) {
 
 function tint(m) {
   const p = m.userData.part;
-  if (p.art === "holz") m.material.color.copy(p.step === current ? colors.chalk : colors.wood);
+  const neu = p.step === current || p.vor?.step === current;
+  if (p.art === "holz") m.material.color.copy(neu ? colors.chalk : colors.wood);
   else if (p.art === "bestand") m.material.color.copy(current === 1 ? colors.chalk : colors.bestand);
 }
 
@@ -531,27 +548,39 @@ function go(n, { animate = true } = {}) {
   const now = performance.now();
   let k = 0;
   for (const m of meshes) {
-    const st = m.userData.part.step;
-    m.visible = st <= current;
+    const p = m.userData.part, st = p.step, vor = p.vor;
+    m.visible = st <= current || (vor && vor.step <= current);
     tint(m);
-    if (animate && st === current && current > 1 && !reduceMotion) { m.userData.anim = { t0: now + k * 70, dur: 800 }; k++; }
-    else { m.userData.anim = null; resetPose(m); }
+    m.userData.anim = null; resetPose(m);
+    if (!animate || reduceMotion || current === 1) continue;
+    // Dachelemente: in Schritt vor.step auf den Böcken erscheinen, in Schritt step nach oben gehoben werden
+    if (vor && vor.step === current) { m.userData.anim = { t0: now + k * 40, dur: 800, von: vor.dy + 0.5, nach: vor.dy, fade: true }; k++; }
+    else if (vor && st === current) { m.userData.anim = { t0: now + 300, dur: 1800, von: vor.dy, nach: 0, fade: false }; }
+    else if (st === current) { m.userData.anim = { t0: now + k * 70, dur: 800, von: 0.6, nach: 0, fade: true }; k++; }
   }
-  $("detail").hidden = current !== 8;
+  $("detail").hidden = current !== 6;
+  $("detail-netz").hidden = current !== 9;
   $("d-platte").textContent = `Stegplatte ${Math.round(model.param.plattenStaerke * 1000)} mm, ${model.param.neigung}° Gefälle`;
-  if (animate && current === 8) setView("detail");
+  if (animate && current === 6) setView("detail");
   if (animate && current === 3) setView("ecke");
+  if (animate && (current === 7 || current === 8)) setView("aussen");
   renderNewParts(current);
   updateLabels();
 }
 function resetPose(m) {
   m.position.copy(m.userData.base); m.scale.set(1, 1, 1);
+  const vor = m.userData.part.vor;
+  if (vor && current < m.userData.part.step) m.position.y += vor.dy;
   const art = m.userData.part.art;
   m.material.opacity = art === "netz" ? 0.6 : art === "platte" ? 0.55 : 1;
 }
 function renderNewParts(n) {
   const ps = [];
-  for (const p of model.parts.filter((q) => q.step === n)) {
+  const imSchritt = (q) => (q.vor ? q.vor.step === n : q.step === n);
+  if (model.parts.some((q) => q.vor && q.step === n)) {
+    for (const el of new Set(model.parts.filter((q) => q.vor && q.step === n).map((q) => q.element))) ps.push({ name: `${el} hochheben und von unten verschrauben`, art: "netz", anzahl: 1 });
+  }
+  for (const p of model.parts.filter(imSchritt)) {
     const same = ps.find((q) => q.name === p.name);
     if (same) same.anzahl++; else ps.push({ ...p, anzahl: 1 });
   }
@@ -649,10 +678,10 @@ function tick(now) {
   }
   for (const m of meshes) {
     const a = m.userData.anim; if (!a || !m.visible) continue;
-    const t = Math.max(0, Math.min(1, (now - a.t0) / a.dur)), e = ease(t);
-    const art = m.userData.part.art;
-    if (art === "netz") { m.scale.set(1, Math.max(0.001, e), 1); m.material.opacity = 0.6 * e; }
-    else { m.position.y = m.userData.base.y + (1 - e) * 0.6; m.material.opacity = (art === "platte" ? 0.55 : 1) * e; }
+    const t = Math.max(0, Math.min(1, (now - a.t0) / a.dur)), e = a.fade ? ease(t) : t * t * (3 - 2 * t);
+    const art = m.userData.part.art, voll = art === "platte" ? 0.55 : art === "netz" ? 0.6 : 1;
+    if (art === "netz") { m.scale.set(1, Math.max(0.001, e), 1); m.material.opacity = voll * e; }
+    else { m.position.y = m.userData.base.y + a.von + (a.nach - a.von) * e; if (a.fade) m.material.opacity = voll * e; }
     if (t >= 1) { m.userData.anim = null; resetPose(m); }
   }
   controls.update();
