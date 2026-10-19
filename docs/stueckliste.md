@@ -56,7 +56,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 15 Stangen | Verschnitt 726 cm |
+| Kantholz 70×55, 3,00 m | 15 Stangen | Verschnitt 715 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
@@ -79,8 +79,8 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 8 | 197 Element Mitte: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband links Hauswand (an den linken Sparren) (beide Enden 45°) · 42,4 Kopfband links Ecke (an den linken Sparren) (beide Enden 45°) · 12,6 Auflagerklotz unter den rechten Sparren geschoben (12,6 cm) (oben 7° schräg, Höhe am Sparren abnehmen) | 3,6 |
 | 9 | 197 Element rechts: Sparren links (vorne lotrecht 7°, Kerbe 7° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 28 Eckriegel auf der Netzlinie (Traufpfette bis Wandpfosten) (vorne und hinten schräg nach Anriss) · 28 Füllholz auf dem Eckriegel (bis unter die Platte) (schräg nach Anriss) | 2,5 |
 | 10 | 197 Element rechts: Sparren rechts (vorne lotrecht 7°, Kerbe 7° über den Pfetten) | 102,5 |
-| 11 | 189,9 Eckpfosten links/Garten | 109,6 |
-| 12 | 189,9 Pfosten Garten Mitte | 109,6 |
-| 13 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
+| 11 | 195,4 Eckpfosten links/Garten (steht 5,5 cm tief in der Aussparung im Balken) | 104,1 |
+| 12 | 195,4 Eckpfosten Garten/Mauer (steht 5,5 cm tief in der Aussparung im Balken) | 104,1 |
+| 13 | 189,9 Pfosten Garten Mitte | 109,6 |
 | 14 | 169,8 Traufpfette Teil 2 (bis zum rechten Sparren, kragt über den Eckpfosten aus) | 129,7 |
 | 15 | 146,2 Traufpfette Teil 1 (Stoß über dem Mittelpfosten) | 153,3 |

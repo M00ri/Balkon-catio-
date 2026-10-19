@@ -26,6 +26,7 @@ export const BESTAND = {
   hGelaender: 0.80,       // innenliegendes Metallgeländer, Oberkante
   // deine Balken 70×55 auf der Brüstung, mit U-Bügeln am Geländer befestigt
   balken: { b: 0.055, h: 0.07 },
+  aussparungEcke: 0.055,  // vordere Eckpfosten sitzen in einer Aussparung im Balken, 5,5 cm tiefer (Winkel auf beiden Seiten)
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
   zBalkenLinks: -0.345,   // Innenkante linker Balken
   zBalkenWand: 2.425,     // Innenkante Eckbalken vor der Mauer (19 cm Beton bis zur Mauer, gemessen)
@@ -100,7 +101,7 @@ export function baueModell(param = {}) {
   const xg0 = B.xBalkenGarten, xg1 = xg0 + B.balken.b, xG = (xg0 + xg1) / 2;
   const zl1 = B.zBalkenLinks, zl0 = zl1 - B.balken.b;
   const zw0 = B.zBalkenWand, zw1 = zw0 + B.balken.b;
-  const hB = B.hBruestung + B.balken.h;
+  const hB = B.hBruestung + B.balken.h, hBalken = hB;
 
   // Dachfläche: drei Platten nebeneinander, so gelegt, dass der rechte Sparren auf der Mauerkrone liegt
   const zP1 = B.zWand + 0.005 + H.a + 0.003, zP0 = zP1 - PL.anzahl * PL.breite;
@@ -139,7 +140,7 @@ export function baueModell(param = {}) {
   const zMitte = (zl1 + zw0) / 2;
 
   // --- 2 Pfosten auf den Balken ------------------------------------------------------------
-  const winkel = (name, x0, x1, z0, z1, seite) => {                          // Winkel 60×60×40, außen am Pfosten
+  const winkel = (name, x0, x1, z0, z1, seite, hB = hBalken) => {           // Winkel 60×60×40, außen am Pfosten
     const d = 0.003, l = 0.06, w = 0.02, xc = (x0 + x1) / 2, zc = (z0 + z1) / 2;
     if (seite === "+z" || seite === "-z") {
       const zf = seite === "+z" ? z1 : z0, sg = seite === "+z" ? 1 : -1;
@@ -161,16 +162,17 @@ export function baueModell(param = {}) {
       box(2, `${name} – U-Bügel ans Geländer`, "stahl", xc - 0.005, xc + 0.005, y0, y1, z0 - 0.004, gz + 0.012);
     }
   };
-  const pfosten = (name, x0, x1, z0, z1, oben, seiten, gelaender) => {
-    box(2, name, "holz", x0, x1, hB, oben, z0, z1, { ...holz, laenge: oben - hB });
-    for (const sd of seiten) winkel(name, x0, x1, z0, z1, sd);
+  const pfosten = (name, x0, x1, z0, z1, oben, seiten, gelaender, tiefer = 0) => {
+    const fuss = hBalken - tiefer;                                            // in der Aussparung steht der Pfosten tiefer
+    box(2, name, "holz", x0, x1, fuss, oben, z0, z1, { ...holz, laenge: oben - fuss, ...(tiefer ? { schnitt: `steht ${cm(tiefer)} cm tief in der Aussparung im Balken` } : {}) });
+    for (const sd of seiten) winkel(name, x0, x1, z0, z1, sd, fuss);
     buegel(name, x0, x1, z0, z1, gelaender);
   };
   pfosten("Pfosten links an der Hauswand", xF0, xF0 + H.b, zl0, zl1, wpUK, ["+x"], "links");
-  pfosten("Eckpfosten links/Garten", xg0, xg1, zl0, zl0 + H.b, tpUK, ["+z", "-x"], "garten");
+  pfosten("Eckpfosten links/Garten", xg0, xg1, zl0, zl0 + H.b, tpUK, ["+z", "-x"], "garten", B.aussparungEcke);
   if (!p.ohneMittelpfosten) pfosten("Pfosten Garten Mitte", xg0, xg1, zMitte - H.b / 2, zMitte + H.b / 2, tpUK, ["+z", "-z"], "garten");
   const zEck = [zw1 - H.b, zw1];                                              // Eckpfosten Garten/Mauer, am Geländereck
-  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zEck[0], zEck[1], tpUK, ["-z", "-x"], "garten");
+  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zEck[0], zEck[1], tpUK, ["-z", "-x"], "garten", B.aussparungEcke);
   const wz1 = B.zWand - 0.002, wz0 = wz1 - H.b;                              // Wandpfosten an der Mauer
 
   // --- 3 Auflager auf der Mauerkrone + Ecke ----------------------------------------------------------
