@@ -26,7 +26,8 @@ export const BESTAND = {
   balken: { b: 0.055, h: 0.07 },
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
   zBalkenLinks: -0.345,   // Innenkante linker Balken
-  zBalkenWand: 2.515,     // Innenkante Eckbalken vor der Mauer (ca. 10 cm Beton bis zur Mauer)
+  zBalkenWand: 2.425,     // Innenkante Eckbalken vor der Mauer (19 cm Beton bis zur Mauer, gemessen)
+  tiefeEcke: 0.51,        // Brüstungsstück vor der Mauer: 51 cm tief (von der Außenkante nach innen)
 };
 
 // ---------------------------------------------------------------------------
@@ -53,7 +54,7 @@ export const LAGER = 3.0;
 export const SCHRITTE = [
   { n: 1, titel: "Bestand", text: "Dein Balkon aus Scan und Fotos. Braun: deine Balken 70×55 auf der Brüstung, mit U-Bügeln am innenliegenden Geländer. Rechts die Betonmauer bis zur Gartenecke, Krone auf 2,66 m. Das Dach fällt nach vorne zum Garten. Jeder Handgriff ist so geplant, dass du ihn von innen machst." },
   { n: 2, titel: "Pfosten auf den Balken", text: "Fünf Pfosten 70×55 auf deinen Balken: drei auf dem linken Balken (an der Hauswand, in der Mitte, an der Ecke), zwei auf dem Gartenbalken (Mitte und Ecke an der Mauer). Je zwei Winkel pro Pfosten, von innen in den Balken geschraubt. Nichts steht auf dem Boden." },
-  { n: 3, titel: "Mauerlatte und Ecke an der Mauer", text: "Mauerlatte mit MS-Polymer auf die Mauerkrone kleben. Sie trägt das rechte Ende der Wandpfette und hält unten den Netzstreifen über der Mauer. In der Ecke steht hinter dem Eckpfosten der Wandpfosten auf dem Betonstreifen vor der Mauer, alle 30 cm an den Eckpfosten geschraubt. Die Restfuge zur Mauer füllt geklebtes Kompriband." },
+  { n: 3, titel: "Mauerlatte und Ecke an der Mauer", text: "Mauerlatte mit MS-Polymer auf die Mauerkrone kleben. Sie trägt das rechte Ende der Wandpfette und hält unten den Netzstreifen über der Mauer. In der Ecke ist zwischen deinem Eckbalken und der Mauer ein Betonstreifen von 19 cm Breite und 51 cm Tiefe. Ganz vorne, in einer Linie mit dem Eckpfosten, steht der Wandpfosten direkt an der Mauer, mit MS-Polymer und Kompriband angeklebt. Die 12 cm Lücke zum Eckpfosten schließen ein Riegel unten, die verlängerte Traufpfette oben und ein Netzstreifen. Die Nische dahinter gehört zum Catio." },
   { n: 4, titel: "Pfetten und Stirnriegel", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander, verleimt und alle 20 cm verschraubt, weil sie 3 m ohne Stütze überspannt. Sie liegt links auf dem Pfosten und rechts auf der Mauerlatte und wird zusätzlich elastisch an die Hauswand geklebt. Vorne die Traufpfette auf den Gartenpfosten. Links ein schräger Stirnriegel, an dem später das Netz endet." },
   { n: 5, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen links, vorne und an der Hauswand aus. Ab hier steht das Gerüst stabil, auch für Kratzbaum und Liegebretter später." },
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
@@ -97,11 +98,12 @@ export function baueModell(param = {}) {
   // --- 1 Bestand -------------------------------------------------------------------
   box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, zl0, zw1);
   box(1, "Bestandsbalken links", "bestand", B.xGlas + 0.1, xg0, B.hBruestung, hB, zl0, zl1);
-  box(1, "Bestandsbalken vor der Mauer", "bestand", 0.45, xg0, B.hBruestung, hB, zw0, zw1);
+  const xEcke = B.xBrAussen - B.tiefeEcke;
+  box(1, "Bestandsbalken vor der Mauer", "bestand", xEcke, xg0, B.hBruestung, hB, zw0, zw1);
   const gx = xg0 - 0.012, gz = zl1 + 0.012, gw = zw0 - 0.012;
   box(1, "Geländer Garten (Bestand)", "geländer", gx - 0.008, gx + 0.008, B.hGelaender - 0.02, B.hGelaender, zl1, zw0);
   box(1, "Geländer links (Bestand)", "geländer", B.xGlas + 0.1, gx, B.hGelaender - 0.02, B.hGelaender, gz - 0.008, gz + 0.008);
-  box(1, "Geländer vor der Mauer (Bestand)", "geländer", 0.45, gx, B.hGelaender - 0.02, B.hGelaender, gw - 0.008, gw + 0.008);
+  box(1, "Geländer vor der Mauer (Bestand)", "geländer", xEcke, gx, B.hGelaender - 0.02, B.hGelaender, gw - 0.008, gw + 0.008);
   for (let z = zl1 + 0.3; z < zw0; z += 0.75) box(1, "Geländerstütze", "geländer", gx - 0.008, gx + 0.008, B.hBruestung, B.hGelaender, z - 0.008, z + 0.008);
 
   // --- Höhen der Pfetten ----------------------------------------------------------------
@@ -129,10 +131,12 @@ export function baueModell(param = {}) {
   box(3, "Mauerlatte (auf die Mauerkrone geklebt)", "holz", xF0, xg1, B.hMauerkrone, mlOK, mlZ0, mlZ1, { ...holz, laenge: xg1 - xF0 });
   const futter = wpUK - mlOK;
   if (futter > 0.005) box(3, `Auflagerklotz für die Wandpfette (${cm(futter)} cm)`, "holz", xF0, xF0 + H.b, mlOK, wpUK, mlZ0 + 0.005, mlZ1 - 0.005, { ...holz, laenge: H.b });
-  const wz0 = zw1, wz1 = Math.min(B.zWand - 0.01, zw1 + H.b);
-  box(3, "Wandpfosten hinter dem Eckpfosten (an den Eckpfosten geschraubt)", "holz", xg0, xg1, B.hBruestung, tpUK, wz0, wz1, { ...holz, laenge: tpUK - B.hBruestung });
+  // Wandpfosten: ganz vorne im Betonstreifen, in einer Linie mit dem Eckpfosten, direkt an der Mauer
+  const wz1 = B.zWand - 0.008, wz0 = wz1 - H.b;
+  box(3, "Wandpfosten an der Mauer (geklebt)", "holz", xg0, xg1, B.hBruestung, tpUK, wz0, wz1, { ...holz, laenge: tpUK - B.hBruestung });
   box(3, "Wandpfosten – Pfostenfuß auf die Brüstung geklebt", "stahl", xg0 - 0.01, xg1 + 0.01, B.hBruestung, B.hBruestung + 0.006, wz0, wz1);
-  if (B.zWand - wz1 > 0.002) box(3, "Kompriband Wandpfosten–Mauer (geklebt)", "dicht", xg0, xg1, B.hBruestung, B.hMauerkrone, wz1, B.zWand);
+  if (wz0 - zw1 > 0.02) box(3, "Riegel unten zwischen Eckpfosten und Wandpfosten", "holz", xg0, xg1, B.hBruestung, B.hBruestung + H.b, zw1, wz0, { ...holz, laenge: wz0 - zw1 });
+  box(3, "Kompriband Wandpfosten–Mauer (geklebt)", "dicht", xg0, xg1, B.hBruestung, B.hMauerkrone, wz1, B.zWand);
 
   // --- 4 Pfetten + Stirnriegel ---------------------------------------------------------------
   const lPf = zPf1 - zPf0;
@@ -146,7 +150,7 @@ export function baueModell(param = {}) {
   pfette("Wandpfette oben", xF0, xF1, wpUK + H.b, wpOK, true);
   const tpS = zMitte;                                                         // Traufpfette: Stoß über dem Mittelpfosten
   box(4, "Traufpfette Teil 1", "holz", xg0, xg1, tpUK, tpOK, zPf0, tpS, { ...holz, laenge: tpS - zPf0, schnitt: "Stoß über dem Mittelpfosten" });
-  box(4, "Traufpfette Teil 2", "holz", xg0, xg1, tpUK, tpOK, tpS, zw1 + H.b, { ...holz, laenge: zw1 + H.b - tpS });
+  box(4, "Traufpfette Teil 2 (bis auf den Wandpfosten)", "holz", xg0, xg1, tpUK, tpOK, tpS, wz1, { ...holz, laenge: wz1 - tpS });
   const zr = (zl0 + zl1) / 2, cr = (x) => yU(x) - H.b / cos / 2;
   stab(4, "Stirnriegel links (schräg)", "holz", [xF1, cr(xF1), zr], [xg0, cr(xg0), zr], H.a, H.b, { ...holz, schnitt: `beide Enden ${p.neigung}° schräg` });
 
@@ -190,13 +194,14 @@ export function baueModell(param = {}) {
   // Füllhölzer zwischen den Sparren über der Traufpfette
   for (let i = 0; i < PL.anzahl; i++) {
     const z0 = zP0 + i * PL.breite + H.a + 0.003, z1 = zP0 + (i + 1) * PL.breite - H.a - 0.003;
-    const za = Math.max(z0, zl0), zb = Math.min(z1, zw1);
+    const za = Math.max(z0, zl0), zb = Math.min(z1, wz1);
     if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za });
   }
 
   // --- 9 Katzennetz: immer innen am Holz -------------------------------------------------------------
   const xn = xg0 - 0.003, zn = zl1 + 0.003;
   poly(9, "Netz Gartenseite (Balken bis Traufpfette)", "netz", [[xn, hB, zn], [xn, hB, zw0], [xn, tpOK, zw0], [xn, tpOK, zn]]);
+  if (wz0 - zw1 > 0.02) poly(9, "Netzstreifen in der Ecke (Eckpfosten bis Wandpfosten)", "netz", [[xn, B.hBruestung + H.b, zw1], [xn, B.hBruestung + H.b, wz0], [xn, tpUK, wz0], [xn, tpUK, zw1]]);
   poly(9, "Netz links (Balken bis Stirnriegel) bis in die Nische", "netz", [[B.xGlas + 0.1, hB - 0.05, zn], [xn, hB - 0.05, zn], [xn, srUK(xn), zn], [xF1, srUK(xF1), zn], [B.xFassade, B.hSturzUK, zn], [B.xGlas + 0.1, B.hSturzUK, zn]]);
   // Streifen über der Mauerkrone: von der Mauerlatte bis zur Unterkante des rechten Sparrens
   const spUK = (x) => yU(x) - d70;
@@ -230,7 +235,7 @@ export function baueModell(param = {}) {
   hinweise.push({ stufe: "ok", text: `Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist ${cm(xg0 - xF1)} cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.` });
   hinweise.push({ stufe: "info", text: `Die Wandpfette ist ${cm(lPf)} cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.` });
   hinweise.push({ stufe: "ok", text: `Das Netz endet überall an Holz, nie an den Platten. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Klemmleiste drüber.` });
-  hinweise.push({ stufe: "ok", text: `Ecke an der Mauer: ${cm(B.zWand - zw1)} cm vom Eckbalken bis zur Mauer. Der Wandpfosten (7 cm) füllt das, Kompriband schließt die Restfuge.` });
+  hinweise.push({ stufe: "ok", text: `Ecke an der Mauer: ${cm(B.zWand - zw1)} cm Betonstreifen, ${cm(B.tiefeEcke)} cm tief. Der Wandpfosten steht ganz vorne an der Mauer, in einer Linie mit dem Eckpfosten. Dazwischen bleiben ${cm(wz0 - zw1)} cm, die Riegel unten, Traufpfette oben und ein Netzstreifen schließen. Ein Schrägbalken oder ein Versprung nach hinten ist so nicht nötig.` });
   hinweise.push(p.hoeheVorne < B.hMauerkrone
     ? { stufe: "info", text: `Vorne liegt die Dachunterkante ${cm(B.hMauerkrone - p.hoeheVorne)} cm unter der Mauerkrone.` }
     : { stufe: "ok", text: `Vorne liegt die Dachunterkante ${cm(p.hoeheVorne - B.hMauerkrone)} cm über der Mauerkrone, hinten an der Hauswand ${cm(yU(xP0) - B.hMauerkrone)} cm darüber.` });
@@ -238,7 +243,7 @@ export function baueModell(param = {}) {
   const masse = [
     { t: "Balken 70×55 auf Brüstung", p: [B.xBrAussen, hB + 0.06, 1.2], ab: 1, bis: 3 },
     { t: `Mauerkrone ${fmt(B.hMauerkrone)} m`, p: [0.0, B.hMauerkrone + 0.06, B.zWand + 0.05], ab: 1, bis: 9 },
-    { t: `Streifen zur Mauer ${cm(B.zWand - zw1)} cm`, p: [xg1 + 0.05, B.hBruestung + 0.25, (zw1 + B.zWand) / 2], ab: 1, bis: 3 },
+    { t: `Ecke ${cm(B.zWand - zw1)} × ${cm(B.tiefeEcke)} cm`, p: [xg1 + 0.05, B.hBruestung + 0.25, (zw1 + B.zWand) / 2], ab: 1, bis: 3 },
     { t: "innenliegendes Geländer", p: [gx, B.hGelaender + 0.06, 0.4], ab: 1, bis: 1 },
     { t: `Hauswand ${fmt(yTop(xP0))} m`, p: [xP0, yTop(xP0) + 0.15, 1.1], ab: 6, bis: 9 },
     { t: `Vorne ${fmt(yTop(xP1))} m`, p: [xP1 + 0.1, yTop(xP1) + 0.1, 1.1], ab: 8, bis: 9 },
