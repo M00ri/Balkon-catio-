@@ -27,7 +27,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
 - ℹ️ Die Wandpfette ist 322 cm lang. Jede Lage wird einmal gestoßen, die Stöße liegen versetzt an den beiden Auflagern. Verleimt und verschraubt trägt das wie ein Balken.
 - ✔ Das Netz endet überall an Holz, nie an den Platten. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Klemmleiste drüber.
-- ✔ Ecke an der Mauer: 19 cm Betonstreifen, 51 cm tief. Der Wandpfosten steht ganz vorne an der Mauer, in einer Linie mit dem Eckpfosten. Dazwischen bleiben 11,2 cm, die Riegel unten, Traufpfette oben und ein Netzstreifen schließen. Ein Schrägbalken oder ein Versprung nach hinten ist so nicht nötig.
+- ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen. Der Wandpfosten steht 10 cm hinter dem Eckpfosten direkt an der Mauer. Zwei Schrägriegel (12,1 cm) verbinden beide, dazwischen Netz. Oben trägt ein Kopfholz auf dem Wandpfosten das Ende der Traufpfette.
 - ✔ Vorne liegt die Dachunterkante 5 cm über der Mauerkrone, hinten an der Hauswand 29,2 cm darüber.
 
 ## Noch bestellen
@@ -44,14 +44,14 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | MS-Polymer-Kleb- und Dichtstoff, außen, UV-fest | 5 Kartuschen | Mauerlatte, Wandpfette an der Hauswand, Wandprofil, Fuge, Pfostenfuß |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
-| Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 27 m | von innen über den Netzrand schrauben |
-| Edelstahlschrauben 4×40 für die Klemmleisten | 96 | alle 25 cm |
+| Holzleisten 20×40 als Klemmleisten fürs Netz | ca. 26 m | von innen über den Netzrand schrauben |
+| Edelstahlschrauben 4×40 für die Klemmleisten | 94 | alle 25 cm |
 
 ## Hast du schon (nur prüfen)
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 18 Stangen | Verschnitt 1.040,8 cm |
+| Kantholz 70×55, 3,00 m | 18 Stangen | Verschnitt 1.014,6 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder | ca. 30 | Pfosten auf Balken, Pfetten, Stirnriegel |
@@ -70,14 +70,14 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 4 | 206,9 Pfosten links an der Hauswand · 90,7 Füllholz über der Traufpfette | 1,4 |
 | 5 | 197 Element links: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette · 7 Auflagerklotz für die Wandpfette (2,4 cm) | 1,1 |
 | 6 | 197 Element links: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 93,4 Füllholz über der Traufpfette | 8,6 |
-| 7 | 197 Element Mitte: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 11,2 Riegel unten zwischen Eckpfosten und Wandpfosten | 5 |
-| 8 | 197 Element Mitte: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Hauswand (beide Enden 45°) · 42,4 Kopfband links Mitte 1 (beide Enden 45°) | 16,7 |
-| 9 | 197 Element rechts: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Mitte 2 (beide Enden 45°) · 42,4 Kopfband links Ecke (beide Enden 45°) | 16,7 |
+| 7 | 197 Element Mitte: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Mitte 2 (beide Enden 45°) · 42,4 Kopfband Hauswand (beide Enden 45°) · 15,5 Kopfholz auf dem Wandpfosten (trägt das Ende der Traufpfette) | 0,7 |
+| 8 | 197 Element Mitte: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Hauswand (beide Enden 45°) · 42,4 Kopfband links Mitte 1 (beide Enden 45°) · 13,9 Schrägriegel unten (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
+| 9 | 197 Element rechts: Sparren links (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband links Mitte 2 (beide Enden 45°) · 42,4 Kopfband links Ecke (beide Enden 45°) · 13,9 Schrägriegel oben (Eckpfosten–Wandpfosten) (beide Enden schräg 22°) | 2,2 |
 | 10 | 197 Element rechts: Sparren rechts (vorne lotrecht 8°, Kerbe 8° über den Pfetten) · 42,4 Kopfband vorne Ecke Mauer (beide Enden 45°) · 22 Wandpfette unten (an die Wand geklebt), Ergänzung · 22 Wandpfette oben, Ergänzung | 14,6 |
-| 11 | 196,9 Wandpfosten an der Mauer (geklebt) | 102,6 |
-| 12 | 189,9 Eckpfosten links/Garten | 109,6 |
-| 13 | 189,9 Pfosten Garten Mitte | 109,6 |
-| 14 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
+| 11 | 189,9 Eckpfosten links/Garten | 109,6 |
+| 12 | 189,9 Pfosten Garten Mitte | 109,6 |
+| 13 | 189,9 Eckpfosten Garten/Mauer | 109,6 |
+| 14 | 189,9 Wandpfosten an der Mauer (geklebt) | 109,6 |
 | 15 | 176 Mauerlatte (auf die Mauerkrone geklebt) | 123,5 |
 | 16 | 166,6 Stirnriegel links (schräg) (beide Enden 8° schräg) | 132,9 |
 | 17 | 162,2 Traufpfette Teil 2 (bis auf den Wandpfosten) | 137,3 |
