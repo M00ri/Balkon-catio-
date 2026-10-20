@@ -48,8 +48,10 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr | 3 | je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen |
 | Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen | 1 × 320 cm | Ablauf rechts an der Betonmauer, Fallrohr später |
 | Rinnenhalter zum Anschrauben an den Sparren | 6 | auf den Böcken vormontieren |
-| Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 39 m | von innen über den Netzrand schrauben |
-| Edelstahlschrauben 4×40 für die Klemmleisten | 141 | alle 25 cm |
+| Platte für die Fensternische, 15–18 mm (Siebdruck, OSB oder Bretter) | 1 Stück, ca. 30 × 175 cm | schließt die Nische hinter dem Pfosten an der Hauswand |
+| Leisten 20×40 für die Platte in der Nische | ca. 2 × 1,8 m | mit Fix ALL an Sturz und Fensterlaibung kleben |
+| Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 35 m | von innen über den Netzrand schrauben |
+| Edelstahlschrauben 4×40 für die Klemmleisten | 126 | alle 25 cm |
 
 ## Hast du schon (nur prüfen)
 
