@@ -526,7 +526,7 @@ export function einkauf(parts, k, p) {
     { status: "vorhanden", teil: `Polycarbonat-Stegplatten ${PLATTE.label}`, menge: `3 von 3`, hinweis: "Stege in Gefällerichtung (zum Garten)" },
     { status: "vorhanden", teil: "Randprofile, Tropfprofil", menge: `2 × ${cm(PLATTE.laenge)} cm, ${cm(L)} cm`, hinweis: "Seitenkanten links und rechts, vordere Kante" },
     { status: "vorhanden", teil: "Winkelverbinder mit Sicke, ca. 60×60×40", menge: "ca. 30", hinweis: "je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer" },
-    { status: "vorhanden", teil: "Sparrenpfettenanker", menge: `${k.sparrenAnzahl * 2}`, hinweis: "je Sparren einer an jeder Pfette, von unten" },
+    { status: "bestellen", teil: "Sparrenpfettenanker ca. 170 mm, halb links, halb rechts", menge: `${k.sparrenAnzahl * 4}`, hinweis: "je Sparrenende zwei, links und rechts (hinten am Klotz), dazu Ankerschrauben 5×40, ca. 8 je Anker" },
     { status: "vorhanden", teil: "Holzschrauben 6×120", menge: "ca. 60", hinweis: "Wandpfette alle 20 cm (dazu dein Fix ALL statt Holzleim), Kopfbänder" },
     { status: "vorhanden", teil: "Katzenschutznetz + Tacker", menge: `ca. ${Math.ceil(netzFlaeche(parts) * 1.15)} m²`, hinweis: "inkl. 15 % Überlappung" },
     { status: "vorhanden", teil: "2 Arbeitsböcke, 2 Leitern, eine zweite Person", menge: "–", hinweis: "Elemente bauen und einheben" },

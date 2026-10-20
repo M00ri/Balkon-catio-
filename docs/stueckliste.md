@@ -52,6 +52,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Leisten 20×40 für die Platte in der Nische | ca. 3,5 m | mit Fix ALL an Sturz, Fensterlaibung und Boden kleben |
 | Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 35 m | von innen über den Netzrand schrauben |
 | Edelstahlschrauben 4×40 für die Klemmleisten | 126 | alle 25 cm |
+| Sparrenpfettenanker ca. 170 mm, halb links, halb rechts | 28 | je Sparrenende zwei, links und rechts (hinten am Klotz), dazu Ankerschrauben 5×40, ca. 8 je Anker |
 
 ## Hast du schon (nur prüfen)
 
@@ -61,7 +62,6 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
-| Sparrenpfettenanker | 14 | je Sparren einer an jeder Pfette, von unten |
 | Holzschrauben 6×120 | ca. 60 | Wandpfette alle 20 cm (dazu dein Fix ALL statt Holzleim), Kopfbänder |
 | Katzenschutznetz + Tacker | ca. 11 m² | inkl. 15 % Überlappung |
 | 2 Arbeitsböcke, 2 Leitern, eine zweite Person | – | Elemente bauen und einheben |
