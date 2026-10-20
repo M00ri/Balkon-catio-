@@ -41,7 +41,7 @@ export const BESTAND = {
 export const DEFAULTS = {
   neigung: 7,             // Dachneigung in Grad, Gefälle nach vorne zum Garten (7°: untere Lage der Wandpfette genau auf dem glatten Beton)
   hoeheVorne: 2.69,       // Unterkante Platte über der vorderen Pfette (so liegt die Wandpfette hinten auf Pfosten und Mauerbalken, 261,9 cm)
-  plattenStaerke: 0.016,
+  plattenStaerke: 0.010,   // deine Platten: 10 mm
   ohneMittelpfosten: false, // Variante: kein Pfosten vorne in der Mitte, dafür Traufpfette doppelt
   ecke: "riegel",           // Ecke an der Mauer: "riegel" (Netz über Eck mit Eckriegel) oder "kopfholz" (alt)
 };
@@ -283,9 +283,12 @@ export function baueModell(param = {}) {
     pfette("Traufpfette oben", xg0, xg1, tpUK + H.b, tpOK, true);
   } else pfette(`Traufpfette (${p.ecke === "riegel" ? "kragt rechts über den Eckpfosten aus" : "liegt rechts auf dem Kopfholz"})`, xg0, xg1, tpUK, tpOK, false);
   // Sparren je Element: außen sitzen sie innerhalb der 3-m-Querbalken, die Platte steht seitlich über
+  // Bei dünnen Platten (10 mm) dürfen die Sparren höchstens ca. 80 cm auseinander liegen: dann ein dritter in der Mitte
+  const maxAbstand = t >= 0.016 ? 1.05 : t >= 0.010 ? 0.80 : 0.60;
   const sparrenZ = (i) => {
     const z0 = zP0 + i * PL.breite, z1 = z0 + PL.breite, r = H.a / 2 + 0.003;
-    return [i === 0 ? zPf0 + r : z0 + r, i === PL.anzahl - 1 ? zPf1 - r : z1 - r];
+    const l = i === 0 ? zPf0 + r : z0 + r, rr = i === PL.anzahl - 1 ? zPf1 - r : z1 - r;
+    return rr - l - H.a > maxAbstand ? [l, (l + rr) / 2, rr] : [l, rr];
   };
   const zr = sparrenZ(0)[0];                                                 // linker Sparren des linken Elements
 
@@ -318,8 +321,8 @@ export function baueModell(param = {}) {
     const minY = cS(xSp1) - d70 / 2;
     const e = { vor: { step: 7, dy: 0.85 - minY }, element: name };
     elemente.push(name);
-    const [zsl, zsr] = sparrenZ(i);
-    for (const [zc, seite] of [[zsl, "links"], [zsr, "rechts"]])
+    const sz = sparrenZ(i);
+    for (const [zc, seite] of sz.map((z, k) => [z, k === 0 ? "links" : k === sz.length - 1 ? "rechts" : "Mitte"]))
     { const xk = (xF0 + 0.01 + xF1 + 0.035) / 2;
       schnittStab(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", [xk, wpOK, zc], [xk, spU(xk), zc], H.a, xF1 + 0.025 - xF0, null, ebSparren(xk), { ...holz, laenge: xF1 + 0.025 - xF0, kurzeKante: undefined, ...wk(p.neigung, "oben schräg, liegt satt am Sparren an"), schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
       prisma(8, `${name}: Sparren ${seite}`, "holz", [[xSp0, spU(xSp0), zc - H.a / 2], [xg0, spU(xg0), zc - H.a / 2], [xg0, tpOK, zc - H.a / 2], [xg1, tpOK, zc - H.a / 2], [xSp1, spU(xSp1), zc - H.a / 2], [xSp1, yU(xSp1), zc - H.a / 2], [xSp0, yU(xSp0), zc - H.a / 2]], [0, 0, H.a], { laenge: (xSp1 - xSp0) / cos, ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe über der Traufpfette: ${cm(xg1 - xg0)} cm breit, hinten ${Math.round((spU(xg0) - tpOK) * 1000)} mm tief, vorne 0`, ...e });
@@ -341,9 +344,9 @@ export function baueModell(param = {}) {
   box(8, "Ablaufstutzen an der Betonmauer (Fallrohr später)", "rinne", xP1 + 0.03, xP1 + 0.09, yR - 0.12, yR - 0.035, zP1 - 0.15, zP1 - 0.09);
   // Füllhölzer zwischen den Sparren über der Traufpfette
   for (let i = 0; i < PL.anzahl; i++) {
-    const [zsl, zsr] = sparrenZ(i);
-    const za = zsl + H.a / 2, zb = zsr - H.a / 2;
-    if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za });
+    const sz = sparrenZ(i);
+    for (let k = 0; k + 1 < sz.length; k++) { const za = sz[k] + H.a / 2, zb = sz[k + 1] - H.a / 2;
+    if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za }); }
   }
 
   // --- 9 Katzennetz: Feld für Feld zwischen den Hölzern, wie eine Fensterscheibe -------------------------
@@ -394,13 +397,15 @@ export function baueModell(param = {}) {
   stab(9, "Klemmleiste Mauerstreifen oben (unter dem rechten Sparren)", "holz", [xF1, spU(xF1) - KL / 2, zs - KL / 2], [B.xWandEnde, spU(B.xWandEnde) - KL / 2, zs - KL / 2], KL, KL);
 
   // --- Kennwerte & Prüfungen -----------------------------------------------------------------------
-  const sparrenAbstand = PL.breite - H.a - 0.006;
-  const maxAbstand = t >= 0.016 ? 1.05 : t >= 0.010 ? 0.80 : 0.60;
+  const alleSparren = Array.from({ length: PL.anzahl }, (_, i) => sparrenZ(i));
+  const sparrenAbstand = Math.max(...alleSparren.flatMap((sz) => sz.slice(1).map((z, k) => z - sz[k] - H.a)));
+  const sproElement = alleSparren[0].length, sparrenAnzahl = alleSparren.reduce((n, sz) => n + sz.length, 0);
+  const elementKg = Math.round(sproElement * 4.0 + 170 * t * PL.laenge * PL.breite + 1);   // Douglasie ca. 4 kg pro Sparren
   const kennwerte = {
     neigung: p.neigung, gefaelleCmProM: tan * 100,
     hoeheWand: yTop(xP0), hoeheVorne: yTop(xP1), fugeWand: yTop(xP0) + 0.06,
     ueberstand, kopfWand: wpUK, kopfVorne: tpUK, ueberKrone: p.hoeheVorne - B.hMauerkrone,
-    plattenAnzahl: PL.anzahl, sparrenAnzahl: 2 * PL.anzahl, sparrenAbstand,
+    plattenAnzahl: PL.anzahl, sparrenAnzahl, sparrenAbstand, elementKg,
     dachLaenge: zP1 - zP0, dachTiefe: xP1 - xP0, elemente: elemente.length,
   };
   const hinweise = [];
@@ -414,7 +419,7 @@ export function baueModell(param = {}) {
     : { stufe: "ok", text: `Vorne stehen die Platten ${cm(ueberstand)} cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.` });
   hinweise.push(sparrenAbstand > maxAbstand + 0.001
     ? { stufe: "warn", text: `Sparrenabstand ${cm(sparrenAbstand)} cm ist für ${Math.round(t * 1000)} mm Platten zu weit. Pro Element einen dritten Sparren einplanen.` }
-    : { stufe: "ok", text: `Jedes Element hat zwei Sparren, ${cm(sparrenAbstand)} cm auseinander (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
+    : { stufe: "ok", text: `Jedes Element hat ${sproElement} Sparren${sproElement > 2 ? ", einen davon in der Mitte, weil die Platten nur " + Math.round(t * 1000) + " mm dick sind" : ""}. Lichter Abstand höchstens ${cm(sparrenAbstand)} cm (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
   hinweise.push({ stufe: "ok", text: `Die Fuge an der Hauswand ist waagerecht auf ${cm(yTop(xP0))} cm, ${yTop(xP0) > B.hSturzOK ? "auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen." : "auf dem glatten Betonsturz."}` });
   const profilOK = yTop(xP0) + 0.06;
   hinweise.push(profilOK > B.hWandFrei
@@ -422,7 +427,7 @@ export function baueModell(param = {}) {
     : { stufe: "ok", text: `Das Wandprofil endet bei ${cm(profilOK)} cm, die Hauswand ist bis ${cm(B.hWandFrei)} cm frei (${cm(B.hWandFrei - profilOK)} cm Reserve).` });
   hinweise.push({ stufe: "ok", text: `Die Rinne fällt 3 mm pro Meter zur Betonmauer. Dort sitzt der Ablaufstutzen, das Fallrohr kann später an der Mauerecke runter.` });
   hinweise.push({ stufe: tpUK < 1.95 ? "warn" : "ok", text: `Kopffreiheit: ${cm(wpUK)} cm unter der Wandpfette, ${cm(tpUK)} cm unter der Traufpfette vorne.` });
-  hinweise.push({ stufe: "ok", text: `Elemente: je ca. 12 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist ${cm(xg0 - xF1)} cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.` });
+  hinweise.push({ stufe: "ok", text: `Elemente: je ca. ${elementKg} kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist ${cm(xg0 - xF1)} cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.` });
   {
     const lageOK = wpOK;                                                       // beide Lagen werden geklebt
     hinweise.push(lageOK <= B.hSturzOK + 0.005
@@ -459,7 +464,7 @@ export function baueModell(param = {}) {
   ];
   masse.push(...winkelLabels);
 
-  const schritte = SCHRITTE.map((st) => ({ ...st, text: (VARIANTE_TEXT[st.n] ?? ((t) => t))(st.text, p) }));
+  const schritte = SCHRITTE.map((st) => ({ ...st, text: (VARIANTE_TEXT[st.n] ?? ((t) => t))(st.text, p).replace("etwa 12 kg", `etwa ${elementKg} kg`).replace("zwei Sparren 70×55 darunter", sproElement > 2 ? `${sproElement} Sparren 70×55 darunter (außen zwei, einer in der Mitte, weil deine Platten nur ${Math.round(t * 1000)} mm dick sind)` : "zwei Sparren 70×55 darunter") }));
   return { param: p, platte: PL, parts, schritte, masse, kennwerte, hinweise, einkauf: einkauf(parts, kennwerte, p) };
 }
 
