@@ -22,7 +22,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Vorne stehen die Platten 13,3 cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.
 - ✔ Insgesamt 7 Sparren, an den Plattenfugen nur einer (die Nachbarplatte liegt mit auf und wird vom H-Profil gehalten), dazu je einer in der Mitte, weil die Platten nur 10 mm dick sind. Lichter Abstand höchstens 47 cm (Richtwert bis 80 cm bei 10 mm).
 - ✔ Die Fuge an der Hauswand ist waagerecht auf 291,2 cm, auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen.
-- ✔ Das Wandprofil endet bei 294,7 cm, die Hauswand ist bis 310 cm frei (15,3 cm Reserve).
+- ✔ Das Wandprofil endet bei 296,7 cm, die Hauswand ist bis 310 cm frei (13,3 cm Reserve).
 - ✔ Die Rinne fällt 3 mm pro Meter zur Betonmauer. Kurz davor sitzt der Rinnenstutzen, das Fallrohr kann später an der Mauerecke runter.
 - ✔ Kopffreiheit: 261,9 cm unter der Wandpfette, 254,6 cm unter der Traufpfette vorne.
 - ✔ Elemente: je ca. 17 kg, 2,0 m × 1,05 m. Die Öffnung im Rahmen ist 165 cm tief und 3 m breit. Längs gedreht passen die ersten beiden flach durch und werden oben gedreht, das letzte geht leicht gekippt (ca. 35°) durch die Restöffnung.
@@ -40,7 +40,8 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Distanzhülsen für M5, 10 mm lang (Kunststoff) | 42 | in die 12-mm-Löcher der Platte, damit du sie beim Schrauben nicht zerdrückst |
 | Antidust-Set für 6–10 mm Stegplatten (Band geschlossen + Band gelocht) | je 335 cm | geschlossen oben an der Hauswand, gelocht unten vorne |
 | H-Verbindungsprofil Polycarbonat 10 mm | 2 × 200 cm | verbindet die Elemente ohne Schrauben von oben |
-| Wandanschlussprofil Alu mit Dichtlippe | 315 cm | waagerecht an die Hauswand |
+| Alu-Winkel 50 × 50 × 2 mm, 2 m | 2 | Wandprofil selbst gebaut, siehe Reiter „Wandprofil“; einer wird gekürzt |
+| EPDM-Dichtung selbstklebend, D- oder P-Profil ca. 9 × 8 mm | 340 cm | unter den waagerechten Schenkel der Winkel |
 | Kompriband 15/3–7 mm | 335 cm | hinter dem Wandprofil |
 | MS-/Hybrid-Polymer-Kleber, außen, UV-fest (z. B. dein Soudal Fix ALL X-Treme Power) | ca. 5 Kartuschen | nur punktuell oder in Raupen: Unterlegplatten, Wandpfosten, Wandpfette an der Hauswand, Wandprofil. Für die sichtbare Dichtfuge besser ein elastischer Dichtstoff |
 | Kunststoff-Unterlegplatten (Terrassenpads) 10 mm | 1 Pack (mind. 6) | unter den Klötzen auf der Mauer und dem Wandpfosten, Wasser läuft darunter ab |
