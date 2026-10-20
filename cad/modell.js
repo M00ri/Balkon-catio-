@@ -68,7 +68,7 @@ export const SCHRITTE = [
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
   { n: 7, titel: "Dachelemente auf Böcken bauen", text: "Jede deiner drei Platten wird auf zwei Böcken zu einem Element: zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf. Unter das hintere Ende jedes Sparrens kommt ein 7 cm hoher Klotz (Reststück 70×55, ca. 9 cm lang), mit zwei Schrauben von der Seite angeschraubt. Mit diesem Klotz liegt das Element später auf der Wandpfette. So bekommt das Dach seine 7° Gefälle, ohne dass an der Hauswand ein dritter Balken nötig ist. Kanten fertig machen: oben an der Wand Alu-Klebeband, vorne Antistaubband, Tropfprofil und Rinnenhalter, außen die Randprofile. An die Kante zum Nachbarelement kommt ein H-Verbindungsprofil." },
   { n: 8, titel: "Elemente einbauen, Rinne einhängen", text: "Ein Element wiegt etwa 12 kg. Längs gedreht flach durch die Öffnung heben, oben um 90° drehen und ablegen: zuerst links, dann die Mitte, die seitlich ins H-Profil geschoben wird. Das rechte kommt zuletzt leicht gekippt durch die Restöffnung. Jedes Element 5 cm vor der Wand absetzen, unter die Dichtlippe schieben, von unten verschrauben. Dann die zwei Kopfbänder links an den linken Sparren, von innen die Rinne in die Halter hängen und die Füllhölzer über der Traufpfette setzen." },
-  { n: 9, titel: "Katzennetz von innen", text: "Das Netz kommt nicht innen vor die Hölzer, sondern Feld für Feld zwischen sie, wie eine Fensterscheibe. Pro Feld ein Netzstück mit 5 cm Rand zuschneiden. Den Rand auf die Seitenflächen der Pfosten, die Unterseite des Querbalkens und die Oberseite deines Balkens tackern, möglichst weit außen, dann eine Leiste 20×20 außen bündig drüberschrauben. Das Netz sitzt so nur 2 cm hinter der Außenkante, und alle Innenseiten bleiben frei für spätere Wandelemente. Links genauso zwischen den beiden linken Pfosten, unten an deinem Balken, oben am linken Dachbalken. In der Fensternische hinter dem Pfosten an der Hauswand ist kein Holz fürs Netz, dort kommt eine Platte hin: zwei Leisten 20×40 mit Fix ALL unter den Sturz und an die Fensterlaibung kleben, die Platte auf deinen Balken stellen und von innen durch den Pfosten und die Leisten festschrauben, Fugen mit Fix ALL dicht machen. in der Ecke über Eck vom Eckpfosten zum Wandpfosten, oben am Eckriegel, rechts ein Streifen von der Mauerkrone bis zum rechten Dachbalken. Links sitzt das Netz zwischen dem Pfosten an der Hauswand und dem Eckpfosten, außen bündig mit deinem Balken. Vorne an der Mauer läuft es außen am Eckpfosten vorbei bis ans Balkenende, dort mit dem Netz über Eck mit Kabelbindern oder Netzklammern verbinden und oben und unten klemmen. Nie an die Platten. Alles ist von innen erreichbar." },
+  { n: 9, titel: "Katzennetz von innen", text: "Das Netz kommt nicht innen vor die Hölzer, sondern Feld für Feld zwischen sie, wie eine Fensterscheibe. Pro Feld ein Netzstück mit 5 cm Rand zuschneiden. Den Rand auf die Seitenflächen der Pfosten, die Unterseite des Querbalkens und die Oberseite deines Balkens tackern, möglichst weit außen, dann eine Leiste 20×20 außen bündig drüberschrauben. Das Netz sitzt so nur 2 cm hinter der Außenkante, und alle Innenseiten bleiben frei für spätere Wandelemente. Links genauso zwischen den beiden linken Pfosten, unten an deinem Balken, oben am linken Dachbalken. In der Fensternische hinter dem Pfosten an der Hauswand ist kein Holz fürs Netz, dort kommt eine Platte hin: zwei Leisten 20×40 mit Fix ALL unter den Sturz und an die Fensterlaibung kleben, die Platte auf deinen Balken stellen und von innen durch den Pfosten und die Leisten festschrauben. In der Nische selbst ist unten kein Balken, dort geht die Platte bis auf den Boden, mit einer dritten geklebten Leiste unten. Fugen mit Fix ALL dicht machen. in der Ecke über Eck vom Eckpfosten zum Wandpfosten, oben am Eckriegel, rechts ein Streifen von der Mauerkrone bis zum rechten Dachbalken. Links sitzt das Netz zwischen dem Pfosten an der Hauswand und dem Eckpfosten, außen bündig mit deinem Balken. Vorne an der Mauer läuft es außen am Eckpfosten vorbei bis ans Balkenende, dort mit dem Netz über Eck mit Kabelbindern oder Netzklammern verbinden und oben und unten klemmen. Nie an die Platten. Alles ist von innen erreichbar." },
 ];
 
 // Texte, die sich mit den Varianten unter „Planen“ ändern
@@ -146,7 +146,7 @@ export function baueModell(param = {}) {
     const a2 = [zw1 - B.eckEinzug - H.b, zw1 - B.eckEinzug];                                // = Pfosten an der Mauer
     for (const [z0, z1] of [[zl1, a1[0]], [a1[1], a2[0]], [a2[1], zw1]].filter(([z0, z1]) => z1 - z0 > 0.002)) box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, z0, z1);
   }
-  box(1, "Bestandsbalken links (geht bis vorne an die Ecke)", "bestand", B.xGlas + 0.1, xg1, B.hBruestung, hB, zl0, zl1);
+  box(1, "Bestandsbalken links (von der Hauswand bis vorne an die Ecke)", "bestand", B.xFassade, xg1, B.hBruestung, hB, zl0, zl1);
   const xEcke = B.xBrAussen - B.tiefeEcke;
   box(1, "Bestandsbalken vor der Mauer", "bestand", xEcke, xg0, B.hBruestung, hB, zw0, zw1);
   const gx = xg0 - 0.012, gz = zl1 + 0.012, gw = zw0 - 0.012;
@@ -302,7 +302,7 @@ export function baueModell(param = {}) {
     kb(`Kopfband vorne ${nm}`, [xg0 + KBD / 2, tpUK - kd, z], [xg0 + KBD / 2, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));
   kb("Kopfband Hauswand", [xF1 - KBD / 2, wpUK - kd, zh1], [xF1 - KBD / 2, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
   for (const [x, s, nm] of [[xF0 + H.b, 1, "Hauswand"], [xg0, -1, "Ecke"]])
-    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zEL[1] - KBD / 2], [x + s * kd, spU(x + s * kd), zEL[1] - KBD / 2], 8, ebX(x), ebSparren(x + s * kd));
+    kb(`Kopfband links ${nm} (an den linken Sparren)`, [x, spU(x + s * kd) - kd, zr + H.a / 2 - KBD / 2], [x + s * kd, spU(x + s * kd), zr + H.a / 2 - KBD / 2], 8, ebX(x), ebSparren(x + s * kd));
 
   // --- 6 Wandanschluss vorab (waagerecht) -----------------------------------------------------
   stab(6, "Wandanschlussprofil mit Dichtlippe (vorab geklebt)", "dicht", [B.xFassade + 0.012, yTop(xP0) + 0.03, zP0], [B.xFassade + 0.012, yTop(xP0) + 0.03, zP1], 0.035, 0.06, { laenge: zP1 - zP0 });
@@ -367,12 +367,14 @@ export function baueModell(param = {}) {
   const zN = zl1 + 0.002, xHw = xF0 + H.b;                                    // Netzebene = Außenseite der linken Pfosten
   poly(9, "Netz links (zwischen den linken Pfosten)", "netz", [[xHw, hB, zN], [xg0, hB, zN], [xg0, spU(xg0), zN], [xHw, spU(xHw), zN]]);
   leiste("Klemmleiste links unten (auf deinem Balken, innen bündig)", xHw, xg0, hB, hB + KL, zl1 - KL, zl1);
-  // Fensternische hinter dem Pfosten an der Hauswand: kein Holz fürs Netz, deshalb komplett zu mit einer Platte
+  // Fensternische hinter dem Pfosten an der Hauswand: kein Holz fürs Netz, deshalb komplett zu mit einer Platte (vom Boden bis unter den Sturz)
   {
     const xa = B.xGlas + 0.01, xb = xF0 + H.b, d = 0.018, yo = B.hSturzUK;
-    box(9, "Seitenwand in der Fensternische (Platte 18 mm, z. B. Siebdruck, OSB oder Bretter)", "holz", xa, xb, hB, yo, zl1 - d, zl1, { laenge: xb - xa, schnitt: `ca. ${cm(xb - xa)} × ${cm(yo - hB)} cm, steht auf deinem Balken, vorne außen am Pfosten an der Hauswand` });
+    box(9, "Seitenwand in der Fensternische (Platte 18 mm, vom Boden bis unter den Sturz)", "holz", xa, xF0, 0.005, yo, zl1 - d, zl1, { laenge: yo, schnitt: `ca. ${cm(xF0 - xa)} × ${cm(yo - 0.005)} cm, z. B. Siebdruck, OSB oder Bretter` });
+    box(9, "Seitenwand neben dem Pfosten (gleiche Platte, auf deinem Balken)", "holz", xF0, xb, hB, yo, zl1 - d, zl1, { laenge: yo - hB, schnitt: "vorne außen am Pfosten an der Hauswand" });
     box(9, "Leiste 20×40 unter dem Sturz (mit Fix ALL geklebt)", "holz", xa, xF0, yo - 0.04, yo, zl1, zl1 + 0.02, { laenge: xF0 - xa });
-    box(9, "Leiste 20×40 an der Fensterlaibung (mit Fix ALL geklebt)", "holz", xa, xa + 0.04, hB, yo - 0.04, zl1, zl1 + 0.02, { laenge: yo - 0.04 - hB });
+    box(9, "Leiste 20×40 an der Fensterlaibung (mit Fix ALL geklebt, bis zum Boden)", "holz", xa, xa + 0.04, 0, yo - 0.04, zl1, zl1 + 0.02, { laenge: yo - 0.04 });
+    box(9, "Leiste 20×40 unten auf dem Boden (mit Fix ALL geklebt)", "holz", xa + 0.04, xF0, 0, 0.04, zl1, zl1 + 0.02, { laenge: xF0 - xa - 0.04 });
   }
   stab(9, "Klemmleiste links oben (unter dem linken Sparren)", "holz", [xHw + KL, spU(xHw + KL) - KL / 2, zN + KL / 2], [xg0 - KL, spU(xg0 - KL) - KL / 2, zN + KL / 2], KL, KL);
   leiste("Klemmleiste links vorne (am Eckpfosten)", xg0 - KL, xg0, hB + KL, spU(xg0) - KL, zN, zN + KL);
@@ -388,6 +390,8 @@ export function baueModell(param = {}) {
   // Streifen über der Mauerkrone: von der Krone bis zur Unterkante des rechten Sparrens (unten Klemmleiste an die Mauer geklebt)
   const zs = B.zWand - 0.003;
   poly(9, "Netzstreifen über der Mauerkrone (bis zum rechten Sparren)", "netz", [[xF1, kUK, zs], [B.xWandEnde, kUK, zs], [B.xWandEnde, spU(B.xWandEnde), zs], [xF1, spU(xF1), zs]]);
+  leiste("Klemmleiste Mauerstreifen unten (auf deinem Balken auf der Mauer)", xF1, B.xWandEnde, kUK, kUK + KL, zs - KL, zs);
+  stab(9, "Klemmleiste Mauerstreifen oben (unter dem rechten Sparren)", "holz", [xF1, spU(xF1) - KL / 2, zs - KL / 2], [B.xWandEnde, spU(B.xWandEnde) - KL / 2, zs - KL / 2], KL, KL);
 
   // --- Kennwerte & Prüfungen -----------------------------------------------------------------------
   const sparrenAbstand = PL.breite - H.a - 0.006;
@@ -501,8 +505,8 @@ export function einkauf(parts, k, p) {
     { status: "bestellen", teil: "U-Bügel (Rundstahlbügel M8) mit Gegenplatte, passend zum Geländerrohr", menge: `${parts.filter((q) => q.name.endsWith("U-Bügel ans Geländer")).length}`, hinweis: "je tragender Pfosten einer, Rohrdurchmesser messen; hast du sie schon, nur prüfen" },
     { status: "bestellen", teil: "Dachrinne (z. B. Kunststoff halbrund 100) mit 2 Endstücken + Ablaufstutzen", menge: `1 × ${cm(L + 0.05)} cm`, hinweis: "Ablauf rechts an der Betonmauer, Fallrohr später" },
     { status: "bestellen", teil: "Rinnenhalter zum Anschrauben an den Sparren", menge: `${2 * PLATTE.anzahl}`, hinweis: "auf den Böcken vormontieren" },
-    { status: "bestellen", teil: "Platte für die Fensternische, 15–18 mm (Siebdruck, OSB oder Bretter)", menge: "1 Stück, ca. 30 × 175 cm", hinweis: "schließt die Nische hinter dem Pfosten an der Hauswand" },
-    { status: "bestellen", teil: "Leisten 20×40 für die Platte in der Nische", menge: "ca. 2 × 1,8 m", hinweis: "mit Fix ALL an Sturz und Fensterlaibung kleben" },
+    { status: "bestellen", teil: "Platte für die Fensternische, 15–18 mm (Siebdruck, OSB oder Bretter)", menge: "ca. 40 × 240 cm", hinweis: "schließt die Nische hinter dem Pfosten an der Hauswand, vom Boden bis unter den Sturz" },
+    { status: "bestellen", teil: "Leisten 20×40 für die Platte in der Nische", menge: "ca. 3,5 m", hinweis: "mit Fix ALL an Sturz, Fensterlaibung und Boden kleben" },
     { status: "bestellen", teil: "Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern)", menge: `ca. ${Math.ceil(rand * 1.1)} m`, hinweis: "von innen über den Netzrand schrauben" },
     { status: "bestellen", teil: "Edelstahlschrauben 4×40 für die Klemmleisten", menge: `${Math.ceil(rand / 0.25)}`, hinweis: "alle 25 cm" },
     { status: "vorhanden", teil: `${HOLZ}, 3,00 m`, menge: `${stangen.length} Stangen`, hinweis: `Verschnitt ${cm(stangen.reduce((s, x) => s + Math.max(0, x.rest), 0))} cm` },
