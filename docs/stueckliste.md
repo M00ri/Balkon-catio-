@@ -52,7 +52,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | Leisten 20×40 für die Platte in der Nische | ca. 3,5 m | mit Fix ALL an Sturz, Fensterlaibung und Boden kleben |
 | Holzleisten 20×20 als Klemmleisten fürs Netz (außen bündig in den Feldern) | ca. 35 m | von innen über den Netzrand schrauben |
 | Edelstahlschrauben 4×40 für die Klemmleisten | 126 | alle 25 cm |
-| Sparrenpfettenanker ca. 170 mm, halb links, halb rechts | 14 | je Sparrenende einer, abwechselnd links und rechts (hinten am Klotz), dazu Ankerschrauben 5×40, ca. 8 je Anker |
+| Sparrenpfettenanker ca. 170 mm, halb links, halb rechts | 14 | je Sparrenende einer, abwechselnd links und rechts (hinten am Klotz), dazu Ankerschrauben 5×40 mit Sechskantkopf (z. B. SPAX), ca. 8 je Anker, Nuss SW 8 für den Akkuschrauber |
 
 ## Hast du schon (nur prüfen)
 
