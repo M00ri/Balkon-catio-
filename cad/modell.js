@@ -66,7 +66,7 @@ export const SCHRITTE = [
   { n: 4, titel: "Pfetten und Auflager auf der Mauer", text: "Hinten die Wandpfette: zwei 70×55 hochkant übereinander: zwei Raupen Fix ALL dazwischen und sofort alle 20 cm mit 6×120 verschrauben, versetzt. 24 Stunden aushärten lassen. Sie liegt links auf dem Pfosten und rechts direkt auf der Mauerkrone. Beide Lagen liegen an der glatten Betonfläche der Hauswand und werden dort zusätzlich punktuell angeklebt. An der Hauswand wird also nichts über der glatten Betonfläche befestigt, außer später dem schmalen Dichtprofil über der Platte. Vorne die Traufpfette auf den Gartenpfosten, rechts bis zum späteren rechten Sparren. Einen Stirnriegel links braucht es nicht: Dort liegt der linke Sparren des linken Elements genau über deinem Balken. In der Ecke an der Mauer kommt der Eckriegel dazu: ein 70×55, das genau auf der Netzlinie vom Ende der Traufpfette schräg zum Wandpfosten läuft. Vorne mit einem Winkel an die Traufpfette, hinten stumpf vorne an den Wandpfosten gestoßen und mit einem Winkel seitlich daran geschraubt. Der Wandpfosten selbst ist oben am Balken auf der Mauer festgeschraubt, das Netz über Eck bekommt am Eckriegel oben eine Leiste." },
   { n: 5, titel: "Kopfbänder", text: "Kopfbänder aus Resten steifen vorne und an der Hauswand aus. Die zwei Kopfbänder links kommen nach dem Einbau der Elemente an den linken Sparren. Ab hier steht das Gerüst stabil, auch für Kratzbaum und Liegebretter später." },
   { n: 6, titel: "Wandprofil vorab kleben", text: "Solange oben noch offen ist, kommst du von innen an die Hauswand. Linie mit Schnur oder Laser anzeichnen (Oberkante Platte plus 1 cm), Kompriband an die Wand, Wandanschlussprofil mit MS-Polymer waagerecht ankleben, oben Dichtfuge ziehen. Nach dem Dach kommst du da nicht mehr hin." },
-  { n: 7, titel: "Dachelemente auf Böcken bauen", text: "Jede deiner drei Platten wird auf zwei Böcken zu einem Element: zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf. Unter das hintere Ende jedes Sparrens kommt ein 7 cm hoher Klotz (Reststück 70×55, ca. 9 cm lang), mit zwei Schrauben von der Seite angeschraubt. Mit diesem Klotz liegt das Element später auf der Wandpfette. So bekommt das Dach seine 7° Gefälle, ohne dass an der Hauswand ein dritter Balken nötig ist. Kanten fertig machen: oben an der Wand Alu-Klebeband, vorne Antistaubband, Tropfprofil und Rinnenhalter, außen die Randprofile. An die Kante zum Nachbarelement kommt ein H-Verbindungsprofil." },
+  { n: 7, titel: "Dachelemente auf Böcken bauen", text: "Jede deiner drei Platten wird auf zwei Böcken zu einem Element: zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf. Unter das hintere Ende jedes Sparrens kommt ein 7 cm hoher Klotz (Reststück 70×55, ca. 9 cm lang), mit zwei Schrauben von der Seite angeschraubt. Mit diesem Klotz liegt das Element später auf der Wandpfette. So bekommt das Dach seine 7° Gefälle, ohne dass an der Hauswand ein dritter Balken nötig ist. Kanten fertig machen: oben an der Wand Alu-Klebeband, vorne Antistaubband, Tropfprofil und Rinnenhalter, außen die Randprofile. Bei den Elementen Mitte und rechts kommt an die linke Kante ein H-Verbindungsprofil, genau über den linken Sparren und dort festgeschraubt. In dieses H-Profil wird beim Einbau die rechte Plattenkante des Nachbarelements geschoben." },
   { n: 8, titel: "Elemente einbauen, Rinne einhängen", text: "Ein Element wiegt etwa 12 kg. Längs gedreht flach durch die Öffnung heben, oben um 90° drehen und ablegen: zuerst links, dann die Mitte, die seitlich ins H-Profil geschoben wird. Das rechte kommt zuletzt leicht gekippt durch die Restöffnung. Jedes Element 5 cm vor der Wand absetzen, unter die Dichtlippe schieben, von unten verschrauben. Dann die zwei Kopfbänder links an den linken Sparren, von innen die Rinne in die Halter hängen und die Füllhölzer über der Traufpfette setzen." },
   { n: 9, titel: "Katzennetz von innen", text: "Das Netz kommt nicht innen vor die Hölzer, sondern Feld für Feld zwischen sie, wie eine Fensterscheibe. Pro Feld ein Netzstück mit 5 cm Rand zuschneiden. Den Rand auf die Seitenflächen der Pfosten, die Unterseite des Querbalkens und die Oberseite deines Balkens tackern, möglichst weit außen, dann eine Leiste 20×20 außen bündig drüberschrauben. Das Netz sitzt so nur 2 cm hinter der Außenkante, und alle Innenseiten bleiben frei für spätere Wandelemente. Links genauso zwischen den beiden linken Pfosten, unten an deinem Balken, oben am linken Dachbalken. In der Fensternische hinter dem Pfosten an der Hauswand ist kein Holz fürs Netz, dort kommt eine Platte hin: zwei Leisten 20×40 mit Fix ALL unter den Sturz und an die Fensterlaibung kleben, die Platte auf deinen Balken stellen und von innen durch den Pfosten und die Leisten festschrauben. In der Nische selbst ist unten kein Balken, dort geht die Platte bis auf den Boden, mit einer dritten geklebten Leiste unten. Fugen mit Fix ALL dicht machen. in der Ecke über Eck vom Eckpfosten zum Wandpfosten, oben am Eckriegel, rechts ein Streifen von der Mauerkrone bis zum rechten Dachbalken. Links sitzt das Netz zwischen dem Pfosten an der Hauswand und dem Eckpfosten, außen bündig mit deinem Balken. Vorne an der Mauer läuft es außen am Eckpfosten vorbei bis ans Balkenende, dort mit dem Netz über Eck mit Kabelbindern oder Netzklammern verbinden und oben und unten klemmen. Nie an die Platten. Alles ist von innen erreichbar." },
 ];
@@ -286,10 +286,14 @@ export function baueModell(param = {}) {
   // Sparren je Element: außen sitzen sie innerhalb der 3-m-Querbalken, die Platte steht seitlich über
   // Bei dünnen Platten (10 mm) dürfen die Sparren höchstens ca. 80 cm auseinander liegen: dann ein dritter in der Mitte
   const maxAbstand = t >= 0.016 ? 1.05 : t >= 0.010 ? 0.80 : 0.60;
+  // Keine doppelten Sparren an den Fugen: jedes Element hat einen Sparren an der linken Kante (bei den inneren genau unter der Fuge)
+  // und je nach Plattenstärke einen in der Mitte; nur das rechte Element hat zusätzlich einen an der rechten Kante.
+  // Die rechte Plattenkante liegt auf dem Fugensparren des Nachbarn und wird vom H-Profil gehalten.
   const sparrenZ = (i) => {
-    const z0 = zP0 + i * PL.breite, z1 = z0 + PL.breite, r = H.a / 2 + 0.003;
-    const l = i === 0 ? zPf0 + r : z0 + r, rr = i === PL.anzahl - 1 ? zPf1 - r : z1 - r;
-    return rr - l - H.a > maxAbstand ? [l, (l + rr) / 2, rr] : [l, rr];
+    const z0 = zP0 + i * PL.breite, z1 = z0 + PL.breite, r = H.a / 2 + 0.003, letztes = i === PL.anzahl - 1;
+    const l = i === 0 ? zPf0 + r : z0, rr = letztes ? zPf1 - r : z1;      // rr: rechter Sparren bzw. Fuge zum Nachbarn
+    const liste = rr - l - H.a > maxAbstand ? [l, (l + rr) / 2] : [l];
+    return letztes ? [...liste, rr] : liste;
   };
   const zr = sparrenZ(0)[0];                                                 // linker Sparren des linken Elements
 
@@ -323,7 +327,7 @@ export function baueModell(param = {}) {
     const e = { vor: { step: 7, dy: 0.85 - minY }, element: name };
     elemente.push(name);
     const sz = sparrenZ(i);
-    for (const [zc, seite] of sz.map((z, k) => [z, k === 0 ? "links" : k === sz.length - 1 ? "rechts" : "Mitte"]))
+    for (const [zc, seite] of sz.map((z, k) => [z, k === 0 ? "links" : i === PL.anzahl - 1 && k === sz.length - 1 ? "rechts" : "Mitte"]))
     { const xk = (xF0 + 0.01 + xF1 + 0.035) / 2;
       schnittStab(8, `${name}: Klotz unter dem Sparrenende ${seite} (${cm(SK)} cm)`, "holz", [xk, wpOK, zc], [xk, spU(xk), zc], H.a, xF1 + 0.025 - xF0, null, ebSparren(xk), { ...holz, laenge: xF1 + 0.025 - xF0, kurzeKante: undefined, ...wk(p.neigung, "oben schräg, liegt satt am Sparren an"), schnitt: "auf den Böcken von der Seite an den Sparren schrauben", ...e });
       prisma(8, `${name}: Sparren ${seite}`, "holz", [[xSp0, spU(xSp0), zc - H.a / 2], [xg0, spU(xg0), zc - H.a / 2], [xg0, tpOK, zc - H.a / 2], [xg1, tpOK, zc - H.a / 2], [xSp1, spU(xSp1), zc - H.a / 2], [xSp1, yU(xSp1), zc - H.a / 2], [xSp0, yU(xSp0), zc - H.a / 2]], [0, 0, H.a], { laenge: (xSp1 - xSp0) / cos, ...holz, ...wk(p.neigung, "beide Enden, parallel"), schnitt: `Kerbe über der Traufpfette: ${cm(xg1 - xg0)} cm breit, hinten ${Math.round((spU(xg0) - tpOK) * 1000)} mm tief, vorne 0`, ...e });
@@ -333,7 +337,7 @@ export function baueModell(param = {}) {
     stab(8, `${name}: Platte ${PL.label}`, "platte", [xP0, yc(xP0), (z0 + z1) / 2], [xP1, yc(xP1), (z0 + z1) / 2], PL.breite - 0.006, t, { breite: PL.breite, ...e });
     const rand = (pn, z) => stab(8, `${name}: ${pn}`, "profil", [xP0, yTop(xP0) + 0.006, z], [xP1, yTop(xP1) + 0.006, z], 0.05, 0.012, { laenge: PL.laenge, ...e });
     if (i === 0) rand("Randprofil links", z0 + 0.02);
-    if (i < PL.anzahl - 1) rand("H-Verbindungsprofil zum Nachbarelement", z1);
+    if (i > 0) rand("H-Verbindungsprofil an der linken Kante (vormontiert, hält auch die Platte des Nachbarn)", z0);
     if (i === PL.anzahl - 1) rand("Randprofil rechts", z1 - 0.02);
     stab(8, `${name}: Tropfprofil + Antistaubband vorne`, "profil", [xP1, yTop(xP1) - 0.012, z0], [xP1, yTop(xP1) - 0.012, z1], 0.02, 0.04, { laenge: PL.breite, ...e });
     box(8, `${name}: Alu-Klebeband oben`, "dicht", xP0 - 0.004, xP0 + 0.006, yTop(xP0) - 0.02, yTop(xP0) + 0.004, z0, z1, e);
@@ -344,10 +348,12 @@ export function baueModell(param = {}) {
   stab(8, "Dachrinne vorne (Gefälle zur Betonmauer)", "rinne", [xP1 + 0.06, yR + rGef, zP0 - 0.02], [xP1 + 0.06, yR, zP1], 0.10, 0.07, { laenge: zP1 - zP0 + 0.02 });
   box(8, "Ablaufstutzen an der Betonmauer (Fallrohr später)", "rinne", xP1 + 0.03, xP1 + 0.09, yR - 0.12, yR - 0.035, zP1 - 0.15, zP1 - 0.09);
   // Füllhölzer zwischen den Sparren über der Traufpfette
-  for (let i = 0; i < PL.anzahl; i++) {
-    const sz = sparrenZ(i);
-    for (let k = 0; k + 1 < sz.length; k++) { const za = sz[k] + H.a / 2, zb = sz[k + 1] - H.a / 2;
-    if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za }); }
+  {
+    const alle = Array.from({ length: PL.anzahl }, (_, i) => sparrenZ(i)).flat().sort((u, w) => u - w);
+    for (let k = 0; k + 1 < alle.length; k++) {
+      const za = alle[k] + H.a / 2, zb = alle[k + 1] - H.a / 2;
+      if (zb > za + 0.05) box(8, "Füllholz über der Traufpfette", "holz", xg0, xg1, tpOK, yU(xG) - 0.003, za, zb, { ...holz, laenge: zb - za });
+    }
   }
 
   // --- 9 Katzennetz: Feld für Feld zwischen den Hölzern, wie eine Fensterscheibe -------------------------
@@ -399,8 +405,9 @@ export function baueModell(param = {}) {
 
   // --- Kennwerte & Prüfungen -----------------------------------------------------------------------
   const alleSparren = Array.from({ length: PL.anzahl }, (_, i) => sparrenZ(i));
-  const sparrenAbstand = Math.max(...alleSparren.flatMap((sz) => sz.slice(1).map((z, k) => z - sz[k] - H.a)));
-  const sproElement = alleSparren[0].length, sparrenAnzahl = alleSparren.reduce((n, sz) => n + sz.length, 0);
+  const sortiert = alleSparren.flat().sort((u, w) => u - w);
+  const sparrenAbstand = Math.max(...sortiert.slice(1).map((z, k) => z - sortiert[k] - H.a));
+  const sproElement = Math.max(...alleSparren.map((sz) => sz.length)), sparrenAnzahl = sortiert.length;
   const elementKg = Math.round(sproElement * 4.0 + 170 * t * PL.laenge * PL.breite + 1);   // Douglasie ca. 4 kg pro Sparren
   const kennwerte = {
     neigung: p.neigung, gefaelleCmProM: tan * 100,
@@ -420,7 +427,7 @@ export function baueModell(param = {}) {
     : { stufe: "ok", text: `Vorne stehen die Platten ${cm(ueberstand)} cm über die Brüstung. Die Rinne fängt das Wasser auf, damit nichts auf dein späteres unteres Catio tropft. Der Ablauf sitzt an der Betonmauer.` });
   hinweise.push(sparrenAbstand > maxAbstand + 0.001
     ? { stufe: "warn", text: `Sparrenabstand ${cm(sparrenAbstand)} cm ist für ${Math.round(t * 1000)} mm Platten zu weit. Pro Element einen dritten Sparren einplanen.` }
-    : { stufe: "ok", text: `Jedes Element hat ${sproElement} Sparren${sproElement > 2 ? ", einen davon in der Mitte, weil die Platten nur " + Math.round(t * 1000) + " mm dick sind" : ""}. Lichter Abstand höchstens ${cm(sparrenAbstand)} cm (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
+    : { stufe: "ok", text: `Insgesamt ${sparrenAnzahl} Sparren, an den Plattenfugen nur einer (die Nachbarplatte liegt mit auf und wird vom H-Profil gehalten)${alleSparren[0].length > 1 ? ", dazu je einer in der Mitte, weil die Platten nur " + Math.round(t * 1000) + " mm dick sind" : ""}. Lichter Abstand höchstens ${cm(sparrenAbstand)} cm (Richtwert bis ${cm(maxAbstand)} cm bei ${Math.round(t * 1000)} mm).` });
   hinweise.push({ stufe: "ok", text: `Die Fuge an der Hauswand ist waagerecht auf ${cm(yTop(xP0))} cm, ${yTop(xP0) > B.hSturzOK ? "auf dem Ziegel über dem Betonsturz. Mörtelfugen hinter dem Profil satt mit MS-Polymer füllen." : "auf dem glatten Betonsturz."}` });
   const profilOK = yTop(xP0) + 0.06;
   hinweise.push(profilOK > B.hWandFrei
@@ -465,7 +472,7 @@ export function baueModell(param = {}) {
   ];
   masse.push(...winkelLabels);
 
-  const schritte = SCHRITTE.map((st) => ({ ...st, text: (VARIANTE_TEXT[st.n] ?? ((t) => t))(st.text, p).replace("etwa 12 kg", `etwa ${elementKg} kg`).replace("zwei Sparren 70×55 darunter", sproElement > 2 ? `${sproElement} Sparren 70×55 darunter (außen zwei, einer in der Mitte, weil deine Platten nur ${Math.round(t * 1000)} mm dick sind)` : "zwei Sparren 70×55 darunter") }));
+  const schritte = SCHRITTE.map((st) => ({ ...st, text: (VARIANTE_TEXT[st.n] ?? ((t) => t))(st.text, p).replace("etwa 12 kg", `etwa ${elementKg} kg`).replace("zwei Sparren 70×55 darunter, Platte mit Abstandshaltern und Dichtschrauben drauf.", `${alleSparren.map((sz, i) => `${["links", "Mitte", "rechts"][i] ?? i + 1} ${sz.length}`).join(", ")} Sparren 70×55 darunter: einer an der linken Kante${alleSparren[0].length > 1 ? ", einer in der Mitte" : ""}, nur das rechte Element hat auch an der rechten Kante einen. An den Plattenfugen liegt so kein doppelter Sparren, die rechte Kante liegt später auf dem Sparren des Nachbarn. Dann die Platte mit Abstandshaltern und Dichtschrauben drauf.`) }));
   return { param: p, platte: PL, parts, schritte, masse, kennwerte, hinweise, einkauf: einkauf(parts, kennwerte, p) };
 }
 
