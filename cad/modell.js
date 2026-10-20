@@ -26,12 +26,12 @@ export const BESTAND = {
   hBruestung: 0.60,       // Oberkante Betonbrüstung
   hGelaender: 0.80,       // innenliegendes Metallgeländer, Oberkante
   // deine Balken 70×55 auf der Brüstung, mit U-Bügeln am Geländer befestigt
-  balken: { b: 0.055, h: 0.055 },  // deine Balken liegen flach auf der Brüstung: 5,5 cm hoch
+  balken: { b: 0.07, h: 0.055 },   // deine Balken liegen flach auf der Brüstung: 7 cm breit, 5,5 cm hoch
   eckEinzug: 0.055,       // die vorderen Eckpfosten stehen 5,5 cm von der Balkenecke nach innen (U-Bügel ans Geländer)
   xBalkenGarten: 0.945,   // Innenkante Gartenbalken
   zBalkenLinks: -0.275,   // Innenkante linker Balken = Außenseite der linken Pfosten (von dort bis Mauer-Innenseite 2,945 m)
   querbalken: 3.00,       // alle Querbalken genau 3 m: von der Außenseite der linken Pfosten bis 5,5 cm auf die Mauer (gemessen)
-  zBalkenWand: 2.425,     // Innenkante Eckbalken vor der Mauer (19 cm Beton bis zur Mauer, gemessen)
+  zBalkenWand: 2.41,      // Innenkante Eckbalken vor der Mauer (19 cm Beton bis zur Mauer, gemessen)
   tiefeEcke: 0.51,        // Brüstungsstück vor der Mauer: 51 cm tief (von der Außenkante nach innen)
 };
 
@@ -100,13 +100,14 @@ export function baueModell(param = {}) {
   const d70 = H.b / cos;                                        // Sparrenhöhe lotrecht
 
   // Balken auf der Brüstung
-  const xg0 = B.xBalkenGarten, xg1 = xg0 + B.balken.b, xG = (xg0 + xg1) / 2;
+  const xg0 = B.xBalkenGarten, xgB = xg0 + B.balken.b;                     // dein Gartenbalken, 7 cm breit
+  const xg1 = xg0 + H.a, xG = (xg0 + xg1) / 2;                                // vordere Pfette 5,5 cm, innen bündig mit den Pfosten
   const zl1 = B.zBalkenLinks, zl0 = zl1 - B.balken.b;
   const zw0 = B.zBalkenWand, zw1 = zw0 + B.balken.b;
   const hB = B.hBruestung + B.balken.h, hBalken = hB;
 
   // Dachfläche: drei Platten nebeneinander, so gelegt, dass der rechte Sparren auf der Mauerkrone liegt
-  const zPf0 = zl0 + B.eckEinzug, zPf1 = zPf0 + B.querbalken;                              // Querbalken: genau 3 m, rechts 5,5 cm auf der Mauer
+  const zPf0 = zl1, zPf1 = zPf0 + B.querbalken;                              // Querbalken: genau 3 m, rechts 5,5 cm auf der Mauer
   const zP0 = (zPf0 + zPf1) / 2 - (PL.anzahl * PL.breite) / 2, zP1 = zP0 + PL.anzahl * PL.breite;   // Platten stehen beidseitig gleich über
   const xP0 = B.xFassade + 0.01, xP1 = xP0 + PL.laenge * cos;
   const ueberstand = xP1 - B.xBrAussen;
@@ -142,11 +143,11 @@ export function baueModell(param = {}) {
   // --- 1 Bestand -------------------------------------------------------------------
   // Gartenbalken mit zwei Lücken für die vorderen Eckpfosten (5,5 cm von den Ecken nach innen), die Pfosten stehen dort auf dem Beton
   {
-    const a1 = [zl0 + B.eckEinzug, zl0 + B.eckEinzug + H.b];                               // = Pfosten links
-    const a2 = [zw1 - B.eckEinzug - H.b, zw1 - B.eckEinzug];                                // = Pfosten an der Mauer
-    for (const [z0, z1] of [[zl1, a1[0]], [a1[1], a2[0]], [a2[1], zw1]].filter(([z0, z1]) => z1 - z0 > 0.002)) box(1, "Bestandsbalken Garten", "bestand", xg0, xg1, B.hBruestung, hB, z0, z1);
+    const a1 = [zl1, zl1 + H.a];                                                           // = Pfosten links (5,5 breit)
+    const a2 = [zw1 - B.eckEinzug - H.a, zw1 - B.eckEinzug];                                // = Pfosten an der Mauer (5,5 breit)
+    for (const [z0, z1] of [[zl1, a1[0]], [a1[1], a2[0]], [a2[1], zw1]].filter(([z0, z1]) => z1 - z0 > 0.002)) box(1, "Bestandsbalken Garten", "bestand", xg0, xgB, B.hBruestung, hB, z0, z1);
   }
-  box(1, "Bestandsbalken links (von der Hauswand bis vorne an die Ecke)", "bestand", B.xFassade, xg1, B.hBruestung, hB, zl0, zl1);
+  box(1, "Bestandsbalken links (von der Hauswand bis vorne an die Ecke)", "bestand", B.xFassade, xgB, B.hBruestung, hB, zl0, zl1);
   const xEcke = B.xBrAussen - B.tiefeEcke;
   box(1, "Bestandsbalken vor der Mauer", "bestand", xEcke, xg0, B.hBruestung, hB, zw0, zw1);
   const gx = xg0 - 0.012, gz = zl1 + 0.012, gw = zw0 - 0.012;
@@ -198,11 +199,11 @@ export function baueModell(param = {}) {
   const zh0 = zl1 + 0.001, zh1 = zh0 + H.b;                                 // direkt innen am Balken, dort ist kein Geländer
   pfosten("Pfosten links an der Hauswand (bis zum Boden)", xF0, xF0 + H.b, zh0, zh1, wpUK, [], null, hBalken, "steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer");
   for (const y of [B.hBruestung + 0.02, hBalken - 0.02]) box(2, "Schraube 6×120 durch den Pfosten in den Balken", "stahl", xF0 + H.b / 2 - 0.003, xF0 + H.b / 2 + 0.003, y - 0.003, y + 0.003, zl1 - 0.06, zh1);
-  const zEL = [zl0 + B.eckEinzug, zl0 + B.eckEinzug + H.b];                 // Eckpfosten links/Garten, in einer Linie mit dem Pfosten an der Hauswand
-  pfosten("Eckpfosten links/Garten", xg0, xg1, zEL[0], zEL[1], tpUK, ["+z", "-z"], "garten", B.balken.h);
-  if (!p.ohneMittelpfosten) pfosten("Pfosten Garten Mitte", xg0, xg1, zMitte - H.b / 2, zMitte + H.b / 2, tpUK, ["+z", "-z"], "garten");
-  const zEck = [zw1 - B.eckEinzug - H.b, zw1 - B.eckEinzug];                // Eckpfosten Garten/Mauer, 5,5 cm vom Balkenende nach innen
-  pfosten("Eckpfosten Garten/Mauer", xg0, xg1, zEck[0], zEck[1], tpUK, ["-z", "+z"], "garten", B.balken.h);
+  const zEL = [zl1, zl1 + H.a];                                                               // Eckpfosten links/Garten, in einer Linie mit dem Pfosten an der Hauswand
+  pfosten("Eckpfosten links/Garten", xg0, xgB, zEL[0], zEL[1], tpUK, ["+z", "-z"], "garten", B.balken.h);
+  if (!p.ohneMittelpfosten) pfosten("Pfosten Garten Mitte", xg0, xgB, zMitte - H.a / 2, zMitte + H.a / 2, tpUK, ["+z", "-z"], "garten");
+  const zEck = [zw1 - B.eckEinzug - H.a, zw1 - B.eckEinzug];                // Eckpfosten Garten/Mauer, 5,5 cm vom Balkenende nach innen
+  pfosten("Eckpfosten Garten/Mauer", xg0, xgB, zEck[0], zEck[1], tpUK, ["-z", "+z"], "garten", B.balken.h);
   const wz1 = B.zWand - 0.002, wz0 = wz1 - H.b;                              // Wandpfosten an der Mauer
 
   // --- 3 Auflager auf der Mauerkrone + Ecke ----------------------------------------------------------
@@ -258,7 +259,7 @@ export function baueModell(param = {}) {
   // Schwelle unten auf der Netzlinie: verbindet Eckbalken und Wandpfosten, daran wird das Netz über Eck unten befestigt
   const ed = [(eckB[0] - eckA[0]) / eckL, (eckB[1] - eckA[1]) / eckL], en = [ed[1], -ed[0]];   // en zeigt nach außen
   // vorne schräg ans Balkenende (z = Ende Eckbalken), außen bündig mit deinem Balken; hinten an die Vorderseite des Wandpfostens
-  const kq = en[0] - (ed[0] * en[1]) / ed[1], swO = (xg1 - eckA[0]) / kq - H.b / 2;   // Versatz der Schwellenmitte zur Netzlinie
+  const kq = en[0] - (ed[0] * en[1]) / ed[1], swO = (xgB - eckA[0]) / kq - H.b / 2;   // Versatz der Schwellenmitte zur Netzlinie
   const swA = [eckA[0] + en[0] * swO, eckA[1] + en[1] * swO], swB = [eckB[0] + en[0] * swO, eckB[1] + en[1] * swO];
   const swUK = B.hBruestung + 0.01, swOK = swUK + H.a;
   schnittStab(3, "Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten)", "holz", [swA[0], swUK + H.a / 2, swA[1]], [swB[0], swUK + H.a / 2, swB[1]], H.b, H.a, ebZ(zw1), ebX(xw1), { ...holz, winkel: `vorne ${90 - wEck}° gegen das Balkenende: anreißen (Schnittlinie ${wEck}° zur Längskante) und mit der Handsäge schneiden, hinten ${wEck}° an den Wandpfosten (Kappsäge auf ${wEck}°)`, schnitt: "liegt flach" });
@@ -300,7 +301,7 @@ export function baueModell(param = {}) {
     schnittStab(step, name, "holz", A, Bp, KBD, H.a, eA, eB, { ...holz, ...wk(45, "beide Enden, Schnitte parallel"), schnitt: "aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder" });
     winkelLabels.push({ t: "45°", p: [(A[0] + Bp[0]) / 2 - 0.04, (A[1] + Bp[1]) / 2, (A[2] + Bp[2]) / 2], ab: step, bis: step });
   };
-  const kbVorne = [[zEL[1], 1, "Ecke links"], [zMitte - H.b / 2, -1, "Mitte 1"], [zMitte + H.b / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
+  const kbVorne = [[zEL[1], 1, "Ecke links"], [zMitte - H.a / 2, -1, "Mitte 1"], [zMitte + H.a / 2, 1, "Mitte 2"], [zEck[0], -1, "Ecke Mauer"]];
   for (const [z, s, nm] of kbVorne.filter((k) => !p.ohneMittelpfosten || !k[2].startsWith("Mitte")))
     kb(`Kopfband vorne ${nm}`, [xg0 + KBD / 2, tpUK - kd, z], [xg0 + KBD / 2, tpUK, z + s * kd], 5, ebZ(z), ebY(tpUK));
   kb("Kopfband Hauswand", [xF1 - KBD / 2, wpUK - kd, zh1], [xF1 - KBD / 2, wpUK, zh1 + kd], 5, ebZ(zh1), ebY(wpUK));
@@ -354,7 +355,7 @@ export function baueModell(param = {}) {
   // Die Innenseiten von Pfosten und Balken bleiben frei für spätere Wandelemente.
   const leiste = (name, x0, x1, y0, y1, z0, z1) => box(9, name, "holz", x0, x1, y0, y1, z0, z1, { laenge: Math.max(x1 - x0, y1 - y0, z1 - z0) });
   const xN = xg1 - KL;                                                        // Netzebene Gartenseite
-  const felder = p.ohneMittelpfosten ? [[zEL[1], zEck[0]]] : [[zEL[1], zMitte - H.b / 2], [zMitte + H.b / 2, zEck[0]]];
+  const felder = p.ohneMittelpfosten ? [[zEL[1], zEck[0]]] : [[zEL[1], zMitte - H.a / 2], [zMitte + H.a / 2, zEck[0]]];
   felder.forEach(([za, zb], i) => {
     const nm = felder.length > 1 ? ` Feld ${i + 1}` : "";
     poly(9, `Netz Gartenseite${nm} (zwischen den Pfosten)`, "netz", [[xN - 0.001, hB, za], [xN - 0.001, hB, zb], [xN - 0.001, tpUK, zb], [xN - 0.001, tpUK, za]]);

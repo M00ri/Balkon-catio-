@@ -29,7 +29,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 - ✔ Wandpfette 261,9–275,9 cm: Beide Lagen liegen komplett an der glatten Betonfläche (bis 278 cm) und können dort geklebt werden. Die Dachbalken liegen mit ihren 7 cm hohen Klötzen darauf. Rechts liegt sie auf deinem flachen Balken auf der Mauerkrone (oben 261,9 cm), links auf dem Pfosten.
 - ✔ Das Netz sitzt Feld für Feld zwischen den Hölzern, 2 cm hinter der Außenkante, nie an den Platten. Die Innenseiten von Pfosten und Balken bleiben frei für Wandelemente. Über der Traufpfette schließen Füllhölzer die Lücken zwischen den Sparren. Befestigt wird von innen: tackern, Leiste 20×20 außen bündig drüber.
 - ✔ Ecke an der Mauer: 19 × 51 cm Betonstreifen, die Mauer endet 40 cm vor der Balkonkante. Der Wandpfosten wird bündig am Mauerende flach an die Mauer geklebt (24,5 cm hinter dem Eckpfosten). Oben liegt der Eckriegel genau auf der Netzlinie: vorne mit einem Winkel an der Traufpfette, hinten mit einem Winkel seitlich am Wandpfosten, direkt unter dem rechten Sparren. Das Netz über Eck (27,2 cm breit) hat so an allen vier Seiten Holz bzw. Beton. Ein Füllholz auf dem Eckriegel schließt bis unter die Platte.
-- ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 131,5 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (4 N/mm²). Der Querbalken ist ein Stück ohne Stoß.
+- ✔ Mit dem Mittelpfosten spannt die einfache Traufpfette nur 133 cm. Grob gerechnet biegt sie sich unter Schnee 2 mm durch (4 N/mm²). Der Querbalken ist ein Stück ohne Stoß.
 - ✔ Vorne liegt die Dachunterkante 12,6 cm über der Mauerkrone, hinten an der Hauswand 33,7 cm darüber.
 
 ## Noch bestellen
@@ -57,7 +57,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 
 | Teil | Menge | Hinweis |
 |---|---|---|
-| Kantholz 70×55, 3,00 m | 17 Stangen | Verschnitt 606,2 cm |
+| Kantholz 70×55, 3,00 m | 17 Stangen | Verschnitt 604,6 cm |
 | Polycarbonat-Stegplatten 2,00 × 1,05 m | 3 von 3 | Stege in Gefällerichtung (zum Garten) |
 | Randprofile, Tropfprofil | 2 × 200 cm, 315 cm | Seitenkanten links und rechts, vordere Kante |
 | Winkelverbinder mit Sicke, ca. 60×60×40 | ca. 30 | je Pfosten zwei auf gegenüberliegenden Seiten, Eckriegel, Klötze an der Mauer |
@@ -73,7 +73,7 @@ Die Maße stammen aus Scan und Fotos (±2 cm). **Vor dem Zuschnitt am Balkon nac
 | 1 | 300 Wandpfette unten (an die Wand geklebt) | 0 |
 | 2 | 300 Wandpfette oben (an die Wand geklebt) | 0 |
 | 3 | 300 Traufpfette (kragt rechts über den Eckpfosten aus) | 0 |
-| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer) · 33,3 Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten) (vorne 64° gegen das Balkenende: anreißen (Schnittlinie 26° zur Längskante) und mit der Handsäge schneiden, hinten 26° an den Wandpfosten (Kappsäge auf 26°), liegt flach) | 3,8 |
+| 4 | 261,9 Pfosten links an der Hauswand (bis zum Boden) (steht auf dem Boden direkt am Balken, oben 261,9 cm wie der Balken auf der Mauer) · 35 Schwelle unten in der Ecke (flach auf dem Betonstreifen, Eckbalken bis Wandpfosten) (vorne 64° gegen das Balkenende: anreißen (Schnittlinie 26° zur Längskante) und mit der Handsäge schneiden, hinten 26° an den Wandpfosten (Kappsäge auf 26°), liegt flach) | 2,2 |
 | 5 | 200,9 Wandpfosten an die Mauer geklebt · 48,7 Kopfband links Ecke (an den linken Sparren) (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) · 47,9 Kopfband vorne Ecke links (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) | 1 |
 | 6 | 197 Element links: Sparren links (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe über der Traufpfette: 5,5 cm breit, hinten 7 mm tief, vorne 0) · 47,9 Kopfband Hauswand (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) · 47,9 Kopfband vorne Ecke Mauer (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) | 5,7 |
 | 7 | 197 Element links: Sparren Mitte (7°, beide Enden, parallel (Kappsäge auf 7°), Kerbe über der Traufpfette: 5,5 cm breit, hinten 7 mm tief, vorne 0) · 47,9 Kopfband vorne Mitte 1 (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) · 47,9 Kopfband vorne Mitte 2 (45°, beide Enden, Schnitte parallel (Kappsäge auf 45°), aus einem 70×55 längs halbiert (35×55), innen bündig: aus einem Stück werden zwei Kopfbänder) | 5,7 |
