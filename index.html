@@ -230,7 +230,7 @@ dl.masse dd { font-family: var(--font-data); font-variant-numeric: tabular-nums;
   <aside class="sheet">
     <header class="titleblock">
       <h1>Balkon-Catio</h1>
-      <div class="meta">Bauplan V52 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
+      <div class="meta">Bauplan V53 · Dach nach vorne<br>ohne Bohren in die Fassade</div>
     </header>
 
     <nav class="tabs" role="tablist">
@@ -762,6 +762,11 @@ $("m-gross").onclick = () => { const an = app.classList.toggle("gross"); $("m-gr
   }, { passive: true });
 }
 setTimeout(() => $("tipp").classList.add("weg"), 7000);
+// Handy: Modell groß und ohne Maße starten (beides per Knopf umschaltbar)
+if (matchMedia("(max-width: 820px)").matches) {
+  app.classList.add("gross"); $("m-gross").setAttribute("aria-pressed", "true");
+  showLabels = false; $("m-an").setAttribute("aria-pressed", "false"); updateLabels();
+}
 
 // ---------- Tabs ----------
 const tabs = { bau: "p-bau", plan: "p-plan", mat: "p-mat", best: "p-best" };
