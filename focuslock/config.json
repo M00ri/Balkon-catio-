@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+
+  "blocked": {
+    "process_names": [
+      "steam.exe",
+      "EpicGamesLauncher.exe"
+    ],
+    "path_prefixes": [
+      "C:/Program Files (x86)/Steam/steamapps/common",
+      "C:/Program Files/Epic Games"
+    ]
+  },
+
+  "unlock": {
+    "folders": [
+      "C:/Users/DEINNAME/Videos/Clips"
+    ],
+    "recursive": true,
+    "extensions": [".mp4", ".mov", ".mkv", ".avi", ".webm", ".m4v"],
+    "min_count": 5,
+    "min_size_mb": 5,
+    "no_reuse": true
+  },
+
+  "day_reset_hour": 4,
+  "time_zone": "W. Europe Standard Time",
+  "poll_seconds": 2,
+  "check_seconds": 20
+}
