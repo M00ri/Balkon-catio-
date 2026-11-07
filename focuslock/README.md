@@ -1,5 +1,18 @@
 # FocusLock – erst die Arbeit, dann das Spiel
 
+> **Stand der Entwicklung:** Wir bauen das in zwei Stufen.
+> **1. Testmodus (jetzt) – gefahrlos:** `test.cmd` startet ein sichtbares Fenster, das die Regeln prüft, den Stand als Tray-Icon zeigt und in deinen Obsidian-Vault schreibt. Es schließt gesperrte Programme, lässt sich aber **jederzeit beenden** (Fenster zu, Strg+C, oder Rechtsklick aufs Symbol → Beenden). Nichts bleibt zurück: kein Dienst, keine Registry, kein Autostart. Damit finden wir Fehler in den Regeln.
+> **2. Echte Sperre (später):** Windows-Dienst als SYSTEM, Registry-Startsperre, Brave nur für Canva, Timer-Notausgang. Erst wenn der Testmodus sauber läuft.
+>
+> **Testmodus starten:** Werte in `engine/gate.json` prüfen (Ordner, Vault, gesperrte Programme), dann `test.cmd` doppelklicken. Den Mess-Kern testen: `pwsh -NoProfile -File tests/MediaGate.Tests.ps1`.
+>
+> **Punkte-Regel:** Clip (Video unter 2 Min) = 1 Punkt. Long-form (Video + PNG-Thumbnail im selben Ordner) = 3 Punkte. 2–5 Min zählt nicht. Ziel: 5 Punkte am Tag. Ein Long-form zählt schon **während** es rendert (es hängt am PNG, nicht an der fertigen Dauer).
+>
+> Der Rest dieser Datei beschreibt die geplante echte Sperre (Stufe 2).
+
+---
+
+
 FocusLock sperrt auf deinem Windows-PC bestimmte Programme (Steam, ein Spiel, einen Launcher …).
 Freigeschaltet wird automatisch, sobald du die Tagesaufgabe erledigt hast, zum Beispiel:
 

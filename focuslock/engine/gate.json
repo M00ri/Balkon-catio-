@@ -1,0 +1,44 @@
+{
+  "target_points": 5,
+  "day_reset_hour": 4,
+  "time_zone": "W. Europe Standard Time",
+  "no_reuse": true,
+  "sources": [
+    {
+      "kind": "clip",
+      "folder": "F:/work/Clips/fertig",
+      "video_ext": [
+        ".mp4",
+        ".mov"
+      ],
+      "max_seconds": 120,
+      "min_size_mb": 2,
+      "points": 1
+    },
+    {
+      "kind": "longform",
+      "folder": "E:/kittn/youtube/fertig",
+      "video_ext": [
+        ".mp4",
+        ".mov"
+      ],
+      "thumb_ext": [
+        ".png"
+      ],
+      "min_seconds": 300,
+      "min_size_mb": 20,
+      "thumb_min_kb": 10,
+      "points": 3
+    }
+  ],
+  "poll_seconds": 3,
+  "vault": "I:/Obsidian second brain/second-brain",
+  "blocked": {
+    "process_names": [
+      "chrome.exe",
+      "msedge.exe",
+      "firefox.exe"
+    ],
+    "path_prefixes": []
+  }
+}
