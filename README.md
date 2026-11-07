@@ -19,7 +19,3 @@ python3 -m http.server                               # Viewer unter http://local
 ```
 
 Koordinaten in Metern: y nach oben (Boden = 0), x von der Hauswand Richtung Garten (Dachgefälle), z von der linken Brüstung zur Betonmauer rechts.
-
-## Außerdem in diesem Repo
-
-`focuslock/` – eigenständiges Windows-Tool, nichts mit dem Gehege zu tun: sperrt Spiele, bis heute genug Clips aufgenommen wurden. Anleitung in [`focuslock/README.md`](focuslock/README.md).
